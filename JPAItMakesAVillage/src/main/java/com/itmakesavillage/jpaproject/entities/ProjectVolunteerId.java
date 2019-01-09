@@ -3,7 +3,9 @@ package com.itmakesavillage.jpaproject.entities;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class ProjectVolunteerId implements Serializable {
 
 	/**

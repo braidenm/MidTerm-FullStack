@@ -13,6 +13,7 @@
     <class>com.itmakesavillage.jpaproject.entities.Category</class>
     <class>com.itmakesavillage.jpaproject.entities.Project</class>
     <class>com.itmakesavillage.jpaproject.entities.ProjectVolunteer</class>
+    <class>com.itmakesavillage.jpaproject.entities.ProjectVolunteerId</class>
     <class>com.itmakesavillage.jpaproject.entities.User</class>
     <class>com.itmakesavillage.jpaproject.entities.Volunteer</class>
 
