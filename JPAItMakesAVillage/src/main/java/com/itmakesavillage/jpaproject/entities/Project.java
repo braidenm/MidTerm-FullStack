@@ -9,36 +9,50 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Project {
+	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private int id;
+	
 	private String title;
+	
 	private boolean active;
-	@Column(name="owner_id")
+	
+	@Column(name = "owner_id")
 	private int ownerId;
-	@Column(name="start_date")
+	
+	@Column(name = "start_date")
 	private Date startDate;
-	@Column(name="end_date")
+	
+	@Column(name = "end_date")
+	
 	private Date endDate;
+	
 	private String description;
-	
+
+	@ManyToOne
+	@JoinColumn(name="address_id")
 	private Address address;
+
 	private Time time;
-	@Column(name="hours_needed")
+
+	@Column(name = "hours_needed")
 	private int hoursNeeded;
-	@Column(name="volunteer_needed")
+	
+	@Column(name = "volunteer_needed")
 	private int volunteersNeeded;
+
 	private List<Volunteer> volunteers;
+	
 	private List<Category> categories;
-	
+
 	private List<ProjectVolunteer> projectVolunteer;
-	
-	
-	
-	
+
 	public Project() {
 	}
 
@@ -68,6 +82,7 @@ public class Project {
 				+ startDate + ", endDate=" + endDate + ", description=" + description + ", address=" + address
 				+ ", time=" + time + ", hoursNeeded=" + hoursNeeded + ", volunteersNeeded=" + volunteersNeeded + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -75,6 +90,7 @@ public class Project {
 		result = prime * result + id;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -88,7 +104,7 @@ public class Project {
 			return false;
 		return true;
 	}
-	
+
 	public List<ProjectVolunteer> getProjectVolunteer() {
 		return projectVolunteer;
 	}
@@ -100,83 +116,105 @@ public class Project {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public boolean isActive() {
 		return active;
 	}
+
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
 	public int getOwnerId() {
 		return ownerId;
 	}
+
 	public void setOwnerId(int ownerId) {
 		this.ownerId = ownerId;
 	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
+
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+
 	public Date getEndDate() {
 		return endDate;
 	}
+
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public Address getAddress() {
 		return address;
 	}
+
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
 	public Time getTime() {
 		return time;
 	}
+
 	public void setTime(Time time) {
 		this.time = time;
 	}
+
 	public int getHoursNeeded() {
 		return hoursNeeded;
 	}
+
 	public void setHoursNeeded(int hoursNeeded) {
 		this.hoursNeeded = hoursNeeded;
 	}
+
 	public int getVolunteersNeeded() {
 		return volunteersNeeded;
 	}
+
 	public void setVolunteersNeeded(int volunteersNeeded) {
 		this.volunteersNeeded = volunteersNeeded;
 	}
+
 	public List<Volunteer> getVolunteers() {
 		return volunteers;
 	}
+
 	public void setVolunteers(List<Volunteer> volunteers) {
 		this.volunteers = volunteers;
 	}
+
 	public List<Category> getCategories() {
 		return categories;
 	}
+
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
-	
-	
-	
-	
+
 }
