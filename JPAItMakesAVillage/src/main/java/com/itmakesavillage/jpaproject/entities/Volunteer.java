@@ -1,9 +1,11 @@
 package com.itmakesavillage.jpaproject.entities;
 
-import java.sql.Date;
+import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -12,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Entity
 public class Volunteer {
 
 	@Id
