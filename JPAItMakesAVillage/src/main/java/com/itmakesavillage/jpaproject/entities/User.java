@@ -26,6 +26,14 @@ public class User {
 	@OneToOne(mappedBy="user")
 	private Volunteer volunteer;
 	
+	public Volunteer getVolunteer() {
+		return volunteer;
+	}
+
+	public void setVolunteer(Volunteer volunteer) {
+		this.volunteer = volunteer;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", email=" + email + ", role="
