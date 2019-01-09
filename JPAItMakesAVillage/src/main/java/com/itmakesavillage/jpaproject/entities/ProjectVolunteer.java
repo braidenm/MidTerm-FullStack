@@ -3,6 +3,9 @@ package com.itmakesavillage.jpaproject.entities;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 
@@ -19,6 +22,31 @@ import javax.persistence.Table;
 	   
 	    @Column(name="hours_actual")
 	    private int hoursActual;
+	    
+	    @ManyToOne
+	    @MapsId(value="projectId")
+	    private Project project;
+	    
+	    @ManyToOne
+	    @MapsId(value="volunteerId")
+	    private Volunteer volunteer;
+	    
+
+		public Volunteer getVolunteer() {
+			return volunteer;
+		}
+
+		public void setVolunteer(Volunteer volunteer) {
+			this.volunteer = volunteer;
+		}
+
+		public Project getProject() {
+			return project;
+		}
+
+		public void setProject(Project project) {
+			this.project = project;
+		}
 
 		public ProjectVolunteerId getId() {
 			return id;
