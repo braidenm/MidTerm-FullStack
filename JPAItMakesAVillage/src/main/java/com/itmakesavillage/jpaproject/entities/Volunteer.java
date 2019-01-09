@@ -1,6 +1,7 @@
 package com.itmakesavillage.jpaproject.entities;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -33,6 +34,22 @@ public class Volunteer {
 	private String  pictureURL;
 	
 	private String about;
+	
+	
+	private List<Project> projects;
+	
+	private List<ProjectVolunteer> projectVolunteers;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 
