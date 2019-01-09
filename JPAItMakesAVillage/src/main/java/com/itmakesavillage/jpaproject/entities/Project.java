@@ -1,6 +1,5 @@
 package com.itmakesavillage.jpaproject.entities;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Project {
@@ -29,25 +30,25 @@ public class Project {
 	@Column(name = "owner_id")
 	private int ownerId;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "start_date")
 	private Date startDate;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "end_date")
-	
 	private Date endDate;
-	
 	private String description;
-
 	@ManyToOne
 	@JoinColumn(name="address_id")
 	private Address address;
-
-	private Time time;
+	@Temporal(TemporalType.TIME)
+	@Column(name="start_time")
+	private Date time;
 
 	@Column(name = "hours_needed")
 	private int hoursNeeded;
 	
-	@Column(name = "volunteer_needed")
+	@Column(name = "volunteers_needed")
 	private int volunteersNeeded;
 
 	@ManyToMany
@@ -65,7 +66,7 @@ public class Project {
 	}
 
 	public Project(int id, String title, boolean active, int ownerId, Date startDate, Date endDate, String description,
-			Address address, Time time, int hoursNeeded, int volunteersNeeded, List<Volunteer> volunteers,
+			Address address, Date time, int hoursNeeded, int volunteersNeeded, List<Volunteer> volunteers,
 			List<Category> categories, List<ProjectVolunteer> projectVolunteer) {
 		super();
 		this.id = id;
@@ -185,11 +186,11 @@ public class Project {
 		this.address = address;
 	}
 
-	public Time getTime() {
+	public Date getTime() {
 		return time;
 	}
 
-	public void setTime(Time time) {
+	public void setTime(Date time) {
 		this.time = time;
 	}
 
