@@ -1,9 +1,13 @@
 package com.itmakesavillage.jpaproject.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Address {
@@ -22,7 +26,18 @@ public class Address {
 	
 	private String zip;
 	
+	@OneToMany(mappedBy="address")
+	private List<Project> projects;
 	
+	
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
 
 	public Address() {
 		super();

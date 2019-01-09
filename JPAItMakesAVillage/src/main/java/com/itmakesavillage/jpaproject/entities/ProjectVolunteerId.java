@@ -11,6 +11,7 @@ public class ProjectVolunteerId implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	
 	@Column(name = "project_id")
     private Integer projectId;
     
