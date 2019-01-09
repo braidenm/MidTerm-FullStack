@@ -1,20 +1,38 @@
 package com.itmakesavillage.jpaproject.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Category {
+	
+	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private int id;
 	private String name;
 	private String description;
+	
+	@ManyToMany(mappedBy="categories")
+	private List<Project> projects;
+	
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}

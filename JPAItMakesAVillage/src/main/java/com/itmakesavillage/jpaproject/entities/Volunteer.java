@@ -5,6 +5,10 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -35,23 +39,33 @@ public class Volunteer {
 	
 	private String about;
 	
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
+	
+	@ManyToMany
+	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="volunteer_id"))
 	private List<Project> projects;
+	
 	
 	private List<ProjectVolunteer> projectVolunteers;
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
+	public List<ProjectVolunteer> getProjectVolunteers() {
+		return projectVolunteers;
+	}
+
+	public void setProjectVolunteers(List<ProjectVolunteer> projectVolunteers) {
+		this.projectVolunteers = projectVolunteers;
+	}
 
 	public Volunteer() {
 		super();

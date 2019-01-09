@@ -10,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Project {
@@ -47,10 +50,15 @@ public class Project {
 	@Column(name = "volunteer_needed")
 	private int volunteersNeeded;
 
+	@ManyToMany
+	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="volunteer_id"))
 	private List<Volunteer> volunteers;
 	
+	@ManyToMany
+	@JoinTable(name="category_project", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="category_id"))
 	private List<Category> categories;
 
+	@OneToMany(mappedBy="project")
 	private List<ProjectVolunteer> projectVolunteer;
 
 	public Project() {
