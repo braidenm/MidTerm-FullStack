@@ -1,6 +1,7 @@
 package com.itmakesavillage.jpaproject.entities;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -49,9 +50,11 @@ class ProjectVolunteerTest {
 	void test_mapping_to_volunteer() {
 		List<Project> projects = volunteer.getProjects();
 		List<Volunteer> volunteers = project.getVolunteers();
+		
 		assertNotNull(projects);
+		assertEquals("Clean up a Park", projects.get(1).getTitle());
 		assert(projects.size()>0);
-		assertNotNull(volunteers);
+		assertEquals("456-677-3332",volunteers.get(2).getPhone());
 		assert(volunteers.size()>0);
 		
 	}
