@@ -12,7 +12,7 @@ public interface VolunteerDAO {
 	public Volunteer findVolunteer(int id);
 	public Volunteer createVolunteer(Volunteer volunteer);
 	public Volunteer updateVolunteer(int id, Volunteer volunteer);
-	public Set<Volunteer> searchVolunteer(String Keyword);
+	public Set<Volunteer> searchVolunteer(String keyword);
 	public List<Volunteer> getAllVolunteer();
 
 }

@@ -19,6 +19,8 @@ public class User {
 	private String password;
 	private String email;
 	private String role;
+	
+	
 	@OneToOne(mappedBy="user")
 	private Volunteer volunteer;
 	private boolean active;

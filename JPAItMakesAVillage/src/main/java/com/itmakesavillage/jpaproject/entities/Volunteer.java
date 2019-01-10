@@ -49,6 +49,13 @@ public class Volunteer {
 	private User user;
 	
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	@ManyToMany
 	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="volunteer_id"))
 	private List<Project> projects;

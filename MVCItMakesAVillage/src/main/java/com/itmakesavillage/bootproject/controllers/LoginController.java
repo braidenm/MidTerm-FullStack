@@ -8,19 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.itmakesavillage.bootproject.data.ProjectDAO;
 import com.itmakesavillage.bootproject.data.UserDAO;
-import com.itmakesavillage.bootproject.data.VolunteerDAO;
 import com.itmakesavillage.jpaproject.entities.User;
 
 @Controller
 public class LoginController {
 	@Autowired
 	private UserDAO userDAO;
-	@Autowired
-	private ProjectDAO projectDAO;
-	@Autowired
-	private VolunteerDAO volunteerDAO;
 	
 	@RequestMapping(path="login.do", method=RequestMethod.GET)
 	public String goToLoginPage(Model model, HttpSession session) {
