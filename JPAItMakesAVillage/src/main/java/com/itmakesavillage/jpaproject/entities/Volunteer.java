@@ -1,5 +1,6 @@
 package com.itmakesavillage.jpaproject.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.List;
@@ -220,5 +221,21 @@ public class Volunteer {
 
 	public void setAbout(String about) {
 		this.about = about;
+	}
+	
+	public void addProject(Project project) {
+		if(projects == null) {
+			projects = new ArrayList<Project>();
+		}
+		if(!projects.contains(project)) {
+			projects.add(project);
+			project.addVolunteer(this);
+		}
+	}
+	public void removeProject(Project project) {
+		if(projects != null && projects.contains(project)) {
+			projects.remove(project);
+			project.removeVolunteer(this);
+		}
 	}
 }

@@ -43,5 +43,14 @@ class CategoryTest {
 		assertEquals("Clean Up", category.getName());
 		assertEquals("Clean Up Stuff", category.getDescription());
 	}
+	
+	@Test
+	void test_project_list_mapping() {
+		Project project = category.getProjects().get(0);
+		assertNotNull(category.getProjects());
+		assertFalse(category.getProjects().isEmpty());
+		assertEquals(2, project.getId());
+		
+	}
 
 }

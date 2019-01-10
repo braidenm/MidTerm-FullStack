@@ -1,5 +1,7 @@
 package com.itmakesavillage.jpaproject.entities;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -49,6 +51,14 @@ class AddressTest {
 		assertEquals("Colorado", address.getState());
 		assertEquals("80222", address.getZip());
 		
+	}
+	
+	@Test
+	void test_list_mapping() {
+		Project project = address.getProjects().get(0);
+		assertNotNull(address.getProjects());
+		assertFalse(address.getProjects().isEmpty());
+		assertEquals(2,project.getId());
 	}
 
 }
