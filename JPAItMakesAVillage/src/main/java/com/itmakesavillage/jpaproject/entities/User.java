@@ -1,5 +1,7 @@
 package com.itmakesavillage.jpaproject.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +31,7 @@ public class User {
 	public Volunteer getVolunteer() {
 		return volunteer;
 	}
+	
 
 	public void setVolunteer(Volunteer volunteer) {
 		this.volunteer = volunteer;
