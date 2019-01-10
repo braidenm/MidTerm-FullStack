@@ -1,4 +1,4 @@
-package com.itmakesavillage.jpaproject.data;
+package com.itmakesavillage.bootproject.data;
 
 import java.util.HashSet;
 import java.util.List;

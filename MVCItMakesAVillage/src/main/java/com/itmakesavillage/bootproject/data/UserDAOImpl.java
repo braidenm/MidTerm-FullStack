@@ -1,4 +1,4 @@
-package com.itmakesavillage.jpaproject.data;
+package com.itmakesavillage.bootproject.data;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,6 +65,19 @@ public class UserDAOImpl implements UserDAO {
 		String query = "Select user FROM User user";
 		allUsers = em.createQuery(query, User.class).getResultList();
 		return null;
+	}
+
+	@Override
+	public User getUserByUserNameAndPassword(String userName, String password) {
+		User user = null;
+		List<User> users = this.getAllUser();
+		for (User user2 : users) {
+			if(user2.getUserName().equals(userName) && user2.getPassword().equals(password)) {
+				user = user2;
+				break;
+			}
+		}
+		return user;
 	}
 
 }

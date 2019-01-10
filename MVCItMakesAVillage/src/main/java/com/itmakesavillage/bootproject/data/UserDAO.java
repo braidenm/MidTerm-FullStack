@@ -1,4 +1,4 @@
-package com.itmakesavillage.jpaproject.data;
+package com.itmakesavillage.bootproject.data;
 
 import java.util.List;
 import java.util.Set;
@@ -11,5 +11,7 @@ public interface UserDAO {
 	public User updateUser(int id, User user);
 	public Set<User> searchUser(String keyword);
 	public List<User> getAllUser();
+	public User getUserByUserNameAndPassword(String userName, String password);
+	
 
 }
