@@ -1,7 +1,5 @@
 package com.itmakesavillage.jpaproject.entities;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,16 +16,23 @@ public class User {
 	
 	@Column(name = "user_name")
 	private String userName;
-	
 	private String password;
-	
 	private String email;
-	
 	private String role;
-	
 	@OneToOne(mappedBy="user")
 	private Volunteer volunteer;
+	private boolean active;
 	
+	public boolean isActive() {
+		return active;
+	}
+
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+
 	public Volunteer getVolunteer() {
 		return volunteer;
 	}
