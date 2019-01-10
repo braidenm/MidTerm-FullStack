@@ -1,5 +1,6 @@
 package com.itmakesavillage.jpaproject.entities;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
@@ -51,6 +52,13 @@ class ProjectTest {
 		assertEquals("20:00:00", project.getTime().toString());
 		assertEquals(6, project.getHoursNeeded());
 		assertEquals(6, project.getHoursNeeded());
+	}
+	
+	@Test
+	void test_many_to_many_mapping() {
+		assertNotNull(project.getCategories());
+		assertNotNull(project.getProjectVolunteer());
+		assertNotNull(project.getVolunteers());
 	}
 
 }
