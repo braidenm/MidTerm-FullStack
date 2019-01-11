@@ -17,6 +17,22 @@
   </head>
   <body>
   <%@include file="navBar.jsp"%>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 	  <header>
 	  
 		  <div class="headerText">
