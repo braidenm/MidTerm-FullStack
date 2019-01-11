@@ -18,29 +18,49 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 
-<title>Volunteer Site - Create Account</title>
+<title>Volunteer Site - Create Profile</title>
 </head>
 <body>
 	<header> </header>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4" >
-				<h4>Create Account</h4>
-				<form action="createAccount.do" method="POST">
+				<h4>Create Profile</h4>
+				<form action="createProfile.do" method="POST">
 				<div class="form-group">
-					<label id="email">Email:</label> 
-					<input type="text" id="email"
-						   name="email" value="email"></input>
+					<label id="id">Id:</label> 
+					<input type="hidden" id="id" name="id"
+						   value=${user.id }></input>
 				</div>
 				<div class="form-group">
-					<label id="username">Username:</label> 
-					<input type="text" id="username"
-						   name="username" value="username"></input>
+					<label id="firstName">First Name:</label> 
+					<input type="text" id="John"
+						   name="firstName" value="First Name"></input>
 				</div>
 				<div class="form-group">
-					<label id="password">Password:</label> 
-					<input type="text" id="password"
-						   name="password" value="password"></input>
+					<label id="lastName">Last Name:</label> 
+					<input type="text" id="Smith"
+						   name="lastName" value="Last Name"></input>
+				</div>
+				<div class="form-group">
+					<label id="dob">Birth date:</label> 
+					<input type="date" id="dob"
+						   name="dob"></input>
+				</div>
+				<div class="form-group">
+					<label id="phone">Phone Number:</label> 
+					<input type="text" id="phone"
+						   name="phone" value="555-555-5555"></input>
+				</div>
+				<div class="form-group">
+					<label id="about">About me:</label> 
+					<input type="text" id="about"
+						   name="about" value="Tell us about yourself..."></input>
+				</div>
+				<div class="form-group">
+					<label id="pictureURL">Profile Image:</label> 
+					<input type="text" id="pictureURL"
+						   name="pictureURL" value="Please enter a valid image URL"></input>
 				</div>
 				<input type="submit" class="btn btn-primary" value="Submit" />
 				</form>
