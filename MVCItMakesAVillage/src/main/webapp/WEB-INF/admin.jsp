@@ -17,85 +17,77 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 
-<title>Volunteer Site - Admin </title>
+<title>Volunteer Site - Admin</title>
 </head>
 <body>
 	<header> </header>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6" >
+			<div class="col-sm-6">
 				<h4>Find Project</h4>
 				<form action="adminFindProject.do" method="GET">
-				<div class="form-group">
-					<label id="keyword">Find Project</label> 
-					<input type="text" id="keyword"
-						   name="keyword" value="keyword"></input>
-				</div>
-				<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="Submit" />
-				</div>
+					<div class="form-group">
+						<label id="keyword">Find Project</label> <input type="text"
+							id="keyword" name="keyword" placeholder="keyword"></input>
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary" value="Find Project" />
+					</div>
 				</form>
 				<c:if test="${not empty projectList }">
-					<c:forEach var="project" items="${projectList}" >
+					<c:forEach var="project" items="${projectList}">
 						<div class="projects">
-							ID: ${project.id }
-							<br>
-							Project: ${project.title }
-							<br>
-							Start Date: ${project.startDate }
-							<br>
-							Start Time: ${project.startTime }
-							<br>
-							Owner: ${project.owner }
-							<br>
-							Volunteers Needed: ${project.volunteersNeeded }
-							<br>
+							ID: ${project.id } <br> 
+							Project: ${project.title } <br>
+							Start Date: ${project.startDate } <br> 
+							Start Time: ${project.time } <br> 
+							Owner: ${project.owner } <br>
+							Volunteers Needed: ${project.volunteersNeeded } <br> 
 							Hours Needed: ${project.hoursNeeded }
 							<form action="editProject.do" method="GET">
 								<div class="form-group">
-								<input name="project" value="${project }" type="hidden">
+									<input name="projectId" value="${project.id}" type="hidden">
 								</div>
 								<div class="form-group">
-								<input type="submit" class="btn btn-primary" value="Edit Project" />
+									<input type="submit" class="btn btn-primary"
+										value="Edit Project" />
 								</div>
 							</form>
 						</div>
 					</c:forEach>
 				</c:if>
-				<c:if test="${notFound }">
+				<c:if test="${projectNotFound}">
 					<div class="notFoundMessage">Project Not Found</div>
 				</c:if>
-				
+
 			</div>
 			<div class="col-sm-6">
 				<h4>Find User</h4>
 				<form action="adminFindUser.do" method="GET">
-				<div class="form-group">
-					<label id="username">Find User:</label> 
-					<input type="text" id="keyword"
-						   name="keyword" value="keyword"></input>
-				</div>
-				<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="Create Account" />
-				</div>
+					<div class="form-group">
+						<label id="username">Find User:</label> <input type="text"
+							id="keyword" name="keyword" placeholder="keyword"></input>
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary"
+							value="Find User" />
+					</div>
 				</form>
 				<c:if test="${not empty userList }">
 					<c:forEach var="user" items="${userList }">
 						<div class="users">
-							ID: ${user.id }
-							<br>
-							Username: ${user.userName}
-							<br>
-							Email: ${user.email}
-							<br>
-							Role: ${user.role }
-							<br>
-							<form action="editProfile.do" method="GET">
+							ID: ${user.id } <br> 
+							Username: ${user.userName} <br> 
+							Name: ${user.volunteer.firstName} ${user.volunteer.lastName}<br>
+							Email: ${user.email} <br> 
+							Role: ${user.role } <br>
+							<form action="adminEditProfile.do" method="GET">
 								<div class="form-group">
-								<input name="user" value="${user }" type="hidden">
+									<input name="user" value="${user}" type="hidden">
 								</div>
 								<div class="form-group">
-								<input type="submit" class="btn btn-primary" value="Edit Profile" />
+									<input type="submit" class="btn btn-primary"
+										value="Edit Profile" />
 								</div>
 							</form>
 						</div>
