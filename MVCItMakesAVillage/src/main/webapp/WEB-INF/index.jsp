@@ -16,6 +16,7 @@
     <title>Home</title>
   </head>
   <body>
+  <%@include file="navBar.jsp"%>
 	  <header>
 	  
 		  <div class="headerText">
