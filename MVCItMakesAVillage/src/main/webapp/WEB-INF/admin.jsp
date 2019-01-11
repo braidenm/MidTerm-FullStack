@@ -17,7 +17,7 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 
-<title>Volunteer Site - Login </title>
+<title>Volunteer Site - Admin </title>
 </head>
 <body>
 	<header> </header>
@@ -36,7 +36,7 @@
 				</div>
 				</form>
 				<c:if test="${not empty projectList }">
-					<c:forEach var="project" items=${projectList} >
+					<c:forEach var="project" items="${projectList}" >
 						<div class="projects">
 							ID: ${project.id }
 							<br>
@@ -53,7 +53,7 @@
 							Hours Needed: ${project.hoursNeeded }
 							<form action="editProject.do" method="GET">
 								<div class="form-group">
-								<input name="project" value=${project } type="hidden">
+								<input name="project" value="${project }" type="hidden">
 								</div>
 								<div class="form-group">
 								<input type="submit" class="btn btn-primary" value="Edit Project" />
@@ -62,7 +62,7 @@
 						</div>
 					</c:forEach>
 				</c:if>
-				<c:if test=${notFound }>
+				<c:if test="${notFound }">
 					<div class="notFoundMessage">Project Not Found</div>
 				</c:if>
 				
@@ -79,8 +79,8 @@
 				<input type="submit" class="btn btn-primary" value="Create Account" />
 				</div>
 				</form>
-				<c:if test=${not empty userList }">
-					<c:forEach var="user" items=${userList }>
+				<c:if test="${not empty userList }">
+					<c:forEach var="user" items="${userList }">
 						<div class="users">
 							ID: ${user.id }
 							<br>
@@ -92,7 +92,7 @@
 							<br>
 							<form action="editProfile.do" method="GET">
 								<div class="form-group">
-								<input name="user" value=${user } type="hidden">
+								<input name="user" value="${user }" type="hidden">
 								</div>
 								<div class="form-group">
 								<input type="submit" class="btn btn-primary" value="Edit Profile" />
@@ -101,7 +101,7 @@
 						</div>
 					</c:forEach>
 				</c:if>
-				<c:if test=${notFound }>
+				<c:if test="${notFound }">
 					<div class="notFoundMessage">User Not Found</div>
 				</c:if>
 			</div>

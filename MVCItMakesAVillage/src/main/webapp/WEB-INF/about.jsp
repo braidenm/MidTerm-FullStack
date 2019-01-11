@@ -17,29 +17,30 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 
-<title>Volunteer Site - Login </title>
+<title>Volunteer Site - About </title>
 </head>
 <body>
 	<header> </header>
 	<div class="container">
-		<div class="row">
 		<h4>Created by:</h4>
+		<div class="row">
 			<div class="col-sm-4" >
-			<br>
 			<img url="">
 			<strong> Jimmy Fruchterman</strong>
 			<br>
-			<textarea> Scrumbum, doesn't use control space enough. "Why not just make another JSP?" </textarea>
+			<text> Scrumbum, doesn't use control space enough. "Why not just make another JSP?" </text>
 			</div>
 			<div class="col-sm-4">
 			<img url="">
 			<strong> Braiden Miller</strong>
-			<textarea> DBA, someone get this guy a Snickers. </textarea>
+			<br>
+			<text> DBA, someone get this guy a Snickers. </text>
 			</div>
 			<div class="col-sm-4">
 			<img url="">
 			<strong> Michael Murrell</strong>
-			<textarea> Repo depot, chill beats. </textarea>
+			<br>
+			<text> Repo depot, chill beats. Straight edge ninja. </text>
 			</div>
 		</div>
 	</div>
