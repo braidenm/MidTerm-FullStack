@@ -35,7 +35,26 @@
 				<input type="submit" class="btn btn-primary" value="Submit" />
 				</div>
 				</form>
-				
+				<c:if test="${not empty projectList }">
+					<c:forEach var="project" items=${projectList} >
+						<div class="projects">
+							Project: ${project.title }
+							<br>
+							Start Date: ${project.startDate }
+							<br>
+							Start Time: ${project.startTime }
+							<br>
+							Owner: ${project.owner }
+							<br>
+							Volunteers Needed: ${project.volunteersNeeded }
+							<br>
+							Hours Needed: ${project.hoursNeeded }
+						</div>
+					</c:forEach>
+				</c:if>
+				<c:if test=${notFound }>
+					<div class="notFoundMessage">Project Not Found</div>
+				</c:if>
 				
 			</div>
 			<div class="col-sm-6">
@@ -50,8 +69,23 @@
 				<input type="submit" class="btn btn-primary" value="Create Account" />
 				</div>
 				</form>
-				
-				
+				<c:if test=${not empty userList }">
+					<c:forEach var="user" items=${userList }>
+						<div class="users">
+							ID: ${user.id }
+							<br>
+							Username: ${user.userName}
+							<br>
+							Email: ${user.email}
+							<br>
+							Role: ${user.role }
+							<br>
+						</div>
+					</c:forEach>
+				</c:if>
+				<c:if test=${notFound }>
+					<div class="notFoundMessage">Project Not Found</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
