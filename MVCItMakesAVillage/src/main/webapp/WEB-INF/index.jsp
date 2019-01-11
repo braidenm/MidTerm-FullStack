@@ -34,7 +34,7 @@
 		  				<form action="searchCat.do" method="get" id="searchByCat">
 		  					<label for="keyword">Search by Category: </label>
 		  					<c:forEach var="cat" items="${catList}">
-		  							<input id="keyword" name="keyword" type="checkbox" value="${cat}">
+		  							<input id="keyword" name="keyword" type="checkbox" value="${cat.name}">
 									<strong> ${cat.name} </strong>
 		  					</c:forEach>
 		  					<input type="submit" value="Search" class="btn btn-primary" />
