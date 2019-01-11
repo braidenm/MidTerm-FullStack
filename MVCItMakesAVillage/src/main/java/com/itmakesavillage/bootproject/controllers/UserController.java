@@ -65,7 +65,7 @@ public class UserController {
 		return "profile";
 	}
 
-	@RequestMapping(path = "createAcount.do", method = RequestMethod.GET)
+	@RequestMapping(path = "createAccount.do", method = RequestMethod.GET)
 	public String goToCreateAccount() {
 
 		return "createAccount";
