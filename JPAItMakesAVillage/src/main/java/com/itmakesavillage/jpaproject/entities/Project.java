@@ -28,7 +28,6 @@ public class Project {
 	
 	private boolean active;
 	
-	@Column(name = "owner_id")
 	@ManyToOne
 	@JoinColumn(name="owner_id")
 	private Volunteer owner;
