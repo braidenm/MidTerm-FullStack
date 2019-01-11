@@ -25,19 +25,19 @@
 		<div class="row">
 			<div class="col-sm-6" >
 				<!-- <h4>Create Account</h4> -->
-				<c:if test=${loginFail }>
+				<c:if test="${loginFail }">
 					<div class="message"> Username or password is incorrect</div>
 				</c:if>	
 				<form action="login.do" method="POST">
 				<div class="form-group">
 					<label id="username">Username:</label> 
 					<input type="text" id="username"
-						   name="username" value="username"></input>
+						   name="username" placeholder="username"></input>
 				</div>
 				<div class="form-group">
 					<label id="password">Password:</label> 
 					<input type="text" id="password"
-						   name="password" value="password"></input>
+						   name="password" placeholder="password"></input>
 				</div>
 				<div class="form-group">
 				<input type="submit" class="btn btn-primary" value="Submit" />

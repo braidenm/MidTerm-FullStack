@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
 		List<User> allUsers = new ArrayList<User>();
 		String query = "Select user FROM User user";
 		allUsers = em.createQuery(query, User.class).getResultList();
-		return null;
+		return allUsers;
 	}
 
 	@Override
