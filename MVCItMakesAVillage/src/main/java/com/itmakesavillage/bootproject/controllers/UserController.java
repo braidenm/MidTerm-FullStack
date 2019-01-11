@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itmakesavillage.bootproject.data.ProjectDAO;
 import com.itmakesavillage.bootproject.data.ProjectVolunteerDAO;
 import com.itmakesavillage.bootproject.data.UserDAO;
 import com.itmakesavillage.bootproject.data.VolunteerDAO;
@@ -21,6 +22,8 @@ import com.itmakesavillage.jpaproject.entities.Volunteer;
 public class UserController {
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private ProjectDAO projectDAO;
 	@Autowired
 	private VolunteerDAO volunteerDAO;
 	@Autowired
