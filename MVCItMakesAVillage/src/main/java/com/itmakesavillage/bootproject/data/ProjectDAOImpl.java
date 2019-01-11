@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.itmakesavillage.jpaproject.entities.Category;
 import com.itmakesavillage.jpaproject.entities.Project;
 
 @Service
@@ -62,5 +63,15 @@ public class ProjectDAOImpl implements ProjectDAO {
 		
 		return em.createQuery(query, Project.class).getResultList();
 	}
+	
+	@Override
+	public List<Category> getAllCategories() {
+		
+		String query = "select c from Category c";
+		
+		return em.createQuery(query, Category.class).getResultList();
+		
+	}
+
 
 }
