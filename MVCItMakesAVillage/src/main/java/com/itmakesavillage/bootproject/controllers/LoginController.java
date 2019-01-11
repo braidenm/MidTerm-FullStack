@@ -28,6 +28,7 @@ public class LoginController {
 	}
 	@RequestMapping(path="login.do", method=RequestMethod.POST)
 	public String userLogin(User user, HttpSession session, Model model) {
+		System.out.println(user);
 		user = userDAO.getUserByUserNameAndPassword(user.getUserName(), user.getPassword());
 		boolean loginFail = false;
 		if(user == null) {
@@ -37,10 +38,10 @@ public class LoginController {
 		}
 		session.setAttribute("user", user);
 		
-		return "redirect:index.do";
+		return "redirect:home.do";
 	}
 	
-	@RequestMapping(path="logout.do", method=RequestMethod.POST)
+	@RequestMapping(path="logout.do", method=RequestMethod.GET)
 	public String userLogout(HttpSession session) {
 		session.removeAttribute("user");
 		return "index";

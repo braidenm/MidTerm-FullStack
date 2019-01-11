@@ -30,9 +30,9 @@
 				</c:if>	
 				<form action="login.do" method="POST">
 				<div class="form-group">
-					<label id="username">Username:</label> 
+					<label id="userName">Username:</label> 
 					<input type="text" id="username"
-						   name="username" placeholder="username"></input>
+						   name="userName" placeholder="username"></input>
 				</div>
 				<div class="form-group">
 					<label id="password">Password:</label> 
