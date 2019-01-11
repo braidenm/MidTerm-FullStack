@@ -55,5 +55,10 @@ public class NavController {
 		}
 		return "admin";
 	}
+	
+	@RequestMapping(path = "about.do", method = RequestMethod.GET)
+	public String aboutPage() {
+		return "about";
+	}
 
 }
