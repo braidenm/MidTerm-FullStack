@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!doctype html>
 <html lang="en">
@@ -35,16 +34,19 @@
 				<div class="form-group">
 					<label id="firstName">First Name:</label> 
 					<input type="text" id="John"
+						   required
 						   name="firstName" value="First Name"></input>
 				</div>
 				<div class="form-group">
 					<label id="lastName">Last Name:</label> 
 					<input type="text" id="Smith"
+						   required  
 						   name="lastName" value="Last Name"></input>
 				</div>
 				<div class="form-group">
 					<label id="dob">Birth date:</label> 
 					<input type="date" id="dob"
+						   required
 						   name="dob"></input>
 				</div>
 				<div class="form-group">
@@ -54,15 +56,20 @@
 				</div>
 				<div class="form-group">
 					<label id="about">About me:</label> 
-					<input type="text" id="about"
-						   name="about" value="Tell us about yourself..."></input>
+					<textarea id="about" maxlength="250" 
+							  name="about" 
+							  required 
+							  placeholder="Tell us a little about yourself..." 
+							  cols="35" rows="3"></textarea>
 				</div>
 				<div class="form-group">
 					<label id="pictureURL">Profile Image:</label> 
-					<input type="text" id="pictureURL"
+					<input type="textarea" id="pictureURL"
 						   name="pictureURL" value="Please enter a valid image URL"></input>
 				</div>
+				<div class="form-group">
 				<input type="submit" class="btn btn-primary" value="Submit" />
+				</div>
 				</form>
 			</div>
 		</div>
