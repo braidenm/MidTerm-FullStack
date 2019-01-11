@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -92,11 +93,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "adminFindUser.do", method = RequestMethod.GET)
-	public String adminFindUser(HttpSession session, String keyword) {
+	public String adminFindUser(HttpSession session, Model model, String keyword) {
 		Set<Volunteer> volunteerList = volunteerDAO.searchVolunteer(keyword);
 		Set<User> userList = userDAO.searchUser(keyword);
 		for (Volunteer volunteer : volunteerList) {
 			userList.add(volunteer.getUser());
+		}
+		boolean notFound = false;
+		if(userList == null) {
+			notFound = true;
+			model.addAttribute("notFound", notFound);
+			return "admin";
 		}
 		session.setAttribute("userList", userList);
 		return "admin";

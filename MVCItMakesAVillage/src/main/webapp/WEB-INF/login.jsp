@@ -25,6 +25,9 @@
 		<div class="row">
 			<div class="col-sm-6" >
 				<!-- <h4>Create Account</h4> -->
+				<c: if test=${loginFail }>
+					<div class="message"> Username or password is incorrect</div>
+				</c:>	
 				<form action="login.do" method="POST">
 				<div class="form-group">
 					<label id="username">Username:</label> 
