@@ -38,6 +38,8 @@
 				<c:if test="${not empty projectList }">
 					<c:forEach var="project" items=${projectList} >
 						<div class="projects">
+							ID: ${project.id }
+							<br>
 							Project: ${project.title }
 							<br>
 							Start Date: ${project.startDate }
@@ -49,6 +51,14 @@
 							Volunteers Needed: ${project.volunteersNeeded }
 							<br>
 							Hours Needed: ${project.hoursNeeded }
+							<form action="editProject.do" method="GET">
+								<div class="form-group">
+								<input name="project" value=${project } type="hidden">
+								</div>
+								<div class="form-group">
+								<input type="submit" class="btn btn-primary" value="Edit Project" />
+								</div>
+							</form>
 						</div>
 					</c:forEach>
 				</c:if>
@@ -80,11 +90,19 @@
 							<br>
 							Role: ${user.role }
 							<br>
+							<form action="editProfile.do" method="GET">
+								<div class="form-group">
+								<input name="user" value=${user } type="hidden">
+								</div>
+								<div class="form-group">
+								<input type="submit" class="btn btn-primary" value="Edit Profile" />
+								</div>
+							</form>
 						</div>
 					</c:forEach>
 				</c:if>
 				<c:if test=${notFound }>
-					<div class="notFoundMessage">Project Not Found</div>
+					<div class="notFoundMessage">User Not Found</div>
 				</c:if>
 			</div>
 		</div>
