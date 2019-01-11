@@ -49,8 +49,8 @@
 	  			<c:if test="${not empty projectList }">
 		  			<c:forEach var="project" items="${projectList}">
 		  			
-		  				<strong>Project name: </strong>${project.name}
-		  				<strong>Owner Name: </strong>${project.owner.name}
+		  				<strong>Project name: </strong>${project.title}
+		  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
 		  				<strong>StartDate: </strong>${project.startDate}
 		  				<strong>EndDate: </strong>${project.endDate}
 		  				<strong>Time: </strong>${project.time}
