@@ -32,19 +32,28 @@ public class ProjectController {
 	@RequestMapping(path = "searchKW.do", method = RequestMethod.GET)
 	public String searchKW(String keyword, Model model) {
 		Set<Project> projectList = projectDAO.searchProject(keyword);
+		boolean notFound = false;
+		if(projectList == null) {
+			notFound = true;
+			model.addAttribute("notFound", notFound);
+			return "index";
+		}
 		model.addAttribute("projectList", projectList);
+		
 		
 		return "index";
 	}
 	@RequestMapping(path = "searchCat.do", method = RequestMethod.GET)
 	public String searchCat(String[] keyword, Model model) {
 		Set<Project> projectList = new HashSet<Project>();
-		
 		for (String word : keyword) {
-			
 			projectList.addAll(projectDAO.searchProject(word));
-			
-		
+		}
+		boolean notFound = false;
+		if(projectList.isEmpty()) {
+			notFound = true;
+			model.addAttribute("notFound", notFound);
+			return "index";
 		}
 		model.addAttribute("projectList", projectList);
 		
@@ -139,9 +148,13 @@ public class ProjectController {
 	
 	@RequestMapping(path = "adminFindProject.do", method = RequestMethod.GET)
 	public String adminFindProject(String keyword, HttpSession session, Model model) {
-		
 		Set<Project> projectList = projectDAO.searchProject(keyword);
-		
+		boolean notFound = false;
+		if(projectList == null) {
+			notFound = true;
+			model.addAttribute("notFound", notFound);
+			return "admin";
+		}
 		model.addAttribute("projectList", projectList);
 		
 		return "admin";
