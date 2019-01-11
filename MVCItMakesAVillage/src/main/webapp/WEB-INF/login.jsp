@@ -17,69 +17,38 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 
-<title>Volunteer Site - Create Profile</title>
+<title>Volunteer Site - Login </title>
 </head>
 <body>
 	<header> </header>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-4" >
-				<h4>Create Profile</h4>
-				<form action="createProfile.do" method="POST">
+			<div class="col-sm-6" >
+				<!-- <h4>Create Account</h4> -->
+				<form action="login.do" method="POST">
 				<div class="form-group">
-					<label id="id">Id:</label> 
-					<input type="hidden" id="id" name="id"
-						   value=${volunteer.userid }></input>
+					<label id="username">Username:</label> 
+					<input type="text" id="username"
+						   name="username" value="username"></input>
 				</div>
 				<div class="form-group">
-					<label id="firstName">First Name:</label> 
-					<input type="text" id="John"
-						   required
-						   name="firstName" value=${volunteer.firstName }></input>
-				</div>
-				<div class="form-group">
-					<label id="lastName">Last Name:</label> 
-					<input type="text" id="Smith"
-						   required
-						   name="lastName" value=${volunteer.lastName }></input>
-				</div>
-				<div class="form-group">
-					<label id="dob">Birth date:</label> 
-					<input type="date" id="dob"
-						   required
-						   name="dob" value =${volunteer.dob }></input>
-				</div>
-				<div class="form-group">
-					<label id="phone">Phone Number:</label> 
-					<input type="text" id="phone"
-						   name="phone" value=${volunteer.phone }></input>
-				</div>
-				<div class="form-group">
-					<label id="about">About me:</label> 
-					<textarea id="about" maxlength="250" 
-							  name="about" 
-							  required 
-							  value=${volunter.about } 
-							  cols="35" rows="3"></textarea>
-				</div>
-				<div class="form-group">
-					<label id="pictureURL">Profile Image:</label> 
-					<input type="text" id="pictureURL"
-						   name="pictureURL" value=${volunteer.pictureURL }"></input>
+					<label id="password">Password:</label> 
+					<input type="text" id="password"
+						   name="password" value="password"></input>
 				</div>
 				<div class="form-group">
 				<input type="submit" class="btn btn-primary" value="Submit" />
 				</div>
 				</form>
 			</div>
+			<div class="col-sm-6">
+				<form action="createAccount.do" method="GET">
+				<div class="form-group">
+				<input type="submit" class="btn btn-primary" value="Create Account" />
+				</div>
+				</form>
+			</div>
 		</div>
-	
-	
-	
-	
-	
-	
-	
 	</div>
 
 	<!-- Optional JavaScript -->
