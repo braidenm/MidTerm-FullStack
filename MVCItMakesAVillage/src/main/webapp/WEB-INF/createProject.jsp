@@ -60,11 +60,12 @@
 							class="mdb-select md-form colorful-select dropdown-primary"
 							multiple searchable="Search here..">
 							<option value="" disabled selected>Choose your country</option>
-							<option value="1">USA</option>
-							<option value="2">Germany</option>
-							<option value="3">France</option>
-							<option value="4">Poland</option>
-							<option value="5">Japan</option>
+							<option value="1">Clean Up</option>
+							<option value="2">Build</option>
+							<option value="3">Demolition</option>
+							<option value="4">Distribution</option>
+							<option value="5">Landscape</option>
+							<option value="6">Other</option>
 						</select>
 
 					</div>

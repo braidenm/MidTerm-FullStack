@@ -45,28 +45,34 @@
 	  <div class="container">
 	  	<div class="row">
 	  		<div class="col-sm-4">
-	  		
-	  			<c:forEach var="project" items="${projectList}">
-	  			
-	  				<strong>Project name: </strong>${project.name}
-	  				<strong>Owner Name: </strong>${project.owner.name}
-	  			
-	  			
-	  			
-	  			</c:forEach>
-	  		
-	  		
-	  		
-	  		
+	  			<c:if test="${not empty projectList }">
+		  			<c:forEach var="project" items="${projectList}">
+		  			
+		  				<strong>Project name: </strong>${project.name}
+		  				<strong>Owner Name: </strong>${project.owner.name}
+		  				<strong>StartDate: </strong>${project.startDate}
+		  				<strong>EndDate: </strong>${project.endDate}
+		  				<strong>Time: </strong>${project.time}
+		  				<strong>Volunteers needed: </strong>${project.volunteersNeeded}
+		  				<strong>Hours needed: </strong>${project.hoursNeeded}
+		  				
+		  			</c:forEach>
+		  			<div class="bottomButton">
+		  				<form action="viewProject.do" method="get">
+			  				<input type="hidden" value="${project.id }" name="projectId">
+			  				<input type="submit" class="btn btn-primary" value="View Project">
+		  				
+		  				</form>
+		  			
+		  			</div>
+	  			</c:if>
+	  			<c:if test="${notFound }">
+	  				<div class="notFoundMessage">No Projects Found</div>
+	  			</c:if>
 	  		
 	  		</div>
 	  	
-	  	
-	  	
-	  	
 	  	</div>
-	  
-	  
 	  
 	  </div>
 

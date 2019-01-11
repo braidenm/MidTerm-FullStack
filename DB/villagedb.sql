@@ -303,8 +303,8 @@ INSERT INTO `category` (`id`, `name`, `description`) VALUES (1, 'Clean Up', 'Cle
 INSERT INTO `category` (`id`, `name`, `description`) VALUES (2, 'Build', 'Construct Some Stuff');
 INSERT INTO `category` (`id`, `name`, `description`) VALUES (3, 'Demolition', 'Destroy Some Stuff');
 INSERT INTO `category` (`id`, `name`, `description`) VALUES (4, 'Distribution ', 'Hand out Food, Clothes, Supplies, ETC.');
-INSERT INTO `category` (`id`, `name`, `description`) VALUES (5, 'Other', 'Anything');
-INSERT INTO `category` (`id`, `name`, `description`) VALUES (6, 'Land Scape', 'Land Scaping stuff');
+INSERT INTO `category` (`id`, `name`, `description`) VALUES (6, 'Other', 'Anything');
+INSERT INTO `category` (`id`, `name`, `description`) VALUES (5, 'Landscape', 'Landscaping stuff');
 
 COMMIT;
 
