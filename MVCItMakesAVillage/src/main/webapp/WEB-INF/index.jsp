@@ -57,7 +57,6 @@
 		  				<strong>Volunteers needed: </strong>${project.volunteersNeeded}
 		  				<strong>Hours needed: </strong>${project.hoursNeeded}
 		  				
-		  			</c:forEach>
 		  			<div class="bottomButton">
 		  				<form action="viewProject.do" method="get">
 			  				<input type="hidden" value="${project.id }" name="projectId">
@@ -66,6 +65,7 @@
 		  				</form>
 		  			
 		  			</div>
+		  			</c:forEach>
 	  			</c:if>
 	  			<c:if test="${notFound }">
 	  				<div class="notFoundMessage">No Projects Found</div>
