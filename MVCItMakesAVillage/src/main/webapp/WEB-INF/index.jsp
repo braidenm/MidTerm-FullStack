@@ -49,7 +49,7 @@
 	  			<c:forEach var="project" items="${projectList}">
 	  			
 	  				<strong>Project name: </strong>${project.name}
-	  				<strong>: </strong>${project.name}
+	  				<strong>Owner Name: </strong>${project.owner.name}
 	  			
 	  			
 	  			
