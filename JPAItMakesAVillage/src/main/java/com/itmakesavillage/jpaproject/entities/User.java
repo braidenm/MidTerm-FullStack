@@ -23,7 +23,6 @@ public class User {
 	
 	@OneToOne(mappedBy="user")
 	private Volunteer volunteer;
-	private boolean active;
 	
 	public boolean isActive() {
 		return active;
