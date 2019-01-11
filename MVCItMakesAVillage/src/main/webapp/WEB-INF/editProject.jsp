@@ -15,45 +15,49 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Create Project</title>
+<title>Edit Project</title>
 </head>
 <body>
 	<header>
-		<h2>Create Project</h2>
+		<h2>Edit Project</h2>
 	</header>
 	<div class=container>
 		<div class=row>
 			<div class="col-sm-4">
-				<form action="createProject.do" method="post">
+				<form action="editProject.do" method="post">
 					<div class="form-group">
-						<label id="title">Title</label> <input type="text" required
-							id="title" name="title"></input>
+						<label id="title">Title</label> <input type="text" id="title"
+							name="title" required value="${sessions.project.title }"></input>
 					</div>
 					<div class="form-group">
 						<label id="startDate">Start Date</label> <input type="date"
-							id="startDate" required name="startDate"></input>
+							id="startDate" required name="startDate"
+							value="${sessions.project.startDate}"></input>
 					</div>
 					<div class="form-group">
 						<label id="endDate">End Date</label> <input type="date"
-							id="endDate" required name="endDate"></input>
+							id="endDate" required name="endDate"
+							value="${sessions.project.endDate}"></input>
 					</div>
 					<div class="form-group">
 						<label id="time">Time</label> <input type="number" id="time"
-							required name="time"></input>
+							name="time" required value="${sessions.project.time}"></input>
 					</div>
 					<div class="form-group">
 						<label id="volunteersNeeded">Volunteers Needed</label> <input
-							type="number" id="volunteersNeeded" required
-							name="volunteersNeeded"></input>
+							type="number" required id="volunteersNeeded"
+							name="volunteersNeeded"
+							value="${sessions.project.volunteersNeeded}"></input>
 					</div>
 					<div class="form-group">
 						<label id="hoursNeeded">Hours Needed</label> <input type="text"
-							id="hoursNeeded" name="hoursNeeded"></input>
+							id="hoursNeeded" required name="hoursNeeded"
+							value="${sessions.project.hoursNeeded}"></input>
 					</div>
 					<div class="form-group">
-						<label id="description">Project Description</label>
-						<textarea id="description" name="description" cols="35" rows="4"
-							required placeholder="Tell us about your Project"></textarea>
+						<label id="description">Project Description</label> <input
+							type="text" id="description" required name="description"
+							cols="35" rows="4" value="${sessions.project.description}"></input>
 					</div>
 					<div>
 						<input type="hidden" value="${sessions.user.id}" id="ownerId"
@@ -70,8 +74,7 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script
@@ -81,6 +84,6 @@
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
 		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-		crossorigin="anonymous"></script> -->
+		crossorigin="anonymous"></script>
 </body>
 </html>
