@@ -20,12 +20,13 @@
 	  
 		  <div class="headerText">
 		  		Welcome to Your Community Volunteer Page
+		  </div>
 		  		
 		  		<div class="row">
 		  			<div class="col-sm-4">
 		  				<form action="searchKW.do" method="get" id="searchByKW">
 		  					<label for="keyword">Search by KeyWord(s): </label>
-		  					<input type="text" name="keyword" id="keyword" placeholder="Search" required />
+		  					<input type="text" name="keyword" id="keyword" placeholder="Search" maxlength="45"  required />
 		  					<input type="submit" value="Search" class="btn btn-primary" />
 		  				</form>
 		  			</div>
@@ -33,25 +34,41 @@
 		  				<form action="searchCat.do" method="get" id="searchByCat">
 		  					<label for="keyword">Search by Category: </label>
 		  					<c:forEach var="cat" items="${catList}">
-		  						
-		  					
-		  					
+		  							<input id="keywor" name="keyword" type="checkbox" value="${cat}">
+									<strong> ${cat.name} </strong>
 		  					</c:forEach>
-		  				
-		  				
-		  				
 		  				</form>
-		  				
-		  			
 		  			</div>
-		  		
-		  		
 		  		</div>
-		  	
-		  
-		  </div>
 		  
 	  </header>
+	  <div class="container">
+	  	<div class="row">
+	  		<div class="col-sm-4">
+	  		
+	  			<c:forEach var="project" items="${projectList}">
+	  			
+	  				<strong>Project name: </strong>${project.name}
+	  				<strong>: </strong>${project.name}
+	  			
+	  			
+	  			
+	  			</c:forEach>
+	  		
+	  		
+	  		
+	  		
+	  		
+	  		</div>
+	  	
+	  	
+	  	
+	  	
+	  	</div>
+	  
+	  
+	  
+	  </div>
 
 
 

@@ -1,5 +1,6 @@
 package com.itmakesavillage.bootproject.controllers;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -36,8 +37,15 @@ public class ProjectController {
 		return "index";
 	}
 	@RequestMapping(path = "searchCat.do", method = RequestMethod.GET)
-	public String searchCat(String keyword, Model model) {
-		Set<Project> projectList = projectDAO.searchProject(keyword);
+	public String searchCat(String[] keyword, Model model) {
+		Set<Project> projectList = new HashSet<Project>();
+		
+		for (String word : keyword) {
+			
+			projectList.addAll(projectDAO.searchProject(word));
+			
+		
+		}
 		model.addAttribute("projectList", projectList);
 		
 		return "index";

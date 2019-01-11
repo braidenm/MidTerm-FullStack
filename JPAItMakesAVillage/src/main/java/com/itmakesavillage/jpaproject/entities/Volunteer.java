@@ -2,7 +2,6 @@ package com.itmakesavillage.jpaproject.entities;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import java.util.List;
 
 import javax.persistence.Column;
@@ -22,48 +21,46 @@ public class Volunteer {
 	@Id
 	@Column(name="user_id")
 	private int userid;
-	
 	@Column(name="phone_number")
 	private String phone;
-	
-	
 	@Temporal(TemporalType.DATE)
 	private Date dob;
-	
 	@Column(name="address_id")
 	private int addressId;
-	
 	@Column(name="first_name")
 	private String firstName;
-	
 	@Column(name="last_name")
 	private String lastName;
-	
 	@Column(name="picture_url")
 	private String  pictureURL;
-	
 	private String about;
-	
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	
-	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 	@ManyToMany
 	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="volunteer_id"))
 	private List<Project> projects;
-	
 	@OneToMany(mappedBy="volunteer")
 	private List<ProjectVolunteer> projectVolunteers;
+	@OneToMany(mappedBy="owner")
+	private List<Project> ownedProjects;
 	
 	
+	public List<Project> getOwnedProjects() {
+		return ownedProjects;
+	}
+
+	public void setOwnedProjects(List<Project> ownedProjects) {
+		this.ownedProjects = ownedProjects;
+	}
+
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	public List<Project> getProjects() {
 		return projects;

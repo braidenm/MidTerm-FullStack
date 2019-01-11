@@ -29,7 +29,9 @@ public class Project {
 	private boolean active;
 	
 	@Column(name = "owner_id")
-	private int ownerId;
+	@ManyToOne
+	@JoinColumn(name="owner_id")
+	private Volunteer owner;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "start_date")
@@ -66,14 +68,13 @@ public class Project {
 	public Project() {
 	}
 
-	public Project(int id, String title, boolean active, int ownerId, Date startDate, Date endDate, String description,
+	public Project(int id, String title, boolean active, Date startDate, Date endDate, String description,
 			Address address, Date time, int hoursNeeded, int volunteersNeeded, List<Volunteer> volunteers,
 			List<Category> categories, List<ProjectVolunteer> projectVolunteer) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.active = active;
-		this.ownerId = ownerId;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.description = description;
@@ -88,7 +89,7 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return "Project [id=" + id + ", title=" + title + ", active=" + active + ", ownerId=" + ownerId + ", startDate="
+		return "Project [id=" + id + ", title=" + title + ", active=" + active  + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", description=" + description + ", address=" + address
 				+ ", time=" + time + ", hoursNeeded=" + hoursNeeded + ", volunteersNeeded=" + volunteersNeeded + "]";
 	}
@@ -147,20 +148,20 @@ public class Project {
 		this.active = active;
 	}
 
-	public int getOwnerId() {
-		return ownerId;
-	}
-
-	public void setOwnerId(int ownerId) {
-		this.ownerId = ownerId;
-	}
-
 	public Date getStartDate() {
 		return startDate;
 	}
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+	}
+
+	public Volunteer getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Volunteer owner) {
+		this.owner = owner;
 	}
 
 	public Date getEndDate() {
