@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `role` VARCHAR(45) NOT NULL DEFAULT 'standard',
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC))
 ENGINE = InnoDB;
@@ -186,16 +187,16 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `villagedb`;
-INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`) VALUES (1, 'admin', 'password', 'admin@admin.com', 'admin');
-INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`) VALUES (2, 'supervolunteer', 'password', 'genericemail@email.com', DEFAULT);
-INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`) VALUES (3, 'okayvolunteer', 'password', 'okayemail@gmail.com', DEFAULT);
-INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`) VALUES (4, 'thebestvolunteer', 'password', 'bestemail@gmail.com', DEFAULT);
-INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`) VALUES (5, 'ivolunteer', 'password', 'iemail@email.com', DEFAULT);
-INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`) VALUES (6, 'beastmodevolunteer', 'password', 'beastemail@email.com', DEFAULT);
-INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`) VALUES (7, 'sometimesvolunteer', 'password', 'sometimesemail@email.com', DEFAULT);
-INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`) VALUES (8, 'crazyvolunteer', 'password', 'crazyemail@gmail.com', DEFAULT);
-INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`) VALUES (9, 'indianajones', 'password', 'indiemail@email.com', DEFAULT);
-INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`) VALUES (10, 'georgewashington', 'password', 'president@email.com', DEFAULT);
+INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`, `active`) VALUES (1, 'admin', 'password', 'admin@admin.com', 'admin', 1);
+INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`, `active`) VALUES (2, 'supervolunteer', 'password', 'genericemail@email.com', DEFAULT, 1);
+INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`, `active`) VALUES (3, 'okayvolunteer', 'password', 'okayemail@gmail.com', DEFAULT, 1);
+INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`, `active`) VALUES (4, 'thebestvolunteer', 'password', 'bestemail@gmail.com', DEFAULT, 1);
+INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`, `active`) VALUES (5, 'ivolunteer', 'password', 'iemail@email.com', DEFAULT, 1);
+INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`, `active`) VALUES (6, 'beastmodevolunteer', 'password', 'beastemail@email.com', DEFAULT, 1);
+INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`, `active`) VALUES (7, 'sometimesvolunteer', 'password', 'sometimesemail@email.com', DEFAULT, 1);
+INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`, `active`) VALUES (8, 'crazyvolunteer', 'password', 'crazyemail@gmail.com', DEFAULT, 1);
+INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`, `active`) VALUES (9, 'indianajones', 'password', 'indiemail@email.com', DEFAULT, 1);
+INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`, `active`) VALUES (10, 'georgewashington', 'password', 'president@email.com', DEFAULT, 1);
 
 COMMIT;
 

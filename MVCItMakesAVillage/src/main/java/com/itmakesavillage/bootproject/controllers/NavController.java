@@ -24,6 +24,16 @@ public class NavController {
 		
 		List<Category> catList = pDAO.getAllCategories();
 		session.setAttribute("catList", catList);
+		System.out.println(catList);
+		
+		return "index";
+	}
+	@RequestMapping(path = "", method = RequestMethod.GET)
+	public String gobasicpath(HttpSession session) {
+		
+		List<Category> catList = pDAO.getAllCategories();
+		session.setAttribute("catList", catList);
+		System.out.println(catList);
 		
 		return "index";
 	}

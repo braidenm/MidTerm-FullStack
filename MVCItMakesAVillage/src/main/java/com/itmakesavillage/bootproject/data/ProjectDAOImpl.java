@@ -50,7 +50,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		Set<Project> projectSet = new HashSet<>();
 		
 		for (String searchword : wordsarr) {
-			String query = "select p from Project p where title like:search or category like:search";
+			String query = "select p from Project p JOIN FETCH p.categories c where title like:search or c.name like:search";
 			projectSet.addAll(em.createQuery(query, Project.class ).setParameter
 					("search", searchword).getResultList());
 		}
