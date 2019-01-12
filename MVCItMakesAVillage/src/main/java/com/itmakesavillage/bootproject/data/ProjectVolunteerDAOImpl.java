@@ -1,5 +1,7 @@
 package com.itmakesavillage.bootproject.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -27,6 +29,14 @@ public class ProjectVolunteerDAOImpl implements ProjectVolunteerDAO {
 	public ProjectVolunteer findPV(int projectId, int volunteerId) {
 		ProjectVolunteer managed = em.find(ProjectVolunteer.class, new ProjectVolunteerId(projectId, volunteerId));
 		return managed;
+	}
+
+	@Override
+	public List<ProjectVolunteer> findPVbyProjectId(int projectId) {
+		
+		
+		
+		return null;
 	}
 
 	

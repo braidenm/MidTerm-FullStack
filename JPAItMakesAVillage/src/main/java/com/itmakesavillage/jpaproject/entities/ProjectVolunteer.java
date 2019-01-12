@@ -9,9 +9,9 @@ import javax.persistence.Table;
 
 
 	
-	@Entity
-	@Table(name = "project_volunteer")
-	public class ProjectVolunteer {
+@Entity
+@Table(name = "project_volunteer")
+public class ProjectVolunteer {
 
 	    @EmbeddedId
 	    private ProjectVolunteerId id;

@@ -29,27 +29,33 @@ public class UserController {
 	private ProjectVolunteerDAO pvDAO;
 
 	@RequestMapping(path = "removeVolunteer.do", method = RequestMethod.POST)
-	public String removeVolunteer(Integer userId, Project project, HttpSession session) {
+	public String removeVolunteer(Model model, Integer userId, Project project, HttpSession session) {
 		User user = userDAO.findUser(userId);
 		user.getVolunteer().removeProject(project);
 		user = userDAO.updateUser(user.getId(), user);
-		session.setAttribute("user", user);
+		model.addAttribute("project", project);
 		return "redirect:viewProject.do";
 	}
 
-	@RequestMapping(path = "addVolunteer", method = RequestMethod.POST)
-	public String addVolunteer(Integer userId, Project project, HttpSession session) {
+	@RequestMapping(path = "addVolunteer.do", method = RequestMethod.POST)
+	public String addVolunteer(Model model, Integer hours, Integer userId, Project project) {
 		User user = userDAO.findUser(userId);
+		ProjectVolunteer pv = pvDAO.findPV(project.getId(), userId);
+		pv.setHoursPledged(hours);
+		pv = pvDAO.updatePV(pv);
 		user.getVolunteer().addProject(project);
 		user = userDAO.updateUser(user.getId(), user);
+		model.addAttribute("project", project);
+		
 		return "redirect:viewProject.do";
 	}
 
-	@RequestMapping(path = "submitHours", method = RequestMethod.POST)
-	public String submitHours(Integer userId, int hours, Project project) {
+	@RequestMapping(path = "submitHours.do", method = RequestMethod.POST)
+	public String submitHours(Integer userId, int hours, Project project, Model model) {
 		ProjectVolunteer pv = pvDAO.findPV(project.getId(), userId);
 		pv.setHoursActual(hours);
 		pv = pvDAO.updatePV(pv);
+		model.addAttribute("project", project);
 		return "redirect:viewProject";
 	}
 
