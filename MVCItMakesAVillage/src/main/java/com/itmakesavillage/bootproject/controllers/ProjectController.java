@@ -87,7 +87,7 @@ public class ProjectController {
 	@RequestMapping(path = "createProject.do", method = RequestMethod.POST)
 	public String createProject(HttpSession session, Project project, RedirectAttributes redir,
 			@RequestParam("sTime") String[] sTime, @RequestParam("sDate") String[] sDate,
-			@RequestParam("eDate") String[] eDate, @RequestParam(name = "cat") Integer[] cat, @RequestParam(name="ownerId") Integer ownerId) {
+			@RequestParam("eDate") String[] eDate, @RequestParam(required=false, name = "cat") Integer[] cat, @RequestParam(name="ownerId") Integer ownerId) {
 		project.setTime(sTime[0]);
 		project.setStartDate(sDate[0]);
 		project.setEndDate(eDate[0]);
@@ -158,7 +158,7 @@ public class ProjectController {
 	@RequestMapping(path = "editProject.do", method = RequestMethod.POST)
 	public String editProject(HttpSession session, RedirectAttributes redir, Project project,
 			@RequestParam("sTime") String[] sTime, @RequestParam("sDate") String[] sDate,
-			@RequestParam("eDate") String[] eDate, @RequestParam(required = false, name = "cat") Integer[] cat) {
+			@RequestParam("eDate") String[] eDate, @RequestParam(required=false, name = "cat") Integer[] cat) {
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
 			return "login";
