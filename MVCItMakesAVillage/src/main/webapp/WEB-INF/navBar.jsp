@@ -10,6 +10,7 @@
 		      <c:if test="${not empty user}" >
 			      <li><a href="account.do"><span class="glyphicon glyphicon-user"></span> Account</a></li>
 			  </c:if>
+			  <li><a href="about.do"> About</a></li>
 	  	  </ul>
 	  
 		  <ul class="nav navbar-nav navbar-right">
