@@ -40,10 +40,11 @@ public class LoginController {
 			activeFail=true;
 			model.addAttribute("activeFail", activeFail);
 			model.addAttribute("userId", user.getId());
+			session.setAttribute("user", null);
 			return "login";
 		
 		}
-		session.setAttribute("user", user);
+			session.setAttribute("user", user);
 		
 		return "redirect:home.do";
 	}
