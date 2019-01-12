@@ -150,9 +150,9 @@ public class ProjectController {
 	public String adminFindProject(String keyword, HttpSession session, Model model) {
 		Set<Project> projectList = projectDAO.searchProject(keyword);
 		boolean notFound = false;
-		if(projectList == null) {
+		if(projectList.isEmpty()) {
 			notFound = true;
-			model.addAttribute("notFound", notFound);
+			model.addAttribute("projectNotFound", notFound);
 			return "admin";
 		}
 		model.addAttribute("projectList", projectList);

@@ -100,7 +100,7 @@ public class UserController {
 			userList.add(volunteer.getUser());
 		}
 		boolean notFound = false;
-		if(userList == null) {
+		if(userList.isEmpty()) {
 			notFound = true;
 			model.addAttribute("notFound", notFound);
 			return "admin";

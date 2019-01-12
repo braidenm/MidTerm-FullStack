@@ -18,26 +18,28 @@
 <title>Profile</title>
 </head>
 <body>
-<p>
-    <jsp:useBean id="today" class="java.util.Date" />
-    <b><c:out value="${today}"/></b>
-</p>
+	<p>
+		<jsp:useBean id="today" class="java.util.Date" />
+		<b><c:out value="${today}" /></b>
+	</p>
 	<header>
 		<h2>View Profile</h2>
 	</header>
-	<img src="${user.volunteer.pictureURL}" class="img-fluid"
-		alt="Responsive image">
-	<ul class="list-group">
-		<li class="list-group-item">Name: ${user.volunteer.firstName}
-			${user.volunteer.lastName}</li>
-		<li class="list-group-item">DOB: ${user.volunteer.dob}</li>
-		<li class="list-group-item">Phone ${user.volunteer.phone}</li>
-		<li class="list-group-item">About ${user.volunteer.about}</li>
-	</ul>
-	<h3>Your Projects</h3>
-	<div data-spy="scroll" data-target="#project-scrollbox" data-offset="0">
-		<c:forEach items="${user.volunteer.projects}" var="project">
-			<c:if test="${project.endDate gt today}">
+	<div class=container>
+		<img src="${user.volunteer.pictureURL}" class="img-fluid"
+			alt="Responsive image">
+		<ul class="list-group">
+			<li class="list-group-item">Name: ${user.volunteer.firstName}
+				${user.volunteer.lastName}</li>
+			<li class="list-group-item">DOB: ${user.volunteer.dob}</li>
+			<li class="list-group-item">Phone: ${user.volunteer.phone}</li>
+			<li class="list-group-item">About: ${user.volunteer.about}</li>
+		</ul>
+		<h3>Your Projects</h3>
+		<div data-spy="scroll" data-target="#project-scrollbox"
+			data-offset="0">
+			<c:forEach items="${user.volunteer.projects}" var="project">
+				<%-- <c:if test="${project.endDate gt today}"> --%>
 				<ul class="list-group">
 					<li class="list-group-item"><h3>${project.title}</h3>
 						${project.startDate}
@@ -47,8 +49,9 @@
 
 						</form></li>
 				</ul>
-			</c:if>
-		</c:forEach>
+				<%-- </c:if> --%>
+			</c:forEach>
+		</div>
 	</div>
 
 
