@@ -83,14 +83,14 @@
 				  				 <br>
 				  				<strong>Time: </strong>${project.time}
 				  				 <br>
-				  				<%-- <c:if test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
+				  				<c:if test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
 				  					<strong>Volunteers still needed: </strong>
 				  					${project.volunteersNeeded - fn:length(project.volunteers) }
 				  				</c:if>
 				  				<c:if test="${(project.volunteersNeeded - fn:length(project.volunteers)) <= 0}">
 				  					<strong>Volunteer:</strong>
 				  					Volunteer Goal Met
-				  				</c:if> --%>
+				  				</c:if>
 								<div class="bottomButton">
 								
 									<form action="viewProject.do" method="get">
