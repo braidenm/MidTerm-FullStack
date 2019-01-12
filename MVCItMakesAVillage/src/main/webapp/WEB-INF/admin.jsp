@@ -83,7 +83,7 @@
 							Role: ${user.role } <br>
 							<form action="adminEditProfile.do" method="GET">
 								<div class="form-group">
-									<input name="user" value="${user}" type="hidden">
+									<input name="user" value="${user.id}" type="hidden">
 								</div>
 								<div class="form-group">
 									<input type="submit" class="btn btn-primary"

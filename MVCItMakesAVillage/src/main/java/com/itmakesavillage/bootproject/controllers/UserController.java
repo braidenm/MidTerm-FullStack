@@ -109,6 +109,26 @@ public class UserController {
 		return "admin";
 	}
 	
+	@RequestMapping(path = "adminEditProfile.do", method = RequestMethod.GET)
+	public String adminEditProfile(HttpSession session, Model model, User editUser) {
+		User user = (User) session.getAttribute("user");
+		if (!user.getRole().equals("admin")) {
+			return "index";
+		}
+		int userId = editUser.getId();
+		User userEdit = userDAO.findUser(userId);
+		model.addAttribute(userEdit);
+		return "adminEditProfile";
+	}
+	
+	@RequestMapping(path = "adminEditProfile.do", method = RequestMethod.POST)
+	public String adminEditProfile(HttpSession session, Model model, User user, Volunteer volunteer) {
+		userDAO.updateUser(user.getId(), user);
+		volunteerDAO.updateVolunteer(volunteer.getUserid(), volunteer);
+		model.addAttribute(user);
+		return "adminEditProfile";
+	}
+	
 	
 	@RequestMapping(path = "editProfile.do", method = RequestMethod.POST)
 	public String editProfile(Volunteer volunteer) {
