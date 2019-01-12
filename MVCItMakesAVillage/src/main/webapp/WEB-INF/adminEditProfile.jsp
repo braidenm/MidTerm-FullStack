@@ -99,10 +99,23 @@
 							   id="pictureURL" name="pictureURL"
 							   value="${user.volunteer.pictureURL }"></input>
 					</div>
+					
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Submit" />
 					</div>
 				</form>
+				<c:if test="${user.active }">
+				<form action="adminDeactivate.do" method="post">
+					<input type="hidden" id="id" name="id" value="${user.id }">
+					<input type="submit" class="btn btn-primary" value="De-Activate Account">
+				</form>
+				</c:if>
+				<c:if test="${!user.active }">
+				<form action="adminReactivate.do" method="post">
+					<input type="hidden" id="id" name="id" value="${user.id }">
+					<input type="submit" class="btn btn-primary" value="Re-Activate Account">
+				</form>
+				</c:if>
 			</div>
 		</div>
 	</div>

@@ -178,6 +178,21 @@ public class UserController {
 		session.setAttribute("user", user);
 		return"redirect:home.do";
 	}
+	@RequestMapping(path = "adminReactivate.do", method = RequestMethod.POST)
+	public String adminReactivateAccount(Integer id, HttpSession session) {
+		User user = userDAO.findUser(id);
+		user.setActive(true);
+		user = userDAO.updateUser(id, user);
+		return"redirect:account.do";
+	}
+	@RequestMapping(path = "adminDeactivate.do", method = RequestMethod.POST)
+	public String adminDeactivateAccount(Integer id, HttpSession session) {
+		User user = userDAO.findUser(id);
+		user.setActive(false);
+		user = userDAO.updateUser(id, user);
+		user=null;
+		return"redirect:home.do";
+	}
 	
 
 
