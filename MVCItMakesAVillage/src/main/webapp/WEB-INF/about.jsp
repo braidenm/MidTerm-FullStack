@@ -20,7 +20,13 @@
 <title>Volunteer Site - About </title>
 </head>
 <body>
-	<header> </header>
+	<header> 
+	<%@include file="navBar.jsp"%>
+		<br>
+		<br>
+		<br>
+		<br>
+	</header>
 	<div class="container">
 		<h4>Created by:</h4>
 		<div class="row">
