@@ -32,20 +32,22 @@ public class Project {
 	@JoinColumn(name="owner_id")
 	private Volunteer owner;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "start_date")
-	private Date startDate;
 	
-	@Temporal(TemporalType.DATE)
+	@Column(name = "start_date")
+	private String startDate;
+	
+	
 	@Column(name = "end_date")
-	private Date endDate;
+	private String endDate;
+	
 	private String description;
+	
 	@ManyToOne
 	@JoinColumn(name="address_id")
 	private Address address;
-	@Temporal(TemporalType.TIME)
+	
 	@Column(name="start_time")
-	private Date time;
+	private String time;
 
 	@Column(name = "hours_needed")
 	private int hoursNeeded;
@@ -67,8 +69,8 @@ public class Project {
 	public Project() {
 	}
 
-	public Project(int id, String title, boolean active, Date startDate, Date endDate, String description,
-			Address address, Date time, int hoursNeeded, int volunteersNeeded, List<Volunteer> volunteers,
+	public Project(int id, String title, boolean active, String startDate, String endDate, String description,
+			Address address, String time, int hoursNeeded, int volunteersNeeded, List<Volunteer> volunteers,
 			List<Category> categories, List<ProjectVolunteer> projectVolunteer) {
 		super();
 		this.id = id;
@@ -155,19 +157,19 @@ public class Project {
 		this.owner = owner;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
@@ -187,11 +189,11 @@ public class Project {
 		this.address = address;
 	}
 
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 

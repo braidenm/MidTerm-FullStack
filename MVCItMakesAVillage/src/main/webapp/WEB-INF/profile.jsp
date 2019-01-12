@@ -55,6 +55,9 @@
 				<form action="editProfile.do" method="get">
 					<input type="submit" class="btn btn-primary" value="Edit Profile">
 				</form>
+				<form action="createProject.do" method="get">
+					<input type="submit" class="btn btn-primary" value="CreateProject">
+				</form>
 				<br>
 				<h3>Projects You Are In</h3>
 				<div data-spy="scroll" data-target="#project-scrollbox"
@@ -155,7 +158,7 @@
 										</form>
 										
 										<form action="editProject.do" method="get">
-											<input type="hidden" value="{project.id}" name="projectId">
+											<input type="hidden" value="${project.id}" name="projectId">
 											<input type="submit" class="btn btn-primary" value="Edit Project">
 										
 										
