@@ -46,12 +46,12 @@
 							   required maxlength="45"
 							   name="lastName" value=${user.volunteer.lastName }>
 					</div>
-					<%-- <div class="form-group">
+					<div class="form-group">
 						<label id="dob">Birth date:</label> 
 						<input type="date" id="dob"
 							   required
 							   name="dob" value =${user.volunteer.dob }></input>
-					</div> --%>
+					</div>
 					<div class="form-group">
 						<label for="phone">Phone Number:</label> 
 						<input type="text" id="phone" maxlength="15"
