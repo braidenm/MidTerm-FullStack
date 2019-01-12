@@ -1,56 +1,173 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ page import="java.util.Date"%>
-<!DOCTYPE html>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!doctype html>
+<html lang="en">
 <head>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-	crossorigin="anonymous">
-<meta charset="UTF-8">
+<!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  
 <title>Profile</title>
 </head>
 <body>
-	<p>
-		<jsp:useBean id="today" class="java.util.Date" />
-		<b><c:out value="${today}" /></b>
-	</p>
+	<%@include file="navBar.jsp"%>
+		<br>
+		<br>
+		<br>
 	<header>
-		<h2>View Profile</h2>
+		<div class="row">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-5">
+				<h2>View Profile</h2>
+			</div>
+		
+		</div>
 	</header>
+	<br>
+	<br>
 	<div class=container>
-		<img src="${user.volunteer.pictureURL}" class="img-fluid"
-			alt="Responsive image">
-		<ul class="list-group">
-			<li class="list-group-item">Name: ${user.volunteer.firstName}
-				${user.volunteer.lastName}</li>
-			<li class="list-group-item">DOB: ${user.volunteer.dob}</li>
-			<li class="list-group-item">Phone: ${user.volunteer.phone}</li>
-			<li class="list-group-item">About: ${user.volunteer.about}</li>
-		</ul>
-		<h3>Your Projects</h3>
-		<div data-spy="scroll" data-target="#project-scrollbox"
-			data-offset="0">
-			<c:forEach items="${user.volunteer.projects}" var="project">
-				<%-- <c:if test="${project.endDate gt today}"> --%>
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-4">
+				<c:if test="${not empty user.volunteer.picturURL }">
+					<img src="${user.volunteer.pictureURL}" class="img-fluid">
+				</c:if>
+				<c:if test="${empty user.volunteer.picturURL }">
+					<img src="https://pbs.twimg.com/profile_images/821849411991044096/lQFa_Vly_400x400.jpg" class="img-fluid">
+				</c:if>
+					<br>
+					<br>
 				<ul class="list-group">
-					<li class="list-group-item"><h3>${project.title}</h3>
-						${project.startDate}
-						<form action="viewProject.do" method="get">
-							<input type="hidden" value="${project.id }" name="projectId">
-							<input type="submit" class="btn btn-primary" value="View Project">
-
-						</form></li>
+					<li class="list-group-item">Name: ${user.volunteer.firstName}
+						${user.volunteer.lastName}</li>
+					<li class="list-group-item">DOB: ${user.volunteer.dob}</li>
+					<li class="list-group-item">Phone: ${user.volunteer.phone}</li>
+					<li class="list-group-item">About: ${user.volunteer.about}</li>
 				</ul>
-				<%-- </c:if> --%>
-			</c:forEach>
+				<br>
+				<form action="editProfile.do" method="get">
+					<input type="submit" class="btn btn-primary" value="Edit Profile">
+				</form>
+				<br>
+				<h3>Projects You Are In</h3>
+				<div data-spy="scroll" data-target="#project-scrollbox"
+					data-offset="0">
+					<c:forEach items="${user.volunteer.projects}" var="project">
+						<%-- <c:if test="${project.endDate gt today}"> --%>
+						<ul class="list-group">
+							<li class="list-group-item"><h3>${project.title}</h3>
+								<c:if test="${project.active }"> 
+				  					<h4>Project is Open</h4>
+				  				</c:if>
+				  				<c:if test="${not project.active }"> 
+				  					<h4>Project is Closed</h4>
+				  				</c:if>
+				  				 <br>
+				  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
+				  				 <br>
+				  				 <strong>Address: </strong>${project.address }
+				  				 <br>
+				  				<strong>StartDate: </strong>${project.startDate}
+				  				 <br>
+				  				<strong>EndDate: </strong>${project.endDate}
+				  				 <br>
+				  				<strong>Time: </strong>${project.time}
+				  				 <br>
+				  				<%-- <c:if test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
+				  					<strong>Volunteers still needed: </strong>
+				  					${project.volunteersNeeded - fn:length(project.volunteers) }
+				  				</c:if>
+				  				<c:if test="${(project.volunteersNeeded - fn:length(project.volunteers)) <= 0}">
+				  					<strong>Volunteer:</strong>
+				  					Volunteer Goal Met
+				  				</c:if> --%>
+								<div class="bottomButton">
+								
+									<form action="viewProject.do" method="get">
+										<input type="hidden" value="${project.id }" name="projectId">
+										<input type="submit" class="btn btn-primary" value="View Project">
+			
+									</form>
+									<c:if test="${project.owner.userid == user.id }">
+										<form action="editProject.do" method="get">
+											<input type="hidden" value="{project.id}" name="projectId">
+											<input type="submit" class="btn btn-primary" value="Edit Project">
+										
+										
+										</form>
+									</c:if>
+								</div>
+								
+							</li>
+						</ul>
+						<%-- </c:if> --%>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				
+				<h3>Projects You Run</h3>
+				<div data-spy="scroll" data-target="#project-scrollbox"
+					data-offset="0">
+					<c:forEach items="${user.volunteer.projects}" var="project">
+						<%-- <c:if test="${project.endDate gt today}"> --%>
+						<c:if test="${project.owner.userid == user.id }">
+							<ul class="list-group">
+								<li class="list-group-item"><h3>${project.title}</h3>
+									<c:if test="${project.active }"> 
+					  					<h4>Project is Open</h4>
+					  				</c:if>
+					  				<c:if test="${not project.active }"> 
+					  					<h4>Project is Closed</h4>
+					  				</c:if>
+					  				 <br>
+					  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
+					  				 <br>
+					  				 <strong>Address: </strong>${project.address }
+					  				 <br>
+					  				<strong>StartDate: </strong>${project.startDate}
+					  				 <br>
+					  				<strong>EndDate: </strong>${project.endDate}
+					  				 <br>
+					  				<strong>Time: </strong>${project.time}
+					  				 <br>
+					  				<%-- <c:if test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
+					  					<strong>Volunteers still needed: </strong>
+					  					${project.volunteersNeeded - fn:length(project.volunteers) }
+					  				</c:if>
+					  				<c:if test="${(project.volunteersNeeded - fn:length(project.volunteers)) <= 0}">
+					  					<strong>Volunteer:</strong>
+					  					Volunteer Goal Met
+					  				</c:if> --%>
+									<div class="bottomButton">
+									
+										<form action="viewProject.do" method="get">
+											<input type="hidden" value="${project.id }" name="projectId">
+											<input type="submit" class="btn btn-primary" value="View Project">
+				
+										</form>
+										
+										<form action="editProject.do" method="get">
+											<input type="hidden" value="{project.id}" name="projectId">
+											<input type="submit" class="btn btn-primary" value="Edit Project">
+										
+										
+										</form>
+									</div>
+									
+								</li>
+							</ul>
+						</c:if>
+					</c:forEach>
+				</div>
+			</div>
 		</div>
 	</div>
 

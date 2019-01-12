@@ -2,57 +2,61 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	crossorigin="anonymous">
 
 <title>Volunteer Site - Create Profile</title>
 </head>
 <body>
+	<%@include file="navBar.jsp"%>
+	<br>
+	<br>
+	<br>
 	<header> </header>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4" >
+			</div>
+			<div class="col-sm-4" >
 				<h4>Create Profile</h4>
+				<br>
 				<form action="createProfile.do" method="POST">
 				<div class="form-group">
-					<label id="id">Id:</label> 
-					<input type="hidden" id="id" name="id"
-						   value=${user.id }></input>
+					ID: ${user.id }
+					<input type="hidden" id="userid" name="userid"
+						   value="${user.id }">
 				</div>
 				<div class="form-group">
 					<label id="firstName">First Name:</label> 
 					<input type="text" id="John"
-						   required
-						   name="firstName" value="First Name"></input>
+						   required maxlength="45"
+						   name="firstName" placeholder="First Name">
 				</div>
 				<div class="form-group">
 					<label id="lastName">Last Name:</label> 
 					<input type="text" id="Smith"
-						   required  
-						   name="lastName" value="Last Name"></input>
+						   required  maxlength="45"
+						   name="lastName" placeholder="Last Name">
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label id="dob">Birth date:</label> 
 					<input type="date" id="dob"
 						   required
 						   name="dob"></input>
-				</div>
+				</div> -->
 				<div class="form-group">
 					<label id="phone">Phone Number:</label> 
 					<input type="text" id="phone"
-						   name="phone" value="555-555-5555"></input>
+						    maxlength="15" name="phone" placeholder="555-555-5555">
 				</div>
 				<div class="form-group">
 					<label id="about">About me:</label> 
@@ -64,8 +68,8 @@
 				</div>
 				<div class="form-group">
 					<label id="pictureURL">Profile Image:</label> 
-					<input type="textarea" id="pictureURL"
-						   name="pictureURL" value="Please enter a valid image URL"></input>
+					<input type="text" id="pictureURL"
+						   name="pictureURL" placeholder="Please enter a valid image URL">
 				</div>
 				<div class="form-group">
 				<input type="submit" class="btn btn-primary" value="Submit" />

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
     <title>Home</title>
   </head>
   <body>
-	  <header>
+	  <div class="jumbotron">
  		<%@include file="navBar.jsp"%>
 	  
 	  <br>
@@ -24,43 +25,58 @@
 	    <br>
 	     <br>
 		  <div class="headerText">
-		  		Welcome to Your Community Volunteer Page
+		  		<h1>Welcome to Your Community Volunteer Page</h1>
 		  </div>
 		  	<br>
 		  	<br>
 		  		
 		  		<div class="row">
-		  			<div class="col-sm-6">
+		  			<div class="col-sm-3">
+		  			</div>
+		  			<div class="col-sm-3">
 		  				<form action="searchKW.do" method="get" id="searchByKW">
-		  					<label for="keyword">Search by KeyWord(s): </label>
+		  					<h3><label for="keyword">Search by KeyWord(s): </label></h3>
+		  					<br>
 		  					<input type="text" name="keyword" id="keyword" placeholder="Search" maxlength="45"  />
 		  					<input type="submit" value="Search" class="btn btn-primary" />
 		  				</form>
 		  			</div>
 		  			<div class="col-sm-6">
 		  				<form action="searchCat.do" method="get" id="searchByCat">
-		  					<label for="keyword">Search by Category: </label>
+		  					<h3><label for="keyword">Search by Category: </label></h3>
+		  					<br>
 		  					<c:forEach var="cat" items="${catList}">
+									 <strong>${cat.name}:</strong>
 		  							<input id="keyword" name="keyword" type="checkbox" value="${cat.name}">
-									<strong> ${cat.name} </strong>
 		  					</c:forEach>
+		  					<br>
+		  					<br>
 		  					<input type="submit" value="Search" class="btn btn-primary" />
 		  				</form>
 		  			</div>
 		  		</div>
 		  
-	  </header>
+	  </div>
 	  <div class="container">
 	  	<div class="row">
+		  	<div class="col-sm-4">
+			</div>
 	  		<div class="col-sm-4">
 	  			<c:if test="${not empty projectList }">
 		  			<c:forEach var="project" items="${projectList}">
 		  			
-		  				<h4>${project.active }</h4>
+		  				<c:if test="${project.active }"> 
+		  					<h4>Project is Open</h4>
+		  				</c:if>
+		  				<c:if test="${not project.active }"> 
+		  					<h4>Project is Closed</h4>
+		  				</c:if>
 		  			
 		  				<strong>Project name: </strong>${project.title}
 		  				 <br>
 		  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
+		  				 <br>
+		  				 <strong>Address: </strong>${project.address }
 		  				 <br>
 		  				<strong>StartDate: </strong>${project.startDate}
 		  				 <br>
@@ -68,10 +84,14 @@
 		  				 <br>
 		  				<strong>Time: </strong>${project.time}
 		  				 <br>
-		  				<strong>Volunteers needed: </strong>${project.volunteersNeeded}
-		  				 <br>
-		  				<strong>Hours needed: </strong>${project.hoursNeeded}
-		  				 <br>
+		  				<c:if test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
+		  					<strong>Volunteers still needed: </strong>
+		  					${project.volunteersNeeded - fn:length(project.volunteers) }
+		  				</c:if>
+		  				<c:if test="${(project.volunteersNeeded - fn:length(project.volunteers)) <= 0}">
+		  					<strong>Volunteer:</strong>
+		  					Volunteer Goal Met
+		  				</c:if>
 		  				
 		  			<div class="bottomButton">
 		  				<form action="viewProject.do" method="get">
@@ -84,6 +104,7 @@
 		  			 <br>
 		  			</c:forEach>
 	  			</c:if>
+	  			<br>
 	  			<c:if test="${notFound }">
 	  				<div class="notFoundMessage">No Projects Found</div>
 	  			</c:if>

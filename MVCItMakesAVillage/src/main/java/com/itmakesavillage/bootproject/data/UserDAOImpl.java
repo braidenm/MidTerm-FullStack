@@ -1,9 +1,7 @@
 package com.itmakesavillage.bootproject.data;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -29,19 +27,18 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User createUser(User user) {
+		user.setRole("standard");
 		em.persist(user);
-		em.flush();
+		System.out.println(user);
 		return user;
 	}
 
 	@Override
 	public User updateUser(int id, User user) {
 		User userToEdit = em.find(User.class, id);
-		userToEdit.setActive(user.isActive());
 		userToEdit.setEmail(user.getEmail());
 		userToEdit.setUserName(user.getUserName());
 		userToEdit.setPassword(user.getPassword());
-		userToEdit.setVolunteer(user.getVolunteer());
 		return userToEdit;
 	}
 

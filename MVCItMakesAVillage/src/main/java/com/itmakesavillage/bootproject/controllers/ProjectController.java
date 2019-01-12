@@ -33,7 +33,7 @@ public class ProjectController {
 	public String searchKW(String keyword, Model model) {
 		Set<Project> projectList = projectDAO.searchProject(keyword);
 		boolean notFound = false;
-		if(projectList == null) {
+		if(projectList.isEmpty()) {
 			notFound = true;
 			model.addAttribute("notFound", notFound);
 			return "index";

@@ -17,13 +17,11 @@ public class LoginController {
 	private UserDAO userDAO;
 	
 	@RequestMapping(path="login.do", method=RequestMethod.GET)
-	public String goToLoginPage(Model model, HttpSession session) {
+	public String goToLoginPage(HttpSession session) {
 		User user = (User)session.getAttribute("user");
 		if(user != null) {
 			return "redirect:index.do";
 		}
-		user = new User();
-		model.addAttribute("user", user);
 		return "login";		
 	}
 	@RequestMapping(path="login.do", method=RequestMethod.POST)
@@ -31,10 +29,19 @@ public class LoginController {
 		System.out.println(user);
 		user = userDAO.getUserByUserNameAndPassword(user.getUserName(), user.getPassword());
 		boolean loginFail = false;
+		boolean activeFail = false;
+		
 		if(user == null) {
 			loginFail = true;
 			model.addAttribute("loginFail", loginFail);
 			return "login";
+		}
+		if(!user.isActive()) {
+			activeFail=true;
+			model.addAttribute("activeFail", activeFail);
+			model.addAttribute("userId", user.getId());
+			return "login";
+		
 		}
 		session.setAttribute("user", user);
 		
