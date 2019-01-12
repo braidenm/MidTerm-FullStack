@@ -28,48 +28,63 @@
 
 				<form action="adminEditProfile.do" method="POST">
 					<div class="form-group">
-						<label id="userName">Username:</label> <input type="text"
-							id="userName" name="userName" required value="${user.userName }"></input>
+						<label id="userName">Username:</label> 
+						<input type="text" id="userName" 
+							   name="userName" required value="${user.userName }"></input>
 					</div>
 					<div class="form-group">
-						<label id="email">Email:</label> <input type="text" id="email"
-							name="email" required value="${user.email }"></input>
+						<label id="email">Email:</label> 
+						<input type="text" id="email"
+							   name="email" required value="${user.email }"></input>
 					</div>
 					<div class="form-group">
-						<label id="role">Role:</label> <input type="text" id="role"
-							name="role" required value="${user.email }"></input>
+						<label id="role">Role:</label> 
+						<input type="text" id="role"
+							   name="role" required value="${user.role }"></input>
 					</div>
 					<div class="form-group">
-						<label id="id">Id:</label> <input type="text" readonly id="id"
-							name="id" required value="${user.id }"></input>
+						<label id="id">Id:</label> 
+						<input type="text" id="id"
+							   readonly required
+							   name="id" value="${user.id }"></input>
 					</div>
 					<div class="form-group">
-						<label id="firstName">First Name:</label> <input type="text"
-							id="John" required name="firstName"
-							value="${user.volunteer.firstName }"></input>
+						<label id="firstName">First Name:</label> 
+						<input type="text" id="firstName" 
+							   required 
+							   name="firstName"
+							   value="${user.volunteer.firstName }"></input>
 					</div>
 					<div class="form-group">
-						<label id="lastName">Last Name:</label> <input type="text"
-							id="Smith" required name="lastName"
-							value="${user.volunteer.lastName }"></input>
+						<label id="lastName">Last Name:</label> 
+						<input type="text" id="lastName" 
+							   required 
+							   name="lastName"
+							   value="${user.volunteer.lastName }"></input>
 					</div>
 					<div class="form-group">
-						<label id="dob">Birth date:</label> <input type="date" id="dob"
-							required name="dob" value="${user.volunteer.dob }"></input>
+						<label id="dob">Birth date:</label> 
+						<input type="date" id="dob"
+							   required 
+							   name="dob" 
+							   value="${user.volunteer.dob }"></input>
 					</div>
 					<div class="form-group">
-						<label id="phone">Phone Number:</label> <input type="text"
-							id="phone" name="phone" value="${user.volunteer.phone }"></input>
+						<label id="phone">Phone Number:</label> 
+						<input type="text" id="phone" 
+							   name="phone" 
+							   value="${user.volunteer.phone }"></input>
 					</div>
 					<div class="form-group">
 						<label id="about">About me:</label>
 						<textarea id="about" maxlength="250" name="about" required
-							value="${user.volunteer.about }" cols="35" rows="3"></textarea>
+								  value="${user.volunteer.about }" cols="35" rows="3"></textarea>
 					</div>
 					<div class="form-group">
-						<label id="pictureURL">Profile Image:</label> <input type="text"
-							id="pictureURL" name="pictureURL"
-							value="${user.volunteer.pictureURL }"></input>
+						<label id="pictureURL">Profile Image:</label> 
+						<input type="text"
+							   id="pictureURL" name="pictureURL"
+							   value="${user.volunteer.pictureURL }"></input>
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Submit" />
