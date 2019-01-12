@@ -17,7 +17,7 @@
     <title>Home</title>
   </head>
   <body>
-	  <header>
+	  <div class="jumbotron">
  		<%@include file="navBar.jsp"%>
 	  
 	  <br>
@@ -25,34 +25,42 @@
 	    <br>
 	     <br>
 		  <div class="headerText">
-		  		Welcome to Your Community Volunteer Page
+		  		<h1>Welcome to Your Community Volunteer Page</h1>
 		  </div>
 		  	<br>
 		  	<br>
 		  		
 		  		<div class="row">
-		  			<div class="col-sm-6">
+		  			<div class="col-sm-3">
+		  			</div>
+		  			<div class="col-sm-3">
 		  				<form action="searchKW.do" method="get" id="searchByKW">
-		  					<label for="keyword">Search by KeyWord(s): </label>
+		  					<h3><label for="keyword">Search by KeyWord(s): </label></h3>
+		  					<br>
 		  					<input type="text" name="keyword" id="keyword" placeholder="Search" maxlength="45"  />
 		  					<input type="submit" value="Search" class="btn btn-primary" />
 		  				</form>
 		  			</div>
 		  			<div class="col-sm-6">
 		  				<form action="searchCat.do" method="get" id="searchByCat">
-		  					<label for="keyword">Search by Category: </label>
+		  					<h3><label for="keyword">Search by Category: </label></h3>
+		  					<br>
 		  					<c:forEach var="cat" items="${catList}">
+									 <strong>${cat.name}:</strong>
 		  							<input id="keyword" name="keyword" type="checkbox" value="${cat.name}">
-									<strong> ${cat.name} </strong>
 		  					</c:forEach>
+		  					<br>
+		  					<br>
 		  					<input type="submit" value="Search" class="btn btn-primary" />
 		  				</form>
 		  			</div>
 		  		</div>
 		  
-	  </header>
+	  </div>
 	  <div class="container">
 	  	<div class="row">
+		  	<div class="col-sm-4">
+			</div>
 	  		<div class="col-sm-4">
 	  			<c:if test="${not empty projectList }">
 		  			<c:forEach var="project" items="${projectList}">
