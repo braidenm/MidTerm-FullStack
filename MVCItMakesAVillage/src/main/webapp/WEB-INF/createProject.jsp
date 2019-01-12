@@ -40,7 +40,7 @@
 							id="eDate" required name="eDate"></input>
 					</div>
 					<div class="form-group">
-						<label id="sTime">Time</label> <input type="text" id="sTime"
+						<label id="sTime">Time</label> <input type="time" id="sTime"
 							required name="sTime"></input>
 					</div>
 					<div class="form-group">
@@ -49,7 +49,7 @@
 							name="volunteersNeeded"></input>
 					</div>
 					<div class="form-group">
-						<label id="hoursNeeded">Hours Needed</label> <input type="text"
+						<label id="hoursNeeded">Hours Needed</label> <input type="number"
 							id="hoursNeeded" name="hoursNeeded"></input>
 					</div>
 					<div class="form-group">
@@ -58,6 +58,7 @@
 						<textarea id="description" name="description" cols="35" rows="4"
 							required placeholder="Tell us about your Project"></textarea>
 					</div>
+					
 					<h3>Choose Categories</h3>
 					<div class="form-group">
 						<c:forEach items="${catList}" var="cat">
@@ -76,7 +77,7 @@
 						<input type="hidden" value="true" id="active" name="active" />
 					</div>
 					
-					<input type="submit" class="btn btn-secondary" value="Submit" />
+					<input type="submit" class="btn btn-primary" value="Submit" />
 				</form>
 			</div>
 		</div>
