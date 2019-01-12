@@ -18,6 +18,10 @@
 <title>Profile</title>
 </head>
 <body>
+	<%@include file="navBar.jsp"%>
+		<br>
+		<br>
+		<br>
 	<p>
 		<jsp:useBean id="today" class="java.util.Date" />
 		<b><c:out value="${today}" /></b>

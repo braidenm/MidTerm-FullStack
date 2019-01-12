@@ -20,6 +20,10 @@
 <title>Volunteer Site - Create Profile</title>
 </head>
 <body>
+	<%@include file="navBar.jsp"%>
+	<br>
+	<br>
+	<br>
 	<header> </header>
 	<div class="container">
 		<div class="row">
