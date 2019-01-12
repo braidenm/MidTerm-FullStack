@@ -118,14 +118,13 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "adminEditProfile.do", method = RequestMethod.GET)
-	public String adminEditProfile(HttpSession session, Model model, User editUser) {
-		User user = (User) session.getAttribute("user");
-		if (!user.getRole().equals("admin")) {
+	public String adminEditProfile(HttpSession session, Model model, int id) {
+		User admin = (User) session.getAttribute("user");
+		if (!admin.getRole().equals("admin")) {
 			return "index";
 		}
-		int userId = editUser.getId();
-		User userEdit = userDAO.findUser(userId);
-		model.addAttribute(userEdit);
+		User user = userDAO.findUser(id);
+		model.addAttribute(user);
 		return "adminEditProfile";
 	}
 	
