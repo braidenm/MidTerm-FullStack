@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -56,11 +57,18 @@
 	  			<c:if test="${not empty projectList }">
 		  			<c:forEach var="project" items="${projectList}">
 		  			
-		  				<h4>${project.active }</h4>
+		  				<c:if test="${project.active }"> 
+		  					<h4>Project is Open</h4>
+		  				</c:if>
+		  				<c:if test="${not project.active }"> 
+		  					<h4>Project is Closed</h4>
+		  				</c:if>
 		  			
 		  				<strong>Project name: </strong>${project.title}
 		  				 <br>
 		  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
+		  				 <br>
+		  				 <strong>Address: </strong>${project.address }
 		  				 <br>
 		  				<strong>StartDate: </strong>${project.startDate}
 		  				 <br>
@@ -68,10 +76,14 @@
 		  				 <br>
 		  				<strong>Time: </strong>${project.time}
 		  				 <br>
-		  				<strong>Volunteers needed: </strong>${project.volunteersNeeded}
-		  				 <br>
-		  				<strong>Hours needed: </strong>${project.hoursNeeded}
-		  				 <br>
+		  				<c:if test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
+		  					<strong>Volunteers still needed: </strong>
+		  					${project.volunteersNeeded - fn:length(project.volunteers) }
+		  				</c:if>
+		  				<c:if test="${(project.volunteersNeeded - fn:length(project.volunteers)) <= 0}">
+		  					<strong>Volunteer:</strong>
+		  					Volunteer Goal Met
+		  				</c:if>
 		  				
 		  			<div class="bottomButton">
 		  				<form action="viewProject.do" method="get">
