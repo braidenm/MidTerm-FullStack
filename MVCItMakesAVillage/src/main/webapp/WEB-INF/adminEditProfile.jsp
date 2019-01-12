@@ -17,7 +17,7 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 
-<title>Volunteer Site - Edit Profile</title>
+<title>Volunteer Site - Admin Edit Profile and User</title>
 </head>
 <body>
 	<header> </header>
@@ -25,7 +25,8 @@
 		<div class="row">
 			<div class="col-sm-4" >
 				<h4>Edit Profile</h4>
-				<form action="editProfile.do" method="POST">
+				
+				<form action="adminEditProfile.do" method="POST">
 				<div class="form-group">
 					<label id="id">Id:</label> 
 					<input type="hidden" id="id" name="id"
