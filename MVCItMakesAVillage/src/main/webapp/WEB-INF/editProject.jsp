@@ -61,6 +61,7 @@
 						<textarea id="description" required name="description"
 							cols="35" rows="4" >${project.description}</textarea>
 					</div>
+					
 					<h4>Edit Categories</h4>
 					<div class="form-group">
 						<c:forEach items="${pCatList}" var="cat">
