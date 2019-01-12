@@ -129,10 +129,13 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "adminEditProfile.do", method = RequestMethod.POST)
-	public String adminEditProfile(HttpSession session, Model model, User user, Volunteer volunteer) {
+	public String adminEditProfile(@RequestParam(name="dob") String[] dob, HttpSession session, Model model, User user, Volunteer volunteer) {
+		System.out.println(user);
+		volunteer.setDob(dob[0]);
+		Volunteer vol = volunteerDAO.updateVolunteer(volunteer.getUserid(), volunteer);
+		user.setVolunteer(vol);
 		userDAO.updateUser(user.getId(), user);
-		volunteerDAO.updateVolunteer(volunteer.getUserid(), volunteer);
-		model.addAttribute(user);
+		model.addAttribute("user", user);
 		return "adminEditProfile";
 	}
 	

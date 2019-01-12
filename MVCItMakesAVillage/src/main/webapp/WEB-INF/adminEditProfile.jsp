@@ -33,6 +33,11 @@
 							   name="userName" required value="${user.userName }"></input>
 					</div>
 					<div class="form-group">
+						<label id="password">Password:</label> 
+						<input type="hidden" id="password" 
+							   name="password" required value="${user.password }"></input>
+					</div>
+					<div class="form-group">
 						<label id="email">Email:</label> 
 						<input type="text" id="email"
 							   name="email" required value="${user.email }"></input>
@@ -44,9 +49,15 @@
 					</div>
 					<div class="form-group">
 						<label id="id">Id:</label> 
-						<input type="text" id="id"
+						<input type="number" id="id"
 							   readonly required
 							   name="id" value="${user.id }"></input>
+					</div>
+					<div class="form-group">
+						<label id="userid">Id:</label> 
+						<input type="number" id="userid"
+							   hidden required
+							   name="userid" value="${user.volunteer.userid }"></input>
 					</div>
 					<div class="form-group">
 						<label id="firstName">First Name:</label> 

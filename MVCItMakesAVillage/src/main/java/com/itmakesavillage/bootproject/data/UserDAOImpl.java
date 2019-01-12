@@ -35,6 +35,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User updateUser(int id, User user) {
+		System.out.println(user);
 		User userToEdit = em.find(User.class, id);
 		userToEdit.setEmail(user.getEmail());
 		userToEdit.setUserName(user.getUserName());
