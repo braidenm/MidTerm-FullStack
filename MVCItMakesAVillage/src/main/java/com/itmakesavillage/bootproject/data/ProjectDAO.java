@@ -14,6 +14,7 @@ public interface ProjectDAO {
 	public Set<Project> searchProject(String keyword);
 	public List<Project> getAllProject();
 	public List<Category> getAllCategories();
+	public Category findCategoryById(int id);
 
 
 }

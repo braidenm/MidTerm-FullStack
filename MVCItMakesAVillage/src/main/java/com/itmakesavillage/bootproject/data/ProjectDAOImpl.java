@@ -29,6 +29,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	@Override
 	public Project createProject(Project project) {
 		em.persist(project);
+		
 		return project;
 	}
 
@@ -36,7 +37,13 @@ public class ProjectDAOImpl implements ProjectDAO {
 	public Project updateProject(int id, Project project) {
 		Project managed = em.find(Project.class, id);
 		
-		managed = project;
+		managed.setEndDate(project.getEndDate());
+		managed.setStartDate(project.getStartDate());
+		managed.setTime(project.getTime());
+		managed.setTitle(project.getTitle());
+		managed.setVolunteersNeeded(project.getVolunteersNeeded());
+		managed.setHoursNeeded(project.getHoursNeeded());
+		managed.setDescription(project.getDescription());
 		
 		return managed;
 	}
@@ -71,6 +78,12 @@ public class ProjectDAOImpl implements ProjectDAO {
 		
 		return em.createQuery(query, Category.class).getResultList();
 		
+	}
+	
+	@Override
+	public Category findCategoryById(int id) {
+
+		return em.find(Category.class, id);
 	}
 
 
