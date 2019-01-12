@@ -1,7 +1,6 @@
 package com.itmakesavillage.jpaproject.entities;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,8 +12,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Volunteer {
@@ -24,8 +21,7 @@ public class Volunteer {
 	private int userid;
 	@Column(name="phone_number")
 	private String phone;
-	@Temporal(TemporalType.DATE)
-	private Date dob;
+	private String dob;
 	@Column(name="address_id")
 	private int addressId;
 	@Column(name="first_name")
@@ -83,7 +79,7 @@ public class Volunteer {
 		super();
 	}
 
-	public Volunteer(int userid, String phone, Date dob, int addressId, String firstName, String lastName,
+	public Volunteer(int userid, String phone, String dob, int addressId, String firstName, String lastName,
 			String pictureURL, String about) {
 		super();
 		this.userid = userid;
@@ -142,11 +138,11 @@ public class Volunteer {
 		this.phone = phone;
 	}
 
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 

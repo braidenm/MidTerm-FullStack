@@ -56,7 +56,7 @@ DROP TABLE IF EXISTS `volunteer` ;
 CREATE TABLE IF NOT EXISTS `volunteer` (
   `user_id` INT NOT NULL,
   `phone_number` VARCHAR(45) NULL,
-  `dob` DATE NULL,
+  `dob` VARCHAR(45) NULL,
   `address_id` INT NULL,
   `first_name` VARCHAR(100) NOT NULL,
   `last_name` VARCHAR(100) NOT NULL,

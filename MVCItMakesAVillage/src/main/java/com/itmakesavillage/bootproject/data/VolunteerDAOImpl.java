@@ -41,6 +41,7 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 		managed.setFirstName(volunteer.getFirstName());
 		managed.setLastName(volunteer.getLastName());
 		managed.setPictureURL(volunteer.getPictureURL());
+		managed.setDob(volunteer.getDob());
 		managed.setAbout(volunteer.getAbout());
 		return managed;
 	}
