@@ -16,38 +16,28 @@
     <title>Home</title>
   </head>
   <body>
-  <%@include file="navBar.jsp"%>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
 	  <header>
+ 		<%@include file="navBar.jsp"%>
 	  
+	  <br>
+	   <br>
+	    <br>
+	     <br>
 		  <div class="headerText">
 		  		Welcome to Your Community Volunteer Page
 		  </div>
+		  	<br>
+		  	<br>
 		  		
 		  		<div class="row">
-		  			<div class="col-sm-4">
+		  			<div class="col-sm-6">
 		  				<form action="searchKW.do" method="get" id="searchByKW">
 		  					<label for="keyword">Search by KeyWord(s): </label>
-		  					<input type="text" name="keyword" id="keyword" placeholder="Search" maxlength="45"  required />
+		  					<input type="text" name="keyword" id="keyword" placeholder="Search" maxlength="45"  />
 		  					<input type="submit" value="Search" class="btn btn-primary" />
 		  				</form>
 		  			</div>
-		  			<div class="col-sm-4">
+		  			<div class="col-sm-6">
 		  				<form action="searchCat.do" method="get" id="searchByCat">
 		  					<label for="keyword">Search by Category: </label>
 		  					<c:forEach var="cat" items="${catList}">
@@ -66,13 +56,22 @@
 	  			<c:if test="${not empty projectList }">
 		  			<c:forEach var="project" items="${projectList}">
 		  			
+		  				<h4>${project.active }</h4>
+		  			
 		  				<strong>Project name: </strong>${project.title}
+		  				 <br>
 		  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
+		  				 <br>
 		  				<strong>StartDate: </strong>${project.startDate}
+		  				 <br>
 		  				<strong>EndDate: </strong>${project.endDate}
+		  				 <br>
 		  				<strong>Time: </strong>${project.time}
+		  				 <br>
 		  				<strong>Volunteers needed: </strong>${project.volunteersNeeded}
+		  				 <br>
 		  				<strong>Hours needed: </strong>${project.hoursNeeded}
+		  				 <br>
 		  				
 		  			<div class="bottomButton">
 		  				<form action="viewProject.do" method="get">
@@ -82,6 +81,7 @@
 		  				</form>
 		  			
 		  			</div>
+		  			 <br>
 		  			</c:forEach>
 	  			</c:if>
 	  			<c:if test="${notFound }">

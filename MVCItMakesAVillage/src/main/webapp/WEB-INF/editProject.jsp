@@ -32,37 +32,37 @@
 					<div class="form-group">
 						<label id="startDate">Start Date</label> <input type="date"
 							id="startDate" required name="startDate"
-							value="${sessions.project.startDate}"></input>
+							value="${project.startDate}"></input>
 					</div>
 					<div class="form-group">
 						<label id="endDate">End Date</label> <input type="date"
 							id="endDate" required name="endDate"
-							value="${sessions.project.endDate}"></input>
+							value="${project.endDate}"></input>
 					</div>
 					<div class="form-group">
 						<label id="time">Time</label> <input type="number" id="time"
-							name="time" required value="${sessions.project.time}"></input>
+							name="time" required value="${project.time}"></input>
 					</div>
 					<div class="form-group">
 						<label id="volunteersNeeded">Volunteers Needed</label> <input
 							type="number" required id="volunteersNeeded"
 							name="volunteersNeeded"
-							value="${sessions.project.volunteersNeeded}"></input>
+							value="${project.volunteersNeeded}"></input>
 					</div>
 					<div class="form-group">
 						<label id="hoursNeeded">Hours Needed</label> <input type="text"
 							id="hoursNeeded" required name="hoursNeeded"
-							value="${sessions.project.hoursNeeded}"></input>
+							value="${project.hoursNeeded}"></input>
 					</div>
 					<div class="form-group">
 						<label id="description">Project Description</label> <input
 							type="text" id="description" required name="description"
-							cols="35" rows="4" value="${sessions.project.description}"></input>
+							cols="35" rows="4" value="${project.description}"></input>
 					</div>
-					<div>
+					<%-- <div>
 						<input type="hidden" value="${sessions.user.id}" id="ownerId"
 							name="ownerId" />
-					</div>
+					</div> --%>
 					<div>
 						<input type="hidden" value="true" id="active" name="active" />
 					</div>

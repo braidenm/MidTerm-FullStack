@@ -65,7 +65,7 @@ public class UserController {
 		return "profile";
 	}
 
-	@RequestMapping(path = "createAcount.do", method = RequestMethod.GET)
+	@RequestMapping(path = "createAccount.do", method = RequestMethod.GET)
 	public String goToCreateAccount() {
 
 		return "createAccount";
@@ -100,7 +100,7 @@ public class UserController {
 			userList.add(volunteer.getUser());
 		}
 		boolean notFound = false;
-		if(userList == null) {
+		if(userList.isEmpty()) {
 			notFound = true;
 			model.addAttribute("notFound", notFound);
 			return "admin";
