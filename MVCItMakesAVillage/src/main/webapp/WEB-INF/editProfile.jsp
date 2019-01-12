@@ -31,7 +31,7 @@
 				<form action="editProfile.do" method="POST">
 					<div class="form-group">
 					ID: ${user.id }
-						<input type="hidden" id="id" name="id"
+						<input type="hidden" id="userid" name="userid"
 							   value="${user.id }"></input>
 					</div>
 					<div class="form-group">
@@ -47,10 +47,10 @@
 							   name="lastName" value=${user.volunteer.lastName }>
 					</div>
 					<div class="form-group">
-						<label id="dob">Birth date:</label> 
-						<input type="date" id="dob"
+						<label id="date">Birth date:</label> 
+						<input type="date" id="date"
 							   required
-							   name="dob" value =${user.volunteer.dob }></input>
+							   name="date" value =${user.volunteer.dob }>
 					</div>
 					<div class="form-group">
 						<label for="phone">Phone Number:</label> 

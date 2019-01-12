@@ -1,5 +1,9 @@
 package com.itmakesavillage.bootproject.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itmakesavillage.bootproject.data.ProjectVolunteerDAO;
 import com.itmakesavillage.bootproject.data.UserDAO;
@@ -134,10 +139,11 @@ public class UserController {
 	
 	
 	@RequestMapping(path = "editProfile.do", method = RequestMethod.POST)
-	public String editProfile(Volunteer volunteer, HttpSession session) {
+	public String editProfile(@RequestParam(name="date") String[] dob, Volunteer volunteer, HttpSession session) {
+		System.out.println(dob[0]);
 		User user = (User)session.getAttribute("user");
 		System.out.println(volunteer);
-		
+		volunteer.setDob(dob[0]);
 		volunteer = volunteerDAO.updateVolunteer(volunteer.getUserid(), volunteer);
 		user = userDAO.findUser(user.getId());
 		session.setAttribute("user", user);
