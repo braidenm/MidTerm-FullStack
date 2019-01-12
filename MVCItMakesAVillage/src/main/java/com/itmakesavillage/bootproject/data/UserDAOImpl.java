@@ -27,7 +27,9 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User createUser(User user) {
+		user.setRole("standard");
 		em.persist(user);
+		System.out.println(user);
 		return user;
 	}
 

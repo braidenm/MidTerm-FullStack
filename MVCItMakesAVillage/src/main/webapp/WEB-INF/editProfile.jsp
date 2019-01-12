@@ -30,19 +30,20 @@
 				<h4>Edit Profile</h4>
 				<form action="editProfile.do" method="POST">
 					<div class="form-group">
+					ID: ${user.id }
 						<input type="hidden" id="id" name="id"
 							   value="${user.id }"></input>
 					</div>
 					<div class="form-group">
 						<label id="firstName">First Name:</label> 
 						<input type="text" id="John"
-							   required
+							   required maxlength="45"
 							   name="firstName" value=${user.volunteer.firstName }>
 					</div>
 					<div class="form-group">
 						<label id="lastName">Last Name:</label> 
 						<input type="text" id="Smith"
-							   required
+							   required maxlength="45"
 							   name="lastName" value=${user.volunteer.lastName }>
 					</div>
 					<%-- <div class="form-group">
@@ -53,7 +54,7 @@
 					</div> --%>
 					<div class="form-group">
 						<label for="phone">Phone Number:</label> 
-						<input type="text" id="phone"
+						<input type="text" id="phone" maxlength="15"
 							   name="phone" value=${user.volunteer.phone }>
 					</div>
 					<div class="form-group">
@@ -70,7 +71,7 @@
 							   name="pictureURL" value="${user.volunteer.pictureURL }">
 					</div>
 					<div class="form-group">
-					<input type="submit" class="btn btn-primary" value="Submit" />
+					<input type="submit" class="btn btn-primary" value="Edit Profile" />
 					</div>
 				</form>
 			</div>
@@ -86,21 +87,26 @@
 					<div class="form-group">
 						<label for="userName">Username: </label>
 						<input type="text" id="userName" name="userName"
-							   value="${user.userName }">
+							   maxlength="45" value="${user.userName }">
 					</div>
 					<div class="form-group">
 						<label for="password">Password: </label>
-						<input type="text" id="password" name="password"
-							   value="${user.password }">
+						<input type="password" id="password" name="password"
+							   maxlength="45" value="${user.password }">
 					</div>
 					<div class="form-group">
 						<label for="email">Email: </label>
-						<input type="text" id="email" name="email"
-							   value="${user.email }">
+						<input type="email" id="email" name="email"
+							   maxlength="45" value="${user.email }">
 					</div>
-					<input type="submit" class="btn btn-primary" value="Submit"/>
+					<input type="submit" class="btn btn-primary" value="Edit Account"/>
 				
 				</form>
+				<form action="deactivate.do" method="post">
+							<input type="hidden" id="id" name="id" value="${user.id }">
+							<input type="submit" class="btn btn-primary" value="De-Activate Account">
+				</form>
+					
 				</div>
 		</div>
 	

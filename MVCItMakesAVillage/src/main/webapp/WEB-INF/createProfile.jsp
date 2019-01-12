@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <title>Volunteer Site - Create Profile</title>
 </head>
 <body>
@@ -23,35 +25,38 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4" >
+			</div>
+			<div class="col-sm-4" >
 				<h4>Create Profile</h4>
+				<br>
 				<form action="createProfile.do" method="POST">
 				<div class="form-group">
-					<label id="id">Id:</label> 
-					<input type="hidden" id="id" name="id"
-						   value=${user.id }></input>
+					ID: ${user.id }
+					<input type="hidden" id="userid" name="userid"
+						   value="${user.id }">
 				</div>
 				<div class="form-group">
 					<label id="firstName">First Name:</label> 
 					<input type="text" id="John"
-						   required
-						   name="firstName" value="First Name"></input>
+						   required maxlength="45"
+						   name="firstName" placeholder="First Name">
 				</div>
 				<div class="form-group">
 					<label id="lastName">Last Name:</label> 
 					<input type="text" id="Smith"
-						   required  
-						   name="lastName" value="Last Name"></input>
+						   required  maxlength="45"
+						   name="lastName" placeholder="Last Name">
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label id="dob">Birth date:</label> 
 					<input type="date" id="dob"
 						   required
 						   name="dob"></input>
-				</div>
+				</div> -->
 				<div class="form-group">
 					<label id="phone">Phone Number:</label> 
 					<input type="text" id="phone"
-						   name="phone" value="555-555-5555"></input>
+						    maxlength="15" name="phone" placeholder="555-555-5555">
 				</div>
 				<div class="form-group">
 					<label id="about">About me:</label> 
@@ -63,8 +68,8 @@
 				</div>
 				<div class="form-group">
 					<label id="pictureURL">Profile Image:</label> 
-					<input type="textarea" id="pictureURL"
-						   name="pictureURL" value="Please enter a valid image URL"></input>
+					<input type="text" id="pictureURL"
+						   name="pictureURL" placeholder="Please enter a valid image URL">
 				</div>
 				<div class="form-group">
 				<input type="submit" class="btn btn-primary" value="Submit" />

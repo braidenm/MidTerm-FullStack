@@ -29,10 +29,19 @@ public class LoginController {
 		System.out.println(user);
 		user = userDAO.getUserByUserNameAndPassword(user.getUserName(), user.getPassword());
 		boolean loginFail = false;
+		boolean activeFail = false;
+		
 		if(user == null) {
 			loginFail = true;
 			model.addAttribute("loginFail", loginFail);
 			return "login";
+		}
+		if(!user.isActive()) {
+			activeFail=true;
+			model.addAttribute("activeFail", activeFail);
+			model.addAttribute("userId", user.getId());
+			return "login";
+		
 		}
 		session.setAttribute("user", user);
 		

@@ -54,8 +54,10 @@ public class UserController {
 
 	@RequestMapping(path = "createAccount.do", method = RequestMethod.POST)
 	public String createAccount( HttpSession session, User user) {
+		user.setActive(true);
 		user =	userDAO.createUser(user);
 		session.setAttribute("user", user);
+		System.out.println(user);
 		return "redirect:createProfile.do";
 	}
 
@@ -67,6 +69,7 @@ public class UserController {
 	@RequestMapping(path = "editAccount.do", method = RequestMethod.POST)
 	public String editAccount(HttpSession session, User user) {
 		System.out.println(user);
+		
 		user = userDAO.updateUser(user.getId(), user);
 		session.setAttribute("user", user);
 		
@@ -76,13 +79,12 @@ public class UserController {
 	public String createProfile(Volunteer volunteer, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
-			volunteer.setUserid(user.getId());
 			volunteer.setUser(user);
 			volunteer = volunteerDAO.createVolunteer(volunteer);
 			user = userDAO.findUser(volunteer.getUserid());
 			session.setAttribute("user", user);
 		}
-		return "profile";
+		return "redirect:account.do";
 	}
 	
 	@RequestMapping(path = "createProfile.do", method = RequestMethod.GET)
@@ -115,6 +117,7 @@ public class UserController {
 	public String editProfile(Volunteer volunteer, HttpSession session) {
 		User user = (User)session.getAttribute("user");
 		System.out.println(volunteer);
+		
 		volunteer = volunteerDAO.updateVolunteer(volunteer.getUserid(), volunteer);
 		user = userDAO.findUser(user.getId());
 		session.setAttribute("user", user);
@@ -128,6 +131,24 @@ public class UserController {
 			return "index";
 		}
 		return "editProfile";
+	}
+	
+	@RequestMapping(path = "reactivate.do", method = RequestMethod.POST)
+	public String reactivateAccount(Integer id, HttpSession session) {
+		User user = userDAO.findUser(id);
+		user.setActive(true);
+		user = userDAO.updateUser(id, user);
+		session.setAttribute("user", user);
+		return"redirect:account.do";
+	}
+	@RequestMapping(path = "deactivate.do", method = RequestMethod.POST)
+	public String deactivateAccount(Integer id, HttpSession session) {
+		User user = userDAO.findUser(id);
+		user.setActive(false);
+		user = userDAO.updateUser(id, user);
+		user=null;
+		session.setAttribute("user", user);
+		return"redirect:home.do";
 	}
 	
 

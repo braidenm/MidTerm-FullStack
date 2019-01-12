@@ -36,8 +36,12 @@
 		<div class="row">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-4">
-				<img src="${user.volunteer.pictureURL}" class="img-fluid"
-					alt="Responsive image">
+				<c:if test="${not empty user.volunteer.picturURL }">
+					<img src="${user.volunteer.pictureURL}" class="img-fluid">
+				</c:if>
+				<c:if test="${empty user.volunteer.picturURL }">
+					<img src="https://pbs.twimg.com/profile_images/821849411991044096/lQFa_Vly_400x400.jpg" class="img-fluid">
+				</c:if>
 					<br>
 					<br>
 				<ul class="list-group">

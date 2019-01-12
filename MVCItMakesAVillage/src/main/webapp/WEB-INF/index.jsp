@@ -104,6 +104,7 @@
 		  			 <br>
 		  			</c:forEach>
 	  			</c:if>
+	  			<br>
 	  			<c:if test="${notFound }">
 	  				<div class="notFoundMessage">No Projects Found</div>
 	  			</c:if>

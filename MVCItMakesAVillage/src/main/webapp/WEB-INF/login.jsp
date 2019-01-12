@@ -28,6 +28,16 @@
 				<c:if test="${loginFail }">
 					<div class="message"> Username or password is incorrect</div>
 				</c:if>	
+				<c:if test="${activeFail }">
+					<div class="message"> Account has been deactivated.
+						<br>
+						<form action="reactivate.do" method="post">
+							<input type="hidden" id="id" name="id" value="${userId }">
+							<input type="submit" class="btn btn-primary" value="Re-Activate Account">
+						</form>
+					
+					</div>
+				</c:if>	
 				<form action="login.do" method="POST">
 				<div class="form-group">
 					<label id="userName">Username:</label> 
@@ -36,7 +46,7 @@
 				</div>
 				<div class="form-group">
 					<label id="password">Password:</label> 
-					<input type="text" id="password"
+					<input type="password" id="password"
 						   name="password" placeholder="password"></input>
 				</div>
 				<div class="form-group">

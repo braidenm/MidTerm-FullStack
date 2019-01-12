@@ -27,6 +27,7 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 
 	@Override
 	public Volunteer createVolunteer(Volunteer volunteer) {
+		volunteer.setAddressId(1);
 		em.persist(volunteer);
 		return volunteer;
 	}
@@ -34,6 +35,7 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 	@Override
 	public Volunteer updateVolunteer(int id, Volunteer volunteer) {
 		Volunteer managed = em.find(Volunteer.class, id);
+		System.out.println(id +" " + volunteer);
 		
 		managed.setPhone(volunteer.getPhone());
 		managed.setFirstName(volunteer.getFirstName());
