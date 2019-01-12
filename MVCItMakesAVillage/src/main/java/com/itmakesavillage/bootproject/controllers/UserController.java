@@ -1,9 +1,5 @@
 package com.itmakesavillage.bootproject.controllers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -136,7 +132,7 @@ public class UserController {
 		user.setVolunteer(vol);
 		userDAO.updateUser(user.getId(), user);
 		model.addAttribute("user", user);
-		return "adminEditProfile";
+		return "redirect:admin.do";
 	}
 	
 	
@@ -183,7 +179,7 @@ public class UserController {
 		User user = userDAO.findUser(id);
 		user.setActive(true);
 		user = userDAO.updateUser(id, user);
-		return"redirect:account.do";
+		return"redirect:admin.do";
 	}
 	@RequestMapping(path = "adminDeactivate.do", method = RequestMethod.POST)
 	public String adminDeactivateAccount(Integer id, HttpSession session) {
@@ -191,7 +187,7 @@ public class UserController {
 		user.setActive(false);
 		user = userDAO.updateUser(id, user);
 		user=null;
-		return"redirect:home.do";
+		return"redirect:admin.do";
 	}
 	
 
