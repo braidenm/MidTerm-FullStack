@@ -34,7 +34,12 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 	@Override
 	public Volunteer updateVolunteer(int id, Volunteer volunteer) {
 		Volunteer managed = em.find(Volunteer.class, id);
-		managed = volunteer;
+		
+		managed.setPhone(volunteer.getPhone());
+		managed.setFirstName(volunteer.getFirstName());
+		managed.setLastName(volunteer.getLastName());
+		managed.setPictureURL(volunteer.getPictureURL());
+		managed.setAbout(volunteer.getAbout());
 		return managed;
 	}
 
