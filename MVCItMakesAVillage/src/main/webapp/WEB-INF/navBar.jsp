@@ -1,17 +1,21 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
+		  <div class="navbar-header">
+	      <a class="navbar-brand" href="home.do">WebSiteName</a>
+	  	  </div>
 	  
-	  
-	      <a href="home.do">Home</a>
-	      <c:if test="${empty user}">
-	      <a href="login.do">Login/Register</a>
-	      </c:if>
-	      <c:if test="${not empty user}">
-	      	<a href="account.do">Account</a>
-	      	<a href="logout.do">Logout</a>
-	      </c:if>
-	      <c:if test="${not empty user && user.role == 'admin'}">
-	      	<a href="admin.do">Admin page</a>
-	      </c:if>
+		  <ul class="nav navbar-nav">
+		      <c:if test="${empty user}">
+		     	  <li> <a href="login.do">Login/Register</a></li>
+		      </c:if>
+		      <c:if test="${not empty user}">
+			      <li><a href="account.do">Account</a></li>
+			      <li><a href="logout.do">Logout</a></li>
+		      </c:if>
+		      <c:if test="${not empty user && user.role == 'admin'}">
+		      	<li><a href="admin.do">Admin page</a></li>
+		      </c:if>
+	   	 </ul>
 	  </div>
 </nav>
+
