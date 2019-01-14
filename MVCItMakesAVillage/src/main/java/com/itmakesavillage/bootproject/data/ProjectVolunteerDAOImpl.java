@@ -68,5 +68,12 @@ public class ProjectVolunteerDAOImpl implements ProjectVolunteerDAO {
 		return pvList;
 	}
 
+	@Override
+	public ProjectVolunteer createPV(ProjectVolunteer pv) {
+		em.persist(pv);
+		
+		return pv;
+	}
+
 	
 }

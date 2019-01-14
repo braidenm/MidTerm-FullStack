@@ -130,14 +130,18 @@ public class ProjectController {
 		}
 		Project project = projectDAO.findProject(projectId);
 		Volunteer volunteer = volunteerDAO.findVolunteer(user.getId());
-//		volunteer.addProject(project);
-		volunteer = volunteerDAO.updateVolunteer(
-				volunteer.getUserid(),
-				volunteer, projectId);
-
-		ProjectVolunteer pv = pvDAO.findPV(project.getId(), user.getId());
+		
+		ProjectVolunteer pv = new ProjectVolunteer();
+		pv.setVolunteer(volunteer);
+		pv.setProject(project);
 		pv.setHoursPledged(hours);
-		pv = pvDAO.updatePV(pv);
+		pvDAO.createPV(pv);
+		
+		
+//		volunteer = volunteerDAO.updateVolunteer(
+//				volunteer.getUserid(),
+//				volunteer, projectId);
+
 
 		redir.addAttribute("projectId", project.getId());
 

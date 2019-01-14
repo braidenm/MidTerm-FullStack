@@ -63,13 +63,6 @@ public class ProjectVolunteer {
 		return hoursActual;
 	}
 
-	public void setHoursPledged(Integer hoursPledged) {
-		this.hoursPledged = hoursPledged;
-	}
-
-	public void setHoursActual(Integer hoursActual) {
-		this.hoursActual = hoursActual;
-	}
 
 	public void setHoursPledged(int hoursPledged) {
 		this.hoursPledged = hoursPledged;

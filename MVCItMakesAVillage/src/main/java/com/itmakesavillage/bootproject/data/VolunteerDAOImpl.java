@@ -41,20 +41,13 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 		System.out.println(id +" " + volunteer);
 		System.out.println("********"+volunteer.getProjects().get(0).getId());
 		
-		System.out.println("03");
 		managed.setPhone(volunteer.getPhone());
-		System.out.println("04");
 		managed.setFirstName(volunteer.getFirstName());
-		System.out.println("05");
 		managed.setLastName(volunteer.getLastName());
-		System.out.println("06");
 		managed.setPictureURL(volunteer.getPictureURL());
-		System.out.println("07");
 		managed.setDob(volunteer.getDob());
-		System.out.println("08");
 		managed.setAbout(volunteer.getAbout());
-		System.out.println("09");
-//		managed.addProject(volunteer.getProjects().get(0));
+		managed.addProject(volunteer.getProjects().get(0));
 		return managed;
 	}
 
@@ -87,7 +80,7 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 		Project project = em.find(Project.class, projectId);
 		System.out.println("02");
 		System.out.println(id +" " + volunteer);
-		System.out.println("********"+volunteer.getProjects().get(0).getId());
+		
 		
 		System.out.println("03");
 		managed.setPhone(volunteer.getPhone());
@@ -103,7 +96,27 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 		managed.setAbout(volunteer.getAbout());
 		System.out.println("09");
 		managed.addProject(project);
+		System.out.println("10");
+		
 		return managed;
+	}
+
+	@Override
+	public List<Project> findProjects(int id) {
+		System.out.println("********"+id);
+		String query = "Select v from Volunteer v JOIN FETCH v.projects where v.userid = :id";
+		List<Volunteer> volunteer = em.createQuery(query, Volunteer.class).setParameter("id", id).getResultList();
+		System.out.println(volunteer);
+		return volunteer.get(0).getProjects();
+	}
+
+	@Override
+	public List<Project> findOwnedProjects(int id) {
+		System.out.println("********"+id);
+		String query = "Select v from Volunteer v JOIN FETCH v.ownedProjects where v.userid = :id";
+		List<Volunteer> volunteer = em.createQuery(query, Volunteer.class).setParameter("id", id).getResultList();
+		System.out.println(volunteer);
+		return volunteer.get(0).getProjects();
 	}
 	
 	 

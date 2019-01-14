@@ -119,9 +119,9 @@
 				<h3>Projects You Run</h3>
 				<div data-spy="scroll" data-target="#project-scrollbox"
 					data-offset="0">
-					<c:forEach items="${user.volunteer.projects}" var="project">
+					<c:forEach items="${user.volunteer.ownedProjects}" var="project">
 						<%-- <c:if test="${project.endDate gt today}"> --%>
-						<c:if test="${project.owner.userid == user.id }">
+						<%-- <c:if test="${project.owner.userid == user.id }"> --%>
 							<ul class="list-group">
 								<li class="list-group-item"><h3>${project.title}</h3>
 									<c:if test="${project.active }"> 
@@ -167,7 +167,7 @@
 									
 								</li>
 							</ul>
-						</c:if>
+						<%-- </c:if> --%>
 					</c:forEach>
 				</div>
 			</div>

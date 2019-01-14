@@ -36,8 +36,9 @@ public class Volunteer {
 	@JoinColumn(name="user_id")
 	private User user;
 	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="volunteer_id"))
+	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="volunteer_id"), inverseJoinColumns=@JoinColumn(name="project_id"))
 	private List<Project> projects;
+	
 	@OneToMany(mappedBy="volunteer")
 	private List<ProjectVolunteer> projectVolunteers;
 	@OneToMany(mappedBy="owner")
