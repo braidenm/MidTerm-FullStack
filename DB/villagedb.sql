@@ -286,16 +286,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `villagedb`;
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (1, '42 Wallaby Way', NULL, 'Denver', 1, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (2, '456 For Loop Circle', NULL, 'Denver', 1, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (3, '345 If Statement Ave', NULL, 'Denver', 1, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (4, '888 TeaPot Error Street', NULL, 'Denver', 1, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (5, '987 Stack Over Flow Street', NULL, 'Denver', 1, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (6, '654 Throws Exception Way', NULL, 'Denver', 1, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (7, '234 Java Street', NULL, 'Denver', 1, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (8, '30 Garbage Collection Ave', NULL, 'Denver', 1, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (9, '8080 Port Street', NULL, 'Denver', 1, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (10, '404 Compiler Error BLVD', NULL, 'Denver', 1, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (1, '42 Wallaby Way', NULL, 'Denver', 3, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (2, '456 For Loop Circle', NULL, 'Denver', 4, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (3, '345 If Statement Ave', NULL, 'Denver', 5, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (4, '888 TeaPot Error Street', NULL, 'Denver', 6, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (5, '987 Stack Over Flow Street', NULL, 'Denver', 18, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (6, '654 Throws Exception Way', NULL, 'Denver', 34, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (7, '234 Java Street', NULL, 'Denver', 23, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (8, '30 Garbage Collection Ave', NULL, 'Denver', 44, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (9, '8080 Port Street', NULL, 'Denver', 23, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (10, '404 Compiler Error BLVD', NULL, 'Denver', 23, '80222');
 
 COMMIT;
 

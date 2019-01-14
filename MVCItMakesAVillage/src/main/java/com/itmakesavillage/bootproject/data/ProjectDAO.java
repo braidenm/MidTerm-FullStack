@@ -17,6 +17,7 @@ public interface ProjectDAO {
 	public List<Category> getAllCategories();
 	public Category findCategoryById(int id);
 	List<State> getAllStates();
+	State getStateById(int stateId);
 
 
 }

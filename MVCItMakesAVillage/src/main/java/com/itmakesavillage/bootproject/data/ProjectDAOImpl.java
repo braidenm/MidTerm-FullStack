@@ -45,6 +45,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		managed.setVolunteersNeeded(project.getVolunteersNeeded());
 		managed.setHoursNeeded(project.getHoursNeeded());
 		managed.setDescription(project.getDescription());
+		managed.setAddress(project.getAddress());
 		
 		return managed;
 	}
@@ -93,6 +94,12 @@ public class ProjectDAOImpl implements ProjectDAO {
 		String query = "select s from State s";
 		
 		return em.createQuery(query, State.class).getResultList();
+		
+	}
+	@Override
+	public State getStateById(int stateId) {
+		
+		return em.find(State.class, stateId);
 		
 	}
 
