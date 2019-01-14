@@ -25,9 +25,9 @@
 	  <br>
 	  
 	  <div class="row">
-		  <div class="col-sm-3">
+		  <div class="col-sm-2">
 		  </div>
-		  <div class="col-sm-3">
+		  <div class="col-sm-4">
 		  			<c:if test="${project.active }"> 
 		  					<h4>Project is Open</h4>
 		  				</c:if>
@@ -63,11 +63,11 @@
 		  					Volunteer Goal Met
 		  				</c:if>
 		  				<br>
-			  			<form action="addVolunteer.do" method="post">
-			  				<label for="hours">Remove Volunteer: </label>
+			  			<form action="joinProject.do" method="post">
+			  				<label for="hours">Add Volunteer: </label>
 			  				<input type="hidden" name="userId" id="userId" value="${user.id}">
 			  				<input type="hidden" name="project" id="project" value="${project}">
-			  				<input type="number" name="hours" id="hours">
+			  				<input type="number" name="hours" id="hours" placeholder="pledged hours" required>
 			  				<input type="submit" class="btn btn-primary" value="Join Project">
 			  				
 			  			</form>
@@ -84,17 +84,21 @@
 		  <!-- put map here -->
 		  
 		  	<h3>Volunteers:</h3>
+		  	<div>
 		  	<c:forEach items="${project.volunteers}" var="volunteer">
 		  		<strong>Name: </strong>${volunteer.firstName } ${volunteer.lastName }
 		  		<br>
 		  		<strong>Number: </strong>${volunteer.phone}
+		  		<br>
 		  		<strong>Email: </strong>${volunteer.user.email}
+		  		<br>
 		  		
-		  		<c:forEach items="${project.projectVolunteer}" var="pv">
-		  			<c:if test="${volunteer == pv.volunteer}">
+		  		<c:forEach items="${pvList}" var="pv">
+		  			<c:if test="${volunteer.userid == pv.volunteer.userid}">
 		  				<strong>Pledged Hours: </strong>${pv.hoursPledged}
+		  				<br>
 		  				<strong>Actual Hours: </strong>${pv.hoursActual }
-		  				
+		  				<br>
 		  				<c:if test="${volunteer.userid == user.id or project.owner.userid == user.id or user.role == 'admin' }">
 			  				<form action="submitHours.do" method="post">
 			  					<label for="hoursActual">Edit Hours: </label>
@@ -105,7 +109,6 @@
 			  				</form>
 			  				<br>
 			  				<form action="removeVolunteer.do" method="post">
-			  					<label for="remove">Remove Volunteer: </label>
 			  					<input type="hidden" name="userId" id="userId" value="${volunteer.userid}">
 			  					<input type="hidden" name="project" id="project" value="${project}">
 			  					<input type="submit" class="btn btn-primary" value="Remove Volunteer">
@@ -121,6 +124,7 @@
 		  	
 		  	</c:forEach>
 		  
+		  	</div>
 		  </div>
 	</div>
 

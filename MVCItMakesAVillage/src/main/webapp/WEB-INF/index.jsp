@@ -71,7 +71,6 @@
 		  				<c:if test="${not project.active }"> 
 		  					<h4>Project is Closed</h4>
 		  				</c:if>
-		  			
 		  				<strong>Project name: </strong>${project.title}
 		  				 <br>
 		  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
@@ -93,14 +92,14 @@
 		  					Volunteer Goal Met
 		  				</c:if>
 		  				
-		  			<div class="bottomButton">
-		  				<form action="viewProject.do" method="get">
-			  				<input type="hidden" value="${project.id }" name="projectId">
-			  				<input type="submit" class="btn btn-primary" value="View Project">
-		  				
-		  				</form>
-		  			
-		  			</div>
+			  			<div class="bottomButton">
+			  				<form action="viewProject.do" method="get">
+				  				<input type="hidden" value="${project.id }" name="projectId">
+				  				<input type="submit" class="btn btn-primary" value="View Project">
+			  				
+			  				</form>
+			  			
+			  			</div>
 		  			 <br>
 		  			</c:forEach>
 	  			</c:if>

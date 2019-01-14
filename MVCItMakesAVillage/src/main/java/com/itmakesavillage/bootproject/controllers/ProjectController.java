@@ -67,6 +67,10 @@ public class ProjectController {
 	@RequestMapping(path = "viewProject.do", method = RequestMethod.GET)
 	public String goToViewProject(Integer projectId, Model model) {
 		Project project = projectDAO.findProject(projectId);
+//		List<ProjectVolunteer> pvList= pvDAO.findPVbyProjectId(projectId);
+//		System.out.println(pvList);
+		model.addAttribute("pvList", project.getProjectVolunteer());
+		System.out.println(project.getProjectVolunteer());
 		model.addAttribute("project", project);
 
 		return "viewProject";

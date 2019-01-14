@@ -15,24 +15,24 @@ public class ProjectVolunteerId implements Serializable {
 
 	
 	@Column(name = "project_id")
-    private Integer projectId;
+    private int projectId;
     
     @Column(name = "volunteer_id")
-    private Integer volunteerId;
+    private int volunteerId;
 
-	public Integer getProjectId() {
+	public int getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(Integer projectId) {
+	public void setProjectId(int projectId) {
 		this.projectId = projectId;
 	}
 
-	public Integer getVolunteerId() {
+	public int getVolunteerId() {
 		return volunteerId;
 	}
 
-	public void setVolunteerId(Integer volunteerId) {
+	public void setVolunteerId(int volunteerId) {
 		this.volunteerId = volunteerId;
 	}
 
@@ -40,8 +40,8 @@ public class ProjectVolunteerId implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((projectId == null) ? 0 : projectId.hashCode());
-		result = prime * result + ((volunteerId == null) ? 0 : volunteerId.hashCode());
+		result = prime * result + projectId;
+		result = prime * result + volunteerId;
 		return result;
 	}
 
@@ -54,15 +54,9 @@ public class ProjectVolunteerId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ProjectVolunteerId other = (ProjectVolunteerId) obj;
-		if (projectId == null) {
-			if (other.projectId != null)
-				return false;
-		} else if (!projectId.equals(other.projectId))
+		if (projectId != other.projectId)
 			return false;
-		if (volunteerId == null) {
-			if (other.volunteerId != null)
-				return false;
-		} else if (!volunteerId.equals(other.volunteerId))
+		if (volunteerId != other.volunteerId)
 			return false;
 		return true;
 	}

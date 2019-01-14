@@ -51,7 +51,7 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "submitHours.do", method = RequestMethod.POST)
-	public String submitHours(Integer userId, int hours, Project project, Model model) {
+	public String submitHours(Integer userId, Integer hours, Project project, Model model) {
 		ProjectVolunteer pv = pvDAO.findPV(project.getId(), userId);
 		pv.setHoursActual(hours);
 		pv = pvDAO.updatePV(pv);

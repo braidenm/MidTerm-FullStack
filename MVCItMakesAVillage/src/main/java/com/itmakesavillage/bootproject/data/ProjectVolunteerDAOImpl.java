@@ -1,5 +1,6 @@
 package com.itmakesavillage.bootproject.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -34,9 +35,18 @@ public class ProjectVolunteerDAOImpl implements ProjectVolunteerDAO {
 	@Override
 	public List<ProjectVolunteer> findPVbyProjectId(int projectId) {
 		
+		List<ProjectVolunteer> pvList = new ArrayList<ProjectVolunteer>();
+		List<ProjectVolunteer> pvListProject = new ArrayList<ProjectVolunteer>();
+		String query = "select pv from ProjectVolunteer pv";
+		pvList = em.createQuery(query, ProjectVolunteer.class).getResultList();
+		for (ProjectVolunteer pv : pvList) {
+			if(pv.getProject().getId() == projectId) {
+				pvListProject.add(pv);
+			}
+		}
 		
-		
-		return null;
+		System.out.println(pvList);
+		return pvList;
 	}
 
 	
