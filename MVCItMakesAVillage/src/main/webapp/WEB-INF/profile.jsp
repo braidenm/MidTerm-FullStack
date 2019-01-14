@@ -75,7 +75,19 @@
 				  				 <br>
 				  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
 				  				 <br>
-				  				 <strong>Address: </strong>${project.address }
+				  				 <strong>Address: </strong>
+					  				 <br>
+					  				 ${project.address.street }
+					  				 <br>
+					  				 ${project.address.street2}
+					  				 <br>
+					  				 ${project.address.city }
+					  				 <br>
+					  				 ${project.address.state.name }
+					  				 <br>
+					  				 ${project.address.state.zip }
+					  				 <br>
+					  				 <br>
 				  				 <br>
 				  				<strong>StartDate: </strong>${project.startDate}
 				  				 <br>
@@ -133,7 +145,19 @@
 					  				 <br>
 					  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
 					  				 <br>
-					  				 <strong>Address: </strong>${project.address }
+					  				 <strong>Address: </strong>
+					  				 <br>
+					  				 ${project.address.street }
+					  				 <br>
+					  				 ${project.address.street2}
+					  				 <br>
+					  				 ${project.address.city }
+					  				 <br>
+					  				 ${project.address.state.name }
+					  				 <br>
+					  				 ${project.address.state.zip }
+					  				 <br>
+					  				 <br>
 					  				 <br>
 					  				<strong>StartDate: </strong>${project.startDate}
 					  				 <br>

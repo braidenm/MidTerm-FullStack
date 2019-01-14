@@ -1,6 +1,5 @@
 package com.itmakesavillage.bootproject.controllers;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -84,7 +83,28 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "createAccount.do", method = RequestMethod.POST)
-	public String createAccount( HttpSession session, User user) {
+	public String createAccount( HttpSession session, User user, RedirectAttributes redir) {
+		List<User> users = userDAO.getAllUser();
+		List<String> emails = new ArrayList<>();
+		boolean emailInUse = false;
+		boolean usernameInUse = false;
+		for (User user2 : users) {
+			emails.add(user2.getEmail());
+		}
+		if (emails.contains(user.getEmail())) {
+			emailInUse = true;
+			redir.addFlashAttribute("emailInUse", emailInUse);
+			return "redirect:createAccount.do";
+		}
+		List<String> usernames = new ArrayList<>();
+		for (User user2 : users) {
+			usernames.add(user2.getUserName());
+		}
+		if (usernames.contains(user.getUserName())) {
+			usernameInUse= true;
+			redir.addFlashAttribute("usernameInUse", usernameInUse);
+			return "redirect:createAccount.do";
+		}
 		user.setActive(true);
 		user =	userDAO.createUser(user);
 		session.setAttribute("user", user);
