@@ -3,6 +3,7 @@ package com.itmakesavillage.jpaproject.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +35,7 @@ public class Volunteer {
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER, cascade = {CascadeType.ALL})
 	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="volunteer_id"))
 	private List<Project> projects;
 	@OneToMany(mappedBy="volunteer")

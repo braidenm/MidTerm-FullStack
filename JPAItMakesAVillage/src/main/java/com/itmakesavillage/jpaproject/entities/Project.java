@@ -3,6 +3,7 @@ package com.itmakesavillage.jpaproject.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -61,7 +62,7 @@ public class Project {
 	@JoinTable(name="category_project", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="category_id"))
 	private List<Category> categories;
 
-	@OneToMany(mappedBy="project")
+	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
 	private List<ProjectVolunteer> projectVolunteer;
 
 	public Project() {

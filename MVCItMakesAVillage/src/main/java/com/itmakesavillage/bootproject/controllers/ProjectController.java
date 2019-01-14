@@ -3,6 +3,7 @@ package com.itmakesavillage.bootproject.controllers;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -65,10 +66,16 @@ public class ProjectController {
 	}
 
 	@RequestMapping(path = "viewProject.do", method = RequestMethod.GET)
-	public String goToViewProject(Integer projectId, Model model) {
+	public String goToViewProject(Integer projectId, Model model, RedirectAttributes redir) {
+		System.out.println(projectId);
+		if(projectId == null) {
+			Map<String, Object> projectIdKey = redir.asMap();
+			System.out.println(projectIdKey);
+			projectId= (Integer) projectIdKey.remove("projectId");
+			System.out.println(projectId);
+		}
+		
 		Project project = projectDAO.findProject(projectId);
-//		List<ProjectVolunteer> pvList= pvDAO.findPVbyProjectId(projectId);
-//		System.out.println(pvList);
 		model.addAttribute("pvList", project.getProjectVolunteer());
 		System.out.println(project.getProjectVolunteer());
 		model.addAttribute("project", project);

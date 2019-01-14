@@ -10,7 +10,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.itmakesavillage.jpaproject.entities.ProjectVolunteer;
-import com.itmakesavillage.jpaproject.entities.ProjectVolunteerId;
 
 @Transactional
 @Service
@@ -22,14 +21,34 @@ public class ProjectVolunteerDAOImpl implements ProjectVolunteerDAO {
 	@Override
 	public ProjectVolunteer updatePV(ProjectVolunteer pv) {
 		ProjectVolunteer managed = em.find(ProjectVolunteer.class, pv.getId());
-		managed = pv;
+		managed.setHoursActual(pv.getHoursActual());
+		managed.setHoursPledged(pv.getHoursPledged());
+		managed.setProject(pv.getProject());
+		managed.setVolunteer(pv.getVolunteer());
+		
 		return managed;
 	}
 
 	@Override
 	public ProjectVolunteer findPV(int projectId, int volunteerId) {
-		ProjectVolunteer managed = em.find(ProjectVolunteer.class, new ProjectVolunteerId(projectId, volunteerId));
-		return managed;
+		
+		List<ProjectVolunteer> pvList = null;
+		List<ProjectVolunteer> pvVolunteerList = new ArrayList<ProjectVolunteer>();
+		String query = "SELECT pv FROM ProjectVolunteer pv";
+		pvList = em.createQuery(query, ProjectVolunteer.class).getResultList();
+		
+		for (ProjectVolunteer pv : pvList) {
+			if(pv.getVolunteer().getUserid() == volunteerId) {
+				pvVolunteerList.add(pv);
+			}
+		}
+		for (ProjectVolunteer pv : pvVolunteerList) {
+			if(pv.getProject().getId() == projectId) {
+				return pv;
+			}
+		}
+//		ProjectVolunteer managed = em.find(ProjectVolunteer.class, 1 );
+		return null;
 	}
 
 	@Override

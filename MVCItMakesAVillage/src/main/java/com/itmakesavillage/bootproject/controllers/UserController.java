@@ -1,5 +1,8 @@
 package com.itmakesavillage.bootproject.controllers;
 
+import java.lang.ProcessBuilder.Redirect;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -10,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itmakesavillage.bootproject.data.ProjectDAO;
 import com.itmakesavillage.bootproject.data.ProjectVolunteerDAO;
 import com.itmakesavillage.bootproject.data.UserDAO;
 import com.itmakesavillage.bootproject.data.VolunteerDAO;
@@ -27,10 +32,14 @@ public class UserController {
 	private VolunteerDAO volunteerDAO;
 	@Autowired
 	private ProjectVolunteerDAO pvDAO;
+	@Autowired
+	private ProjectDAO projectDAO;
 
 	@RequestMapping(path = "removeVolunteer.do", method = RequestMethod.POST)
-	public String removeVolunteer(Model model, Integer userId, Project project, HttpSession session) {
+	public String removeVolunteer(Model model, Integer userId, Integer projectId, HttpSession session) {
 		User user = userDAO.findUser(userId);
+		Project project = projectDAO.findProject(projectId);
+		
 		user.getVolunteer().removeProject(project);
 		user = userDAO.updateUser(user.getId(), user);
 		model.addAttribute("project", project);
@@ -51,12 +60,27 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "submitHours.do", method = RequestMethod.POST)
-	public String submitHours(Integer userId, Integer hours, Project project, Model model) {
-		ProjectVolunteer pv = pvDAO.findPV(project.getId(), userId);
-		pv.setHoursActual(hours);
-		pv = pvDAO.updatePV(pv);
-		model.addAttribute("project", project);
-		return "redirect:viewProject";
+	public String submitHours(Integer userId, Integer hours, Integer projectId, Model model, RedirectAttributes redir) {
+		List<ProjectVolunteer> pv = new ArrayList<>();
+		Project project = projectDAO.findProject(projectId);
+		System.out.println(project);
+		System.out.println(userId);
+		System.out.println(hours);
+		pv.addAll(project.getProjectVolunteer());
+		for (ProjectVolunteer projectVolunteer : pv) {
+			if(projectVolunteer.getVolunteer().getUserid() == userId) {
+			
+				projectVolunteer.setHoursActual(hours);
+				projectVolunteer = pvDAO.updatePV(projectVolunteer);
+				System.out.println(projectVolunteer);
+				redir.addAttribute("projectId", projectId);
+				return "redirect:viewProject.do";
+			}
+		}
+		
+		redir.addAttribute("projectId", projectId);
+		return "redirect:viewProject.do";
+		
 	}
 
 	@RequestMapping(path = "createAccount.do", method = RequestMethod.POST)

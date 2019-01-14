@@ -103,14 +103,14 @@
 			  				<form action="submitHours.do" method="post">
 			  					<label for="hoursActual">Edit Hours: </label>
 			  					<input type="hidden" name="userId" id="userId" value="${volunteer.userid}">
-			  					<input type="hidden" name="project" id="project" value="${project}">
+			  					<input type="hidden" name="projectId" id="projectId" value="${project.id}">
 			  					<input type="number" name="hours" id="hours" value="${pv.hoursPledged}">
 			  					<input type="submit" class="btn btn-primary" value="Submit Hours">
 			  				</form>
 			  				<br>
 			  				<form action="removeVolunteer.do" method="post">
 			  					<input type="hidden" name="userId" id="userId" value="${volunteer.userid}">
-			  					<input type="hidden" name="project" id="project" value="${project}">
+			  					<input type="hidden" name="projectId" id="projectId" value="${project.id}">
 			  					<input type="submit" class="btn btn-primary" value="Remove Volunteer">
 			  				
 			  				</form>

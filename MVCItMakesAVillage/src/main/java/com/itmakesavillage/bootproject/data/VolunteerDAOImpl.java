@@ -43,6 +43,7 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 		managed.setPictureURL(volunteer.getPictureURL());
 		managed.setDob(volunteer.getDob());
 		managed.setAbout(volunteer.getAbout());
+		
 		return managed;
 	}
 
