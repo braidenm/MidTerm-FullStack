@@ -192,7 +192,10 @@ public class ProjectController {
 		System.out.println(address);
 		System.out.println(stateId);
 		address.setState(projectDAO.getStateById(stateId));
+		System.out.println("after setting state" +address);
+		address = projectDAO.updateAddress(address);
 		project.setAddress(address);
+		
 		project.setTime(sTime[0]);
 		project.setStartDate(sDate[0]);
 		project.setEndDate(eDate[0]);
@@ -207,7 +210,7 @@ public class ProjectController {
 		} else {
 			project.setCategories(null);
 		}
-
+		System.out.println(project);
 		project = projectDAO.updateProject(project.getId(), project);
 
 		redir.addAttribute("projectId", project.getId());

@@ -3,6 +3,7 @@ package com.itmakesavillage.bootproject.data;
 import java.util.List;
 import java.util.Set;
 
+import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Category;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.State;
@@ -18,6 +19,7 @@ public interface ProjectDAO {
 	public Category findCategoryById(int id);
 	List<State> getAllStates();
 	State getStateById(int stateId);
+	Address updateAddress(Address address);
 
 
 }

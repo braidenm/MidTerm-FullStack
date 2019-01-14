@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Category;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.State;
@@ -102,5 +103,20 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return em.find(State.class, stateId);
 		
 	}
+	@Override
+	public Address updateAddress(Address address) {
+		Address managed = em.find(Address.class, address.getId());
+		
+		managed.setStreet(address.getStreet());
+		managed.setCity(address.getCity());
+		managed.setState(address.getState());
+		managed.setZip(address.getZip());
+		
+		
+		
+		return managed;
+		
+	}
+	
 
 }
