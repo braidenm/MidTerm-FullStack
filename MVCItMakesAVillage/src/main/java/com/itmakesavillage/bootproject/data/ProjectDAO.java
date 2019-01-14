@@ -20,6 +20,7 @@ public interface ProjectDAO {
 	List<State> getAllStates();
 	State getStateById(int stateId);
 	Address updateAddress(Address address);
+	Address createAddress(Address address);
 
 
 }

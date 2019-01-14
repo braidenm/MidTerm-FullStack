@@ -32,6 +32,36 @@
                             id="title" name="title"></input>
                     </div>
                     <div class="form-group">
+						<!-- Street 1 -->
+						<label for="street1_id" class="control-label">Street
+							Address </label> <input type="text" class="form-control" id="street1_id"
+							name="street" value="${ project.address.street}">
+					</div>
+					<div class="form-group">
+						<!-- City-->
+						<label for="city_id" class="control-label">City</label> <input
+							type="text" class="form-control" id="city_id" name="city"
+							value="${ project.address.city}">
+					</div>
+
+					<div class="form-group">
+						<!-- State Button -->
+						<label for="stateId" class="control-label">State</label> 
+						<select class="form-control" id="stateId" name="stateId" >
+							<c:forEach items="${ stateList}" var="state">
+								<option value="${state.id }">${state.name}</option>
+							</c:forEach>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<!-- Zip Code-->
+						<label for="zip_id" class="control-label">Zip Code</label> <input
+							type="number" class="form-control" id="zip_id" name="zip"
+							value="${ project.address.zip}">
+					</div>
+                    
+                    <div class="form-group">
                         <label id="sDate">Start Date</label> <input type="date"
                             id="sDate" required name="sDate"></input>
                     </div>

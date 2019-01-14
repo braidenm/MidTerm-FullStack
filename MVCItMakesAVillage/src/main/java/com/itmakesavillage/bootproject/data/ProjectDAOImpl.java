@@ -117,6 +117,14 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return managed;
 		
 	}
+	@Override
+	public Address createAddress(Address address) {
+		
+		em.persist(address);
+		
+		return address;
+		
+	}
 	
 
 }
