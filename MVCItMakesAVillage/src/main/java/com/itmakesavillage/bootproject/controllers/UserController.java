@@ -107,9 +107,10 @@ public class UserController {
 		return "redirect:account.do";
 	}
 	@RequestMapping(path = "createProfile.do", method = RequestMethod.POST)
-	public String createProfile(Volunteer volunteer, HttpSession session) {
+	public String createProfile(Volunteer volunteer, HttpSession session, @RequestParam("dob") String[] dob) {
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
+			volunteer.setDob(dob[0]);
 			volunteer.setUser(user);
 			volunteer = volunteerDAO.createVolunteer(volunteer);
 			user = userDAO.findUser(volunteer.getUserid());

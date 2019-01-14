@@ -47,12 +47,12 @@
 						   required  maxlength="45"
 						   name="lastName" placeholder="Last Name">
 				</div>
-				<!-- <div class="form-group">
+				<div class="form-group">
 					<label id="dob">Birth date:</label> 
 					<input type="date" id="dob"
 						   required
 						   name="dob"></input>
-				</div> -->
+				</div>
 				<div class="form-group">
 					<label id="phone">Phone Number:</label> 
 					<input type="text" id="phone"
