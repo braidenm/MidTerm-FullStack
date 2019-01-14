@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.Volunteer;
 
 @Transactional
@@ -34,16 +35,26 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 
 	@Override
 	public Volunteer updateVolunteer(int id, Volunteer volunteer) {
+		System.out.println("01");
 		Volunteer managed = em.find(Volunteer.class, id);
+		System.out.println("02");
 		System.out.println(id +" " + volunteer);
+		System.out.println("********"+volunteer.getProjects().get(0).getId());
 		
+		System.out.println("03");
 		managed.setPhone(volunteer.getPhone());
+		System.out.println("04");
 		managed.setFirstName(volunteer.getFirstName());
+		System.out.println("05");
 		managed.setLastName(volunteer.getLastName());
+		System.out.println("06");
 		managed.setPictureURL(volunteer.getPictureURL());
+		System.out.println("07");
 		managed.setDob(volunteer.getDob());
+		System.out.println("08");
 		managed.setAbout(volunteer.getAbout());
-		
+		System.out.println("09");
+//		managed.addProject(volunteer.getProjects().get(0));
 		return managed;
 	}
 
@@ -66,6 +77,33 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 		String qry = "SELECT vol from Volunteer vols";
 		List<Volunteer> vols = em.createQuery(qry, Volunteer.class).getResultList();
 		return vols;
+	}
+
+	@Override
+	public Volunteer updateVolunteer(int id, Volunteer volunteer, int projectId) {
+		
+		System.out.println("01");
+		Volunteer managed = em.find(Volunteer.class, id);
+		Project project = em.find(Project.class, projectId);
+		System.out.println("02");
+		System.out.println(id +" " + volunteer);
+		System.out.println("********"+volunteer.getProjects().get(0).getId());
+		
+		System.out.println("03");
+		managed.setPhone(volunteer.getPhone());
+		System.out.println("04");
+		managed.setFirstName(volunteer.getFirstName());
+		System.out.println("05");
+		managed.setLastName(volunteer.getLastName());
+		System.out.println("06");
+		managed.setPictureURL(volunteer.getPictureURL());
+		System.out.println("07");
+		managed.setDob(volunteer.getDob());
+		System.out.println("08");
+		managed.setAbout(volunteer.getAbout());
+		System.out.println("09");
+		managed.addProject(project);
+		return managed;
 	}
 	
 	 

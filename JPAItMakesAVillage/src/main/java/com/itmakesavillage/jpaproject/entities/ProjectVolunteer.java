@@ -1,6 +1,5 @@
 package com.itmakesavillage.jpaproject.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,11 +24,11 @@ public class ProjectVolunteer {
 	@Column(name = "hours_actual")
 	private int hoursActual;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne
 	@JoinColumn(name = "project_id")
 	private Project project;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne
 	@JoinColumn(name = "volunteer_id")
 	private Volunteer volunteer;
 

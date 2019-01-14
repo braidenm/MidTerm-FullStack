@@ -66,7 +66,7 @@
 			  			<form action="joinProject.do" method="post">
 			  				<label for="hours">Add Volunteer: </label>
 			  				<input type="hidden" name="userId" id="userId" value="${user.id}">
-			  				<input type="hidden" name="project" id="project" value="${project}">
+			  				<input type="hidden" name="projectId" id="projectId" value="${project.id}">
 			  				<input type="number" name="hours" id="hours" placeholder="pledged hours" required>
 			  				<input type="submit" class="btn btn-primary" value="Join Project">
 			  				
@@ -104,7 +104,7 @@
 			  					<label for="hoursActual">Edit Hours: </label>
 			  					<input type="hidden" name="userId" id="userId" value="${volunteer.userid}">
 			  					<input type="hidden" name="projectId" id="projectId" value="${project.id}">
-			  					<input type="number" name="hours" id="hours" value="${pv.hoursPledged}">
+			  					<input type="number" name="hours" id="hours" min="0" value="${pv.hoursPledged}">
 			  					<input type="submit" class="btn btn-primary" value="Submit Hours">
 			  				</form>
 			  				<br>

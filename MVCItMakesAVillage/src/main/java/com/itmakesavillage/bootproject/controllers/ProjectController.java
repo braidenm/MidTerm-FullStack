@@ -122,16 +122,18 @@ public class ProjectController {
 	}
 
 	@RequestMapping(path = "joinProject.do", method = RequestMethod.POST)
-	public String joinProject(HttpSession session, Project project, Integer hours, RedirectAttributes redir) {
+	public String joinProject(HttpSession session, Integer projectId, Integer hours, RedirectAttributes redir) {
 		User user = (User) session.getAttribute("user");
 
 		if (user == null) {
 			return "login";
 		}
-
+		Project project = projectDAO.findProject(projectId);
 		Volunteer volunteer = volunteerDAO.findVolunteer(user.getId());
-		volunteer.addProject(project);
-		volunteer = volunteerDAO.updateVolunteer(volunteer.getUserid(), volunteer);
+//		volunteer.addProject(project);
+		volunteer = volunteerDAO.updateVolunteer(
+				volunteer.getUserid(),
+				volunteer, projectId);
 
 		ProjectVolunteer pv = pvDAO.findPV(project.getId(), user.getId());
 		pv.setHoursPledged(hours);

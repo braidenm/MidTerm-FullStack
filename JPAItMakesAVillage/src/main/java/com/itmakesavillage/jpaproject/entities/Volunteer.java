@@ -35,7 +35,7 @@ public class Volunteer {
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	@ManyToMany(fetch=FetchType.EAGER, cascade = {CascadeType.ALL})
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="volunteer_id"))
 	private List<Project> projects;
 	@OneToMany(mappedBy="volunteer")

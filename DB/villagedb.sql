@@ -119,9 +119,9 @@ DROP TABLE IF EXISTS `project_volunteer` ;
 CREATE TABLE IF NOT EXISTS `project_volunteer` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `volunteer_id` INT NOT NULL,
-  `project_id` INT NOT NULL DEFAULT 0,
+  `project_id` INT NOT NULL,
   `hours_actual` INT NULL DEFAULT 0,
-  `hours_pledged` INT NULL,
+  `hours_pledged` INT NULL DEFAULT 0,
   INDEX `fk_to_project_idx` (`project_id` ASC),
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_to_volunteer`
