@@ -43,7 +43,7 @@
 							Project: ${project.title } <br>
 							Start Date: ${project.startDate } <br> 
 							Start Time: ${project.time } <br> 
-							Owner: ${project.owner } <br>
+							Owner: ${project.owner.firstName} ${project.owner.lastName} <br>
 							Volunteers Needed: ${project.volunteersNeeded } <br> 
 							Hours Needed: ${project.hoursNeeded }
 							<form action="editProject.do" method="GET">
