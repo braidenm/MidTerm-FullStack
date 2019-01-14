@@ -107,6 +107,9 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 		String query = "Select v from Volunteer v JOIN FETCH v.projects where v.userid = :id";
 		List<Volunteer> volunteer = em.createQuery(query, Volunteer.class).setParameter("id", id).getResultList();
 		System.out.println(volunteer);
+		if(volunteer.isEmpty() || volunteer == null) {
+			return null;
+		}
 		return volunteer.get(0).getProjects();
 	}
 
@@ -116,6 +119,9 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 		String query = "Select v from Volunteer v JOIN FETCH v.ownedProjects where v.userid = :id";
 		List<Volunteer> volunteer = em.createQuery(query, Volunteer.class).setParameter("id", id).getResultList();
 		System.out.println(volunteer);
+		if(volunteer.isEmpty() || volunteer == null) {
+			return null;
+		}
 		return volunteer.get(0).getOwnedProjects();
 	}
 	

@@ -36,25 +36,25 @@ public class UserController {
 	private ProjectDAO projectDAO;
 
 	@RequestMapping(path = "removeVolunteer.do", method = RequestMethod.POST)
-	public String removeVolunteer(Model model, Integer userId, Integer projectId, HttpSession session) {
+	public String removeVolunteer(Model model, Integer userId, Integer projectId, HttpSession session, RedirectAttributes redir) {
 		User user = userDAO.findUser(userId);
 		Project project = projectDAO.findProject(projectId);
 		
 		user.getVolunteer().removeProject(project);
 		user = userDAO.updateUser(user.getId(), user);
-		model.addAttribute("project", project);
+		redir.addAttribute("projectId", project.getId());
 		return "redirect:viewProject.do";
 	}
 
 	@RequestMapping(path = "addVolunteer.do", method = RequestMethod.POST)
-	public String addVolunteer(Model model, Integer hours, Integer userId, Project project) {
+	public String addVolunteer(Model model, Integer hours, Integer userId, Project project,  RedirectAttributes redir) {
 		User user = userDAO.findUser(userId);
 		ProjectVolunteer pv = pvDAO.findPV(project.getId(), userId);
 		pv.setHoursPledged(hours);
 		pv = pvDAO.updatePV(pv);
 		user.getVolunteer().addProject(project);
 		user = userDAO.updateUser(user.getId(), user);
-		model.addAttribute("project", project);
+		redir.addAttribute("projectId", project.getId());
 		
 		return "redirect:viewProject.do";
 	}
