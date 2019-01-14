@@ -51,6 +51,12 @@
 				</div>
 				<input type="submit" class="btn btn-primary" value="Submit" />
 				</form>
+				<c:if test="${usernameInUse }">
+	  				<div class="usernameInUse">Username is taken. Please try again.</div>
+	  			</c:if>
+				<c:if test="${emailInUse }">
+	  				<div class="emailInUse">Email is already in use. Please try again.</div>
+	  			</c:if>
 			</div>
 		</div>
 	
