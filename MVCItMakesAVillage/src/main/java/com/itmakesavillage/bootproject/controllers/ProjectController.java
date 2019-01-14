@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.itmakesavillage.bootproject.data.ProjectDAO;
 import com.itmakesavillage.bootproject.data.ProjectVolunteerDAO;
 import com.itmakesavillage.bootproject.data.VolunteerDAO;
+import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Category;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.ProjectVolunteer;
@@ -182,11 +183,19 @@ public class ProjectController {
 	@RequestMapping(path = "editProject.do", method = RequestMethod.POST)
 	public String editProject(HttpSession session, RedirectAttributes redir, Project project,
 			@RequestParam("sTime") String[] sTime, @RequestParam("sDate") String[] sDate,
-			@RequestParam("eDate") String[] eDate, @RequestParam(required=false, name = "cat") Integer[] cat) {
+			@RequestParam("eDate") String[] eDate, @RequestParam(required=false, name = "cat") Integer[] cat,
+			Address address, @RequestParam(name="stateId") Integer stateId) {
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
 			return "login";
 		}
+		System.out.println(address);
+		System.out.println(stateId);
+		address.setState(projectDAO.getStateById(stateId));
+		System.out.println("after setting state" +address);
+		address = projectDAO.updateAddress(address);
+		project.setAddress(address);
+		
 		project.setTime(sTime[0]);
 		project.setStartDate(sDate[0]);
 		project.setEndDate(eDate[0]);
@@ -201,7 +210,7 @@ public class ProjectController {
 		} else {
 			project.setCategories(null);
 		}
-
+		System.out.println(project);
 		project = projectDAO.updateProject(project.getId(), project);
 
 		redir.addAttribute("projectId", project.getId());

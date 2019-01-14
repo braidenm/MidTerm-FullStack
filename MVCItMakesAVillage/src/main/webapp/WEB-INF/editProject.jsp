@@ -76,15 +76,15 @@
 					<div class="form-group">
 						<!-- State Button -->
 						<label for="stateId" class="control-label">State</label> 
-						<select class="form-control" id="stateId" name="state" >
-							<c:forEach items="stateList" var="state">
+						<select class="form-control" id="stateId" name="stateId" >
+							<c:forEach items="${ stateList}" var="state">
 								<c:choose>
-									<c:when test="${state.id == project.state.id }">
+									<c:when test="${state.id == project.address.state.id }">
 									
-										<option value="${state.abbr }" selected> ${state.name}</option>
+										<option value="${state.id }" selected> ${state.name}</option>
 									</c:when>
 									<c:otherwise>
-										<option value="${state.abbr }">${state.name}</option>
+										<option value="${state.id }">${state.name}</option>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>

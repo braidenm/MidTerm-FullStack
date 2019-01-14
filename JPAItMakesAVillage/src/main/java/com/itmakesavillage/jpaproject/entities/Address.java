@@ -23,6 +23,7 @@ public class Address {
 	private String street2;
 	
 	private String city;
+	
 	@OneToOne
 	@JoinColumn(name="state_id")
 	private State state;
