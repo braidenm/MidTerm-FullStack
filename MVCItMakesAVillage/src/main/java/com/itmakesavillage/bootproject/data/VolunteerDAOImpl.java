@@ -38,16 +38,18 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 		System.out.println("01");
 		Volunteer managed = em.find(Volunteer.class, id);
 		System.out.println("02");
-		System.out.println(id +" " + volunteer);
-		System.out.println("********"+volunteer.getProjects().get(0).getId());
-		
+		System.out.println(id + " " + volunteer);
+//		System.out.println("********"+volunteer.getProjects().get(0).getId());
+
 		managed.setPhone(volunteer.getPhone());
 		managed.setFirstName(volunteer.getFirstName());
 		managed.setLastName(volunteer.getLastName());
 		managed.setPictureURL(volunteer.getPictureURL());
 		managed.setDob(volunteer.getDob());
 		managed.setAbout(volunteer.getAbout());
-		managed.addProject(volunteer.getProjects().get(0));
+		if (volunteer.getProjects() != null) {
+			managed.addProject(volunteer.getProjects().get(0));
+		}
 		return managed;
 	}
 
@@ -74,14 +76,13 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 
 	@Override
 	public Volunteer updateVolunteer(int id, Volunteer volunteer, int projectId) {
-		
+
 		System.out.println("01");
 		Volunteer managed = em.find(Volunteer.class, id);
 		Project project = em.find(Project.class, projectId);
 		System.out.println("02");
-		System.out.println(id +" " + volunteer);
-		
-		
+		System.out.println(id + " " + volunteer);
+
 		System.out.println("03");
 		managed.setPhone(volunteer.getPhone());
 		System.out.println("04");
@@ -97,17 +98,17 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 		System.out.println("09");
 		managed.addProject(project);
 		System.out.println("10");
-		
+
 		return managed;
 	}
 
 	@Override
 	public List<Project> findProjects(int id) {
-		System.out.println("********"+id);
+		System.out.println("********" + id);
 		String query = "Select v from Volunteer v JOIN FETCH v.projects where v.userid = :id";
 		List<Volunteer> volunteer = em.createQuery(query, Volunteer.class).setParameter("id", id).getResultList();
 		System.out.println(volunteer);
-		if(volunteer.isEmpty() || volunteer == null) {
+		if (volunteer.isEmpty() || volunteer == null) {
 			return null;
 		}
 		return volunteer.get(0).getProjects();
@@ -115,16 +116,14 @@ public class VolunteerDAOImpl implements VolunteerDAO {
 
 	@Override
 	public List<Project> findOwnedProjects(int id) {
-		System.out.println("********"+id);
+		System.out.println("********" + id);
 		String query = "Select v from Volunteer v JOIN FETCH v.ownedProjects where v.userid = :id";
 		List<Volunteer> volunteer = em.createQuery(query, Volunteer.class).setParameter("id", id).getResultList();
 		System.out.println(volunteer);
-		if(volunteer.isEmpty() || volunteer == null) {
+		if (volunteer.isEmpty() || volunteer == null) {
 			return null;
 		}
 		return volunteer.get(0).getOwnedProjects();
 	}
-	
-	 
 
 }
