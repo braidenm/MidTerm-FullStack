@@ -96,6 +96,7 @@ public class ProjectController {
 			return "login";
 		}
 		model.addAttribute("catList", projectDAO.getAllCategories());
+		model.addAttribute("stateList", projectDAO.getAllStates());
 
 		return "createProject";
 	}
@@ -170,6 +171,7 @@ public class ProjectController {
 		}
 		model.addAttribute("rCatList", allCategories);
 		model.addAttribute("pCatList", projectCategories);
+		model.addAttribute("stateList", projectDAO.getAllStates());
 
 		Project project = projectDAO.findProject(projectId);
 		model.addAttribute("project", project);

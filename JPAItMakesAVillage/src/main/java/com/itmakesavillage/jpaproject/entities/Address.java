@@ -2,11 +2,13 @@ package com.itmakesavillage.jpaproject.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Address {
@@ -20,8 +22,9 @@ public class Address {
 	private String street2;
 	
 	private String city;
-	
-	private String state;
+	@OneToOne
+	@Column(name="state_id")
+	private State state;
 	
 	private String zip;
 	
@@ -42,7 +45,7 @@ public class Address {
 		super();
 	}
 
-	public Address(int id, String street, String street2, String city, String state, String zip) {
+	public Address(int id, String street, String street2, String city, State state, String zip) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -141,11 +144,11 @@ public class Address {
 		this.city = city;
 	}
 
-	public String getState() {
+	public State getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 
