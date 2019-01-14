@@ -85,7 +85,7 @@
 					  				 <br>
 					  				 ${project.address.state.name }
 					  				 <br>
-					  				 ${project.address.state.zip }
+					  				 ${project.address.zip }
 					  				 <br>
 					  				 <br>
 				  				 <br>
@@ -155,7 +155,7 @@
 					  				 <br>
 					  				 ${project.address.state.name }
 					  				 <br>
-					  				 ${project.address.state.zip }
+					  				 ${project.address.zip }
 					  				 <br>
 					  				 <br>
 					  				 <br>
