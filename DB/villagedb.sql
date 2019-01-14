@@ -33,6 +33,19 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `State`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `State` ;
+
+CREATE TABLE IF NOT EXISTS `State` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(100) NULL,
+  `abbr` VARCHAR(2) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `address`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `address` ;
@@ -42,9 +55,15 @@ CREATE TABLE IF NOT EXISTS `address` (
   `street` VARCHAR(100) NULL,
   `street2` VARCHAR(45) NULL,
   `city` VARCHAR(45) NULL,
-  `state` VARCHAR(45) NULL,
+  `state_id` INT NULL,
   `zip` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  INDEX `fk_state_by_state_id_idx` (`state_id` ASC),
+  CONSTRAINT `fk_state_by_state_id`
+    FOREIGN KEY (`state_id`)
+    REFERENCES `State` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -203,20 +222,80 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `State`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `villagedb`;
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (1, 'Alabama', 'AL');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (2, 'Alaska', 'AK');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (3, 'Arizona', 'AZ');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (4, 'Arkansas', 'AR');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (5, 'California', 'CA');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (6, 'Colorado', 'CO');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (7, 'Connecticut', 'CT');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (8, 'Delaware', 'DE');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (9, 'District of Columbia', 'DC');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (10, 'Florida', 'FL');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (11, 'Georgia', 'GA');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (12, 'Hawaii', 'HI');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (13, 'Idaho', 'ID');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (14, 'Illinois', 'IL');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (15, 'Indiana', 'IN');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (16, 'Iowa', 'IA');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (17, 'Kansas', 'KS');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (18, 'Kentucky', 'KY');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (19, 'Louisiana', 'LA');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (20, 'Maine', 'ME');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (21, 'Montana', 'MT');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (22, 'Nebraska', 'NE');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (23, 'Nevada', 'NV');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (24, 'New Hampshire', 'NH');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (25, 'New Jersey', 'NJ');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (26, 'New Mexico', 'NM');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (27, 'New York', 'NY');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (28, 'North Carolina', 'NC');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (29, 'North Dakota', 'ND');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (30, 'Ohio', 'OH');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (31, 'Oklahoma', 'OK');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (32, 'Oregon', 'OR');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (33, 'Maryland', 'MD');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (34, 'Massachusetts', 'MA');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (35, 'Michigan', 'MI');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (36, 'Minnesota', 'MN');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (37, 'Mississippi', 'MS');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (38, 'Missouri', 'MO');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (39, 'Pennsylvania', 'PA');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (40, 'Rhode Island', 'RI');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (41, 'South Carolina', 'SC');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (42, 'South Dakota', 'SD');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (43, 'Tennessee', 'TN');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (44, 'Texas', 'TX');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (45, 'Utah', 'UT');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (46, 'Vermont', 'VT');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (47, 'Virginia', 'VA');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (48, 'Washington', 'WA');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (49, 'West Virginia', 'WV');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (50, 'Wisconsin', 'WI');
+INSERT INTO `State` (`id`, `name`, `abbr`) VALUES (51, 'Wyoming', 'WY');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `address`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `villagedb`;
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (1, '42 Wallaby Way', NULL, 'Denver', 'Colorado', '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (2, '456 For Loop Circle', NULL, 'Denver', 'Colorado', '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (3, '345 If Statement Ave', NULL, 'Denver', 'Colorado', '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (4, '888 TeaPot Error Street', NULL, 'Denver', 'Colorado', '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (5, '987 Stack Over Flow Street', NULL, 'Denver', 'Colorado', '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (6, '654 Throws Exception Way', NULL, 'Denver', 'Colorado', '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (7, '234 Java Street', NULL, 'Denver', 'Colorado', '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (8, '30 Garbage Collection Ave', NULL, 'Denver', 'Colorado', '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (9, '8080 Port Street', NULL, 'Denver', 'Colorado', '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (10, '404 Compiler Error BLVD', NULL, 'Denver', 'Colorado', '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (1, '42 Wallaby Way', NULL, 'Denver', 1, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (2, '456 For Loop Circle', NULL, 'Denver', 1, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (3, '345 If Statement Ave', NULL, 'Denver', 1, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (4, '888 TeaPot Error Street', NULL, 'Denver', 1, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (5, '987 Stack Over Flow Street', NULL, 'Denver', 1, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (6, '654 Throws Exception Way', NULL, 'Denver', 1, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (7, '234 Java Street', NULL, 'Denver', 1, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (8, '30 Garbage Collection Ave', NULL, 'Denver', 1, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (9, '8080 Port Street', NULL, 'Denver', 1, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (10, '404 Compiler Error BLVD', NULL, 'Denver', 1, '80222');
 
 COMMIT;
 
