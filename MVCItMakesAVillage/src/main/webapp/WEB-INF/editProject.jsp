@@ -124,7 +124,7 @@
 					<div>
 						<input type="hidden" value="${project.id }" id="projectId" name="id" />
 					</div>
-					<input type="submit" class="btn btn-secondary" value="Submit" />
+					<input type="submit" class="btn btn-primary" value="Submit" />
 				</form>
 			</div>
 		</div>
