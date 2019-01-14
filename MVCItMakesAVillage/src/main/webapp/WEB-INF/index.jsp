@@ -107,6 +107,9 @@
 	  			<c:if test="${notFound }">
 	  				<div class="notFoundMessage">No Projects Found</div>
 	  			</c:if>
+	  			<c:if test="${needCategory }">
+	  				<div class="needCategoryMessage">Please pick a category</div>
+	  			</c:if>
 	  		
 	  		</div>
 	  	

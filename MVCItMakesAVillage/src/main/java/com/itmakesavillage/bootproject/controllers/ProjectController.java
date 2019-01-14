@@ -51,11 +51,17 @@ public class ProjectController {
 	@RequestMapping(path = "searchCat.do", method = RequestMethod.GET)
 	public String searchCat(String[] keyword, Model model) {
 		Set<Project> projectList = new HashSet<Project>();
+		boolean needCategory = false;
+		if (keyword == null) {
+			needCategory = true;
+			model.addAttribute("needCategory", needCategory);
+			return "index";
+		}
 		for (String word : keyword) {
 			projectList.addAll(projectDAO.searchProject(word));
 		}
 		boolean notFound = false;
-		if (projectList.isEmpty()) {
+		if (projectList.isEmpty() || projectList == null) {
 			notFound = true;
 			model.addAttribute("notFound", notFound);
 			return "index";
