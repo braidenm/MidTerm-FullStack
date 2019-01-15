@@ -75,5 +75,12 @@ public class ProjectVolunteerDAOImpl implements ProjectVolunteerDAO {
 		return pv;
 	}
 
+	@Override
+	public List<ProjectVolunteer> getAllProjectVolunteers() {
+		List<ProjectVolunteer> pvList = new ArrayList<ProjectVolunteer>();
+		String query = "select pv from ProjectVolunteer pv";
+		pvList = em.createQuery(query, ProjectVolunteer.class).getResultList();
+		return pvList;
+	}
 	
 }

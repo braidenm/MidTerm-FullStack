@@ -23,8 +23,9 @@
 <title>Home</title>
 </head>
 <body>
-
-	<%@include file="navBar.jsp"%>
+	<div>
+		<%@include file="navBar.jsp"%>
+	</div>
 
 
 	<div class="bg-img">
@@ -68,6 +69,11 @@
 			</div> 
 		</div>
 	</div>
+	<div class="ticker">
+		<strong>Hours Pledged: </strong> ${hoursPledged } <strong>Hours Contributed: </strong> ${hoursContributed}
+		<strong>Total Projects: </strong> ${projects } <strong>Total Volunteers: </strong> ${volunteers}	
+	</div>
+	
 	<%-- <div class="container">
 		<form form-check form-check-inline action="searchCat.do" method="get"
 			id="searchByCat" class="containerCategory">
