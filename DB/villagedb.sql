@@ -191,6 +191,34 @@ CREATE TABLE IF NOT EXISTS `category_project` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `comments`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `comments` ;
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `project_id` INT NOT NULL,
+  `comment` VARCHAR(200) NULL,
+  `date` VARCHAR(45) NULL,
+  `time` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_comment_to_user_idx` (`user_id` ASC),
+  INDEX `fk_cooment_to_project_idx` (`project_id` ASC),
+  CONSTRAINT `fk_comment_to_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cooment_to_project`
+    FOREIGN KEY (`project_id`)
+    REFERENCES `project` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS panda1@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -286,16 +314,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `villagedb`;
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (1, '42 Wallaby Way', NULL, 'Denver', 3, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (2, '456 For Loop Circle', NULL, 'Denver', 4, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (3, '345 If Statement Ave', NULL, 'Denver', 5, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (4, '888 TeaPot Error Street', NULL, 'Denver', 6, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (5, '987 Stack Over Flow Street', NULL, 'Denver', 18, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (6, '654 Throws Exception Way', NULL, 'Denver', 34, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (7, '234 Java Street', NULL, 'Denver', 23, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (8, '30 Garbage Collection Ave', NULL, 'Denver', 44, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (9, '8080 Port Street', NULL, 'Denver', 23, '80222');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (10, '404 Compiler Error BLVD', NULL, 'Denver', 23, '80222');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (1, '7400 E Orchard rd', NULL, 'GreenWood Village', 6, '80111');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (2, '1600 Pennsylvania Ave', NULL, 'Washington DC', 9, '20500');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (3, '1520 E Colfax Ave', NULL, 'Denver', 6, '80218');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (4, '1701 Bryant St', NULL, 'Denver', 6, '80204');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (5, '1313 Disneyland Dr', NULL, 'Anaheim', 5, '92802');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (6, '3799 S Las Vegas Blvd', NULL, 'Las Vegas', 23, '89109');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (7, '300 N Cambell St', NULL, 'El Paso', 44, '79901');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (8, '400 Broad St', NULL, 'Seattle', 48, '98109');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (9, '500 Sea World Dr', NULL, 'San Diego', 5, '92109');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state_id`, `zip`) VALUES (10, '100 Winter Park Dr,', NULL, 'Winter Park,', 6, '80482');
 
 COMMIT;
 
@@ -305,16 +333,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `villagedb`;
-INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (1, '303-867-5309', '1900-01-01', 1, 'Nuclear', 'Panda', NULL, 'Bombs and Bambo');
-INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (2, '123-456-7890', '1999-01-23', 2, 'Bob', 'Ross', NULL, 'Painting and stuff');
-INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (3, '456-677-3332', '1967-03-05', 3, 'Harry', 'Potter', NULL, 'Wizard and stuff');
-INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (4, '345-676-3321', '1954-06-30', 4, 'Jackie', 'Chan', NULL, 'Karate and funny stuff');
-INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (5, '344-556-3233', '1987-05-22', 5, 'Andre', 'Giant', NULL, 'Giant and stuff');
-INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (6, '342-667-3232', '1980-04-29', 6, 'Miles', 'Davis', NULL, 'Stuff stuff');
-INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (7, '707-453-2344', '1975-07-13', 7, 'Randy', 'Savage', NULL, 'Wrestling and stuff');
-INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (8, '453-235-2466', '1978-10-24', 8, 'Betty', 'White', NULL, 'Funny and stuff (also old)');
-INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (9, '342-343-2356', '1988-12-25', 9, 'George', 'Costanza', NULL, 'Weird and funny stuff');
-INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (10, '342-645-3223', '1732-02-22', 10, 'George', 'Washington', NULL, 'President and stuff');
+INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (1, '303-867-5309', '1900-01-01', 1, 'Nuclear', 'Panda', 'https://lh3.googleusercontent.com/-dApZo84g1a0/VIsoQshVUnI/AAAAAAAAAH0/6_z7NHvV8b8/w638-h638/BanksyPanda1.jpg', 'Bombs and Bambo');
+INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (2, '123-456-7890', '1999-01-23', 2, 'Bob', 'Ross', 'https://static-cdn.jtvnw.net/jtv_user_pictures/bobross-profile_image-0b9dd167a9bb16b5-300x300.jpeg', 'Painting and stuff');
+INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (3, '456-677-3332', '1967-03-05', 3, 'Harry', 'Potter', 'https://vignette.wikia.nocookie.net/hari-poter-srbija/images/4/41/Harry_potter_2nd_year.jpeg/revision/latest?cb=20160218175754', 'Wizard and stuff');
+INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (4, '345-676-3321', '1954-06-30', 4, 'Jackie', 'Chan', 'https://socialnewsdaily.com/wp-content/uploads/2016/04/936036-jackie-chan.jpg', 'Karate and funny stuff');
+INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (5, '344-556-3233', '1987-05-22', 5, 'Andre', 'Giant', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Andr%C3%A9_the_Giant_in_the_late_%2780s.jpg/220px-Andr%C3%A9_the_Giant_in_the_late_%2780s.jpg', 'Giant and stuff');
+INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (6, '342-667-3232', '1980-04-29', 6, 'Miles', 'Davis', 'https://pixel.nymag.com/imgs/daily/vulture/2015/09/17/magazine/18-miles-davis.w700.h700.jpg', 'Stuff stuff');
+INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (7, '707-453-2344', '1975-07-13', 7, 'Randy', 'Savage', 'https://img.bleacherreport.net/img/images/photos/002/318/574/macho-man-randy-savage-1_crop_exact.jpg?w=1200&h=1200&q=75', 'Wrestling and stuff');
+INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (8, '453-235-2466', '1978-10-24', 8, 'Betty', 'White', 'http://www.magic925.com/wp-content/uploads/2018/01/Screen-Shot-2018-01-09-at-2.57.52-PM.png', 'Funny and stuff (also old)');
+INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (9, '342-343-2356', '1988-12-25', 9, 'George', 'Costanza', 'https://pbs.twimg.com/profile_images/2606895456/Cant_Stand_Ya_.jpg', 'Weird and funny stuff');
+INSERT INTO `volunteer` (`user_id`, `phone_number`, `dob`, `address_id`, `first_name`, `last_name`, `picture_url`, `about`) VALUES (10, '342-645-3223', '1732-02-22', 10, 'George', 'Washington', 'https://cdn.britannica.com/s:300x300/95/4995-004-45F5BF39.jpg', 'President and stuff');
 
 COMMIT;
 
@@ -324,12 +352,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `villagedb`;
-INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (1, 'TP Steves House', 1, 1, '2019-01-18', '2019-01-18', 'TP Everywhere on and around Steves house.', 5, '20:00:00', 6, 6);
-INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (2, 'Clean up a Park', 2, 1, '2019-02-01', '2019-02-02', 'Pick up trash, pull weeds, remove graffiti, etc', 1, '08:00:00', 50, 10);
-INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (3, 'Build a Community TreeHouse', 4, 1, '2019-04-01', '2019-04-04', 'Build a Tree House in the Park', 7, '08:00:00', 100, 10);
-INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (4, 'Food Bank for Homeless', 7, 1, '2019-03-20', '2019-03-20', 'Bring food and hand it out', 3, '17:00:00', 20, 10);
-INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (5, 'Save The World', 10, 1, '2019-01-18', '2020-01-01', 'Stop Lex Luthor from Winning. End: World Hunger, War, and Global Warming. Clean up the oceans and save the turtles', NULL, NULL, 1000000, 1000000);
-INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (6, 'Tear down the Berlin Wall', 8, 0, '1991-11-01', '1991-11-10', 'Tear Down this Wall!', 1, '08:00:00', 10000, 1000);
+INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (1, 'TP Steves House', 1, 1, '2019-01-18', '2019-01-18', 'TP Everywhere on and around Steves house.', 1, '20:00:00', 6, 6);
+INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (2, 'Clean up a Park', 2, 1, '2019-02-01', '2019-02-02', 'Pick up trash, pull weeds, remove graffiti, etc', 5, '08:00:00', 50, 10);
+INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (3, 'Build a Community TreeHouse', 4, 1, '2019-04-01', '2019-04-04', 'Build a Tree House in the Park', 4, '08:00:00', 100, 10);
+INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (4, 'Food Bank for Homeless', 7, 1, '2019-03-20', '2019-03-20', 'Bring food and hand it out', 9, '17:00:00', 20, 10);
+INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (5, 'Save The World', 10, 1, '2019-01-18', '2020-01-01', 'Stop Lex Luthor from Winning. End: World Hunger, War, and Global Warming. Clean up the oceans and save the turtles', 3, NULL, 1000000, 1000000);
+INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (6, 'Tear down the Berlin Wall', 8, 0, '1991-11-01', '1991-11-10', 'Tear Down this Wall!', 2, '08:00:00', 10000, 1000);
+INSERT INTO `project` (`id`, `title`, `owner_id`, `active`, `start_date`, `end_date`, `description`, `address_id`, `start_time`, `hours_needed`, `volunteers_needed`) VALUES (7, 'Shed the Slopes', 3, 1, '2019-03-20', NULL, 'Make sure the slopes are still fun', 10, '08:00:00', 40, 10);
 
 COMMIT;
 
@@ -407,6 +436,16 @@ INSERT INTO `category_project` (`category_id`, `project_id`) VALUES (5, 5);
 INSERT INTO `category_project` (`category_id`, `project_id`) VALUES (6, 5);
 INSERT INTO `category_project` (`category_id`, `project_id`) VALUES (1, 6);
 INSERT INTO `category_project` (`category_id`, `project_id`) VALUES (3, 6);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `comments`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `villagedb`;
+INSERT INTO `comments` (`id`, `user_id`, `project_id`, `comment`, `date`, `time`) VALUES (1, 1, 1, 'This Project is going to be awesome!', '2019-01-15', '10:00');
 
 COMMIT;
 
