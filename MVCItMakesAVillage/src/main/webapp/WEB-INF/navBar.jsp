@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-	  <div class="container-fluid">
+	  <div class="container-fluid" id="navBackground">
 		  <div class="navbar-header">
 	      <a class="navbar-brand" href="home.do">ItMakesAVillage</a>
 	  	  </div>
@@ -10,6 +10,7 @@
 		      <c:if test="${user != null}" >
 			      <li><a href="account.do"><span class="glyphicon glyphicon-user"></span> Account</a></li>
 			  </c:if>
+			  <br>
 			  <li><a href="about.do"> About</a></li>
 	  	  </ul>
 	  
