@@ -15,6 +15,25 @@ a:link{
 	color: white;
 }
 
-#id {
-	border-right: solid;
+#/* loginBox {
+	
+  position: relative;
+  width: 45%;
+  min-width: 400px;
+  max-width: 800px;
+  padding: 2%;
+  margin-left: 40%;
+  overflow: auto; needed so that div stretches with child divs
+} */
+
+.divider{
+    position:absolute;
+    left:50%;
+    top:10%;
+    bottom:10%;
+    border-left:1px solid white;
 }
+
+/* .container{
+	margin-left: 500px;
+} */

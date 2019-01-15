@@ -29,9 +29,16 @@
 	<br>
 	<br>
 	<header> </header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="container">
 		<div class="row">
-			<div id="login" class="col-sm-6" >
+		<div class="col-sm-2"></div>
+			<div id="login" class="col-sm-4" >
 				<!-- <h4>Create Account</h4> -->
 				<c:if test="${loginFail }">
 					<div class="message"> Username or password is incorrect</div>
@@ -46,6 +53,7 @@
 					
 					</div>
 				</c:if>	
+				<h2 class="logInheader">Log In</h2>
 				<form action="login.do" method="POST">
 				<div class="form-group">
 					<label id="userName">Username:</label> 
@@ -62,7 +70,10 @@
 				</div>
 				</form>
 			</div>
-			<div class="col-sm-6">
+			
+			
+			<div id="register" class="col-sm-4">
+			<h2 class="registerHeader">Create Account</h2>
 				<form action="createAccount.do" method="GET">
 				<div class="form-group">
 				<input type="submit" class="btn btn-primary" value="Create Account" />

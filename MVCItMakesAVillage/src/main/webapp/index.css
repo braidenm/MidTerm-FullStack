@@ -25,7 +25,7 @@ body, html {
 	position: fixed;
 }
 a:link{
-	color: white;
+	color: rgba(255, 255, 255);
 }
 .headerText {
 	text-align: center;
