@@ -2,25 +2,23 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-<title>View Project</title>
-<link rel="stylesheet" type="text/css" href="viewProject.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="viewProject.css">
+  
+<title>View Project</title>
 </head>
 <body>
 	<%@include file="navBar.jsp"%>
@@ -77,7 +75,7 @@
 					</form>
 				</c:if>
 			</div>
-			<div class="commentDisplay">
+			<div class="commentBox">
 				<c:if
 					test="${project.owner.userid == user.id or user.role == 'admin' }">
 					<form action="editProject.do" method="GET">
@@ -88,29 +86,37 @@
 				<c:if test="${not empty project.comments }">
 					<h3>Comments:</h3>
 					<c:forEach items="${project.comments }" var="comment">
-						<c:if test="${comment.active || user.role == 'admin'}">
-							${comment.comment }<br>
-							${comment.user.volunteer.firstName }<br>
-							${comment.date }, 
-							${comment.time }
-							<c:if test="${ !comment.active && user.role == 'admin'}">
-								<form action="reactivateComment.do" method="POST">
-									<input name="commentId" value="${comment.id }" type="hidden">
-									<input type="submit" class="btn btn-primary" value="Reactivate Comment" />
-								</form>
+						<div class="commentDisplay">
+							<c:if test="${comment.active || user.role == 'admin'}">
+								${comment.comment }<br>
+								- ${comment.user.volunteer.firstName }<br>
+								${comment.date }, 
+								${comment.time }
+								<c:if test="${ !comment.active && user.role == 'admin'}">
+									<div class="commentButton">
+										<form action="reactivateComment.do" method="POST">
+											<input name="commentId" value="${comment.id }" type="hidden">
+											<input type="submit" class="btn btn-primary" value="Reactivate Comment" />
+										</form>
+									</div>
+								</c:if>
+								<c:if test="${comment.active && user.id == project.owner.userid || user.id == comment.user.id || user.role == 'admin'}">
+									<div class="commentButton">
+										<form action="removeComment.do" method="POST">
+											<input name="commentId" value="${comment.id }" type="hidden">
+											<input type="submit" class="btn btn-primary" value="Remove Comment" />
+										</form>
+									</div>
+								</c:if>
 							</c:if>
-							<c:if test="${user.id == project.owner.userid || user.id == comment.user.id || user.role == 'admin'}">
-								<form action="removeComment.do" method="POST">
-									<input name="commentId" value="${comment.id }" type="hidden">
-									<input type="submit" class="btn btn-primary" value="Remove Comment" />
-								</form>
-							</c:if>
-						</c:if>	
+						</div>
 					</c:forEach>
 				</c:if>
+				<br>
 				<c:if test="${not empty user }">
 					<form action="addComment.do" method="POST">
 						<textarea name="comment" placeholder="Add comment" ></textarea>
+						<br>
 						<input name="projectId" value="${project.id }" type="hidden">
 						<input name="userId" value="${user.id }" type="hidden">
 						<input type="submit" class="btn btn-primary" value="Add Comment" />
@@ -173,11 +179,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<div id="map-canvas">
+		<div id="map-canvas"></div>
 			<input type="hidden" id="address"
-			   	   value="${project.address.street}, ${project.address.city}, ${project.address.state.name}">
-		</div>
+			   	   value="${project.address.street} ${project.address.city} ${project.address.state.name}">
 	</div>
+		
+	
 
 	<!-- put map here -->
 

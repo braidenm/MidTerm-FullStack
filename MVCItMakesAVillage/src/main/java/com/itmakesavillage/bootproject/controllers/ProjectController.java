@@ -263,7 +263,7 @@ public class ProjectController {
 		
 		String datePattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datePattern);
-		String timePattern = "HH:mm a";
+		String timePattern = "hh:mm a";
 		SimpleDateFormat simpleTimeFormat = new SimpleDateFormat(timePattern);
 
 		String date = simpleDateFormat.format(now);
