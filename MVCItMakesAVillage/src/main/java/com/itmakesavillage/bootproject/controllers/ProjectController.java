@@ -1,8 +1,6 @@
 package com.itmakesavillage.bootproject.controllers;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itmakesavillage.bootproject.data.ProjectDAO;
 import com.itmakesavillage.bootproject.data.ProjectVolunteerDAO;
-import com.itmakesavillage.bootproject.data.UserDAO;
 import com.itmakesavillage.bootproject.data.VolunteerDAO;
 import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Category;
@@ -38,8 +35,6 @@ public class ProjectController {
 	private VolunteerDAO volunteerDAO;
 	@Autowired
 	private ProjectVolunteerDAO pvDAO;
-	@Autowired
-	private UserDAO userDAO;
 
 	@RequestMapping(path = "searchKW.do", method = RequestMethod.GET)
 	public String searchKW(String keyword, Model model) {
@@ -255,46 +250,16 @@ public class ProjectController {
 		return "admin";
 	}
 	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
-	public String addComment(@RequestParam(name="comment") String commentText,
-			@RequestParam(name="userId") Integer userId,
-			@RequestParam(name="projectId") Integer projectId, HttpSession session, Model model, RedirectAttributes redir) {
-		Date now = new Date();
-		Date rightNow = new Date();
+	public String addComment(Comments comment, HttpSession session, Model model) {
 		
-		String datePattern = "yyyy-MM-dd";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datePattern);
-		String timePattern = "HH:mm a";
-		SimpleDateFormat simpleTimeFormat = new SimpleDateFormat(timePattern);
-
-		String date = simpleDateFormat.format(now);
-		String time = simpleTimeFormat.format(rightNow);
-		Comments comment = new Comments();
-		comment.setComment(commentText);
-		comment.setProject(projectDAO.findProject(projectId));
-		comment.setUser(userDAO.findUser(userId));
-		comment.setDate(date);
-		comment.setTime(time);
-		comment.setActive(true);
-		comment = projectDAO.createComment(comment);
-		redir.addAttribute("projectId", comment.getProject().getId());
-		return "redirect:viewProject.do";
+		
+		
+		return "admin";
 	}
-	@RequestMapping(path = "removeComment.do", method = RequestMethod.POST)
-	public String removeComment(Integer commentId, HttpSession session, Model model, RedirectAttributes redir) {
-		Comments comment = projectDAO.findComment(commentId);
-		comment = projectDAO.deactivateComment(commentId);
-		redir.addAttribute("projectId", comment.getProject().getId());
-		return "redirect:viewProject.do";
+	@RequestMapping(path = "removeCooment.do", method = RequestMethod.POST)
+	public String RemoveComment(Comments cooment, HttpSession session, Model model) {
+		
+		return "admin";
 	}
-	
-	@RequestMapping(path = "reactivateComment.do", method = RequestMethod.POST)
-	public String reactivateComment(Integer commentId, HttpSession session, Model model, RedirectAttributes redir) {
-		Comments comment = projectDAO.findComment(commentId);
-		comment = projectDAO.reactivateComment(commentId);
-		redir.addAttribute("projectId", comment.getProject().getId());
-		return "redirect:viewProject.do";
-	}
-	
-
 
 }
