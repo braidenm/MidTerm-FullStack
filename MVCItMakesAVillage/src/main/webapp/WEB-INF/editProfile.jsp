@@ -71,7 +71,7 @@
 							   name="pictureURL" value="${user.volunteer.pictureURL }">
 					</div>
 					<div class="form-group">
-					<input type="submit" class="btn btn-primary" value="Submit" />
+					<input type="submit" class="btn btn-primary" value="Save Changes" />
 					</div>
 				</form>
 			</div>
@@ -99,23 +99,19 @@
 						<input type="email" id="email" name="email"
 							   maxlength="45" value="${user.email }">
 					</div>
-					<input type="submit" class="btn btn-primary" value="Edit Account"/>
+					<input type="submit" class="btn btn-primary" value="Save Changes"/>
 				
 				</form>
 				<form action="deactivate.do" method="post">
 							<input type="hidden" id="id" name="id" value="${user.id }">
 							<input type="submit" class="btn btn-primary" value="De-Activate Account">
 				</form>
-					
+				<br>
+				<br>
+				<br>
 				</div>
 		</div>
-	
-	
-	
-	
-	
-	
-	
+
 	</div>
 
 	<!-- Optional JavaScript -->
