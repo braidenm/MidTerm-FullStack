@@ -38,7 +38,7 @@ public class User {
 	private Volunteer volunteer;
 	private boolean active;
 	
-	@OneToMany(mappedBy="user", cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="user", cascade = {CascadeType.ALL})
 	private List<Comments> comments;
 	
 	public boolean isActive() {

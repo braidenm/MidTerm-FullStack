@@ -65,7 +65,7 @@ public class Project {
 	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
 	private List<ProjectVolunteer> projectVolunteer;
 
-	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
 	private List<Comments> comments;
 	
 	
