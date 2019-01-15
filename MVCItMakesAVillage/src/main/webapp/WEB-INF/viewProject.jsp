@@ -172,11 +172,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" id="map-canvas">
-		<input type="hidden" id="address"
-			   value="${project.address.street}, ${project.address.city}, ${project.address.state.name}">
+	<div class="row">
+		<div id="map-canvas">
+			<input type="hidden" id="address"
+			   	   value="${project.address.street}, ${project.address.city}, ${project.address.state.name}">
+		</div>
 	</div>
-
 
 	<!-- put map here -->
 
