@@ -35,7 +35,7 @@
 				<form action="searchKW.do" method="get" id="searchByKW"
 					class="containerKW">
 					<div class="KWHeader">
-						<label for="keyword">Search by KeyWord(s): </label>
+						<label for="keyword">Search by Keyword(s): </label>
 					</div>
 					<br> <input type="text" name="keyword" id="keyword"
 						placeholder="Search" maxlength="45" /> <input type="submit"

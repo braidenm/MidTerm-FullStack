@@ -22,8 +22,15 @@ public class Comments {
 	private String comment;
 	private String date;
 	private String time;
+	private boolean active;
 	
 	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	public int getId() {
 		return id;
 	}
