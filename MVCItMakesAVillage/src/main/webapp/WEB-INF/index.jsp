@@ -18,7 +18,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="index.css">
-
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 <title>Home</title>
 </head>
 <body>
@@ -28,7 +28,7 @@
 
 	<div class="bg-img">
 		<div class="headerText">
-			<h1>Welcome to Your Community Volunteer Page</h1>
+			<h1>A Little Dirt Doesn't Hurt</h1>
 		</div>
 		<div class="row" id="centered">
 			<div class="col-sm-5">
