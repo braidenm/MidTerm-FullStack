@@ -87,7 +87,7 @@
 				</c:if>
 				<c:if test="${not empty project.comments }">
 					<h3>Comments:</h3>
-					<c:forEach items="${project.comments } var="comment">
+					<c:forEach items="${project.comments }" var="comment">
 						<c:if test="${comment.active || user.role == 'admin'}">
 							${comment.comment }<br>
 							${comment.user.volunteer.firstName }<br>
@@ -99,7 +99,7 @@
 									<input type="submit" class="btn btn-primary" value="Reactivate Comment" />
 								</form>
 							</c:if>
-							<c:if test="${user.id == project.owner.userId || user.id = comment.userId || user.role == 'admin'}">
+							<c:if test="${user.id == project.owner.userid || user.id == comment.user.id || user.role == 'admin'}">
 								<form action="removeComment.do" method="POST">
 									<input name="commentId" value="${comment.id }" type="hidden">
 									<input type="submit" class="btn btn-primary" value="Remove Comment" />
@@ -119,70 +119,67 @@
 			</div>
 			
 			
-	</div>
+		</div>
+		<div class="col-sm-3">
+			<h3>Volunteers:</h3>
+			<div>
+				<c:forEach items="${project.volunteers}" var="volunteer">
+					<strong>${volunteer.firstName } ${volunteer.lastName } </strong>
+					<br>
+					<strong>Number: </strong>${volunteer.phone}
+			  		<br>
+					<strong>Email: </strong>${volunteer.user.email}
+			  		<br>
 	
-			<div id="map-canvas"></div>
-			<input type="hidden" id="address"
-				value="${project.address.street}, ${project.address.city}, ${project.address.state.name}">
-		
+					<c:forEach items="${pvList}" var="pv">
+						<c:if test="${volunteer.userid == pv.volunteer.userid}">
+							<strong>Pledged Hours: </strong>${pv.hoursPledged}
+			  				<br>
+							<strong>Actual Hours: </strong>${pv.hoursActual }
+			  				<br>
+							<c:if test="${volunteer.userid == user.id or project.owner.userid == user.id or user.role == 'admin' }">
+								<form action="submitHours.do" method="post">
+									<label for="hoursActual">Edit Hours: </label> <input
+										type="hidden" name="userId" id="userId"
+										value="${volunteer.userid}"> <input type="hidden"
+										name="projectId" id="projectId" value="${project.id}">
+									<input type="number" name="hours" id="hours" min="0"
+										value="${pv.hoursPledged}"> <input type="submit"
+										class="btn btn-primary" value="Submit Hours">
+								</form>
+								<br>
+								<form action="removeVolunteer.do" method="post">
+									<input type="hidden" name="userId" id="userId"
+										value="${volunteer.userid}"> <input type="hidden"
+										name="projectId" id="projectId" value="${project.id}">
+									<input type="submit" class="btn btn-primary"
+										value="Remove Volunteer">
+	
+								</form>
+	
+							</c:if>
+						</c:if>
+	
+	
+	
+					</c:forEach>
+					<br>
+	
+	
+				</c:forEach>
+	
+	
+			</div>
+		</div>
+	</div>
+	<div class="row" id="map-canvas">
+		<input type="hidden" id="address"
+			   value="${project.address.street}, ${project.address.city}, ${project.address.state.name}">
+	</div>
 
 
 	<!-- put map here -->
-	<div class="col-sm-3">
 
-
-		<h3>Volunteers:</h3>
-		<div>
-			<c:forEach items="${project.volunteers}" var="volunteer">
-				<strong>${volunteer.firstName } ${volunteer.lastName } </strong>
-				<br>
-				<strong>Number: </strong>${volunteer.phone}
-		  		<br>
-				<strong>Email: </strong>${volunteer.user.email}
-		  		<br>
-
-				<c:forEach items="${pvList}" var="pv">
-					<c:if test="${volunteer.userid == pv.volunteer.userid}">
-						<strong>Pledged Hours: </strong>${pv.hoursPledged}
-		  				<br>
-						<strong>Actual Hours: </strong>${pv.hoursActual }
-		  				<br>
-						<c:if
-							test="${volunteer.userid == user.id or project.owner.userid == user.id or user.role == 'admin' }">
-							<form action="submitHours.do" method="post">
-								<label for="hoursActual">Edit Hours: </label> <input
-									type="hidden" name="userId" id="userId"
-									value="${volunteer.userid}"> <input type="hidden"
-									name="projectId" id="projectId" value="${project.id}">
-								<input type="number" name="hours" id="hours" min="0"
-									value="${pv.hoursPledged}"> <input type="submit"
-									class="btn btn-primary" value="Submit Hours">
-							</form>
-							<br>
-							<form action="removeVolunteer.do" method="post">
-								<input type="hidden" name="userId" id="userId"
-									value="${volunteer.userid}"> <input type="hidden"
-									name="projectId" id="projectId" value="${project.id}">
-								<input type="submit" class="btn btn-primary"
-									value="Remove Volunteer">
-
-							</form>
-
-						</c:if>
-					</c:if>
-
-
-
-				</c:forEach>
-				<br>
-
-
-			</c:forEach>
-
-
-		</div>
-	</div>
-	</div>
 
 
 

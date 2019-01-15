@@ -1,8 +1,6 @@
 package com.itmakesavillage.bootproject.controllers;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -260,8 +258,8 @@ public class ProjectController {
 	public String addComment(@RequestParam(name="comment") String commentText,
 			@RequestParam(name="userId") Integer userId,
 			@RequestParam(name="projectId") Integer projectId, HttpSession session, Model model, RedirectAttributes redir) {
-		LocalDate now = LocalDate.now();
-		LocalTime rightNow = LocalTime.now();
+		Date now = new Date();
+		Date rightNow = new Date();
 		
 		String datePattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datePattern);
@@ -276,6 +274,7 @@ public class ProjectController {
 		comment.setUser(userDAO.findUser(userId));
 		comment.setDate(date);
 		comment.setTime(time);
+		comment.setActive(true);
 		comment = projectDAO.createComment(comment);
 		redir.addAttribute("projectId", comment.getProject().getId());
 		return "redirect:viewProject.do";
@@ -291,7 +290,7 @@ public class ProjectController {
 	@RequestMapping(path = "reactivateComment.do", method = RequestMethod.POST)
 	public String reactivateComment(Integer commentId, HttpSession session, Model model, RedirectAttributes redir) {
 		Comments comment = projectDAO.findComment(commentId);
-		comment = projectDAO.deactivateComment(commentId);
+		comment = projectDAO.reactivateComment(commentId);
 		redir.addAttribute("projectId", comment.getProject().getId());
 		return "redirect:viewProject.do";
 	}
