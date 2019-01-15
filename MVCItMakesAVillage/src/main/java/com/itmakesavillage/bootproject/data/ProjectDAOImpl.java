@@ -132,10 +132,14 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	@Override
-	public Comments deactivateComment(Comments comment) {
-		comment = em.find(Comments.class, comment.getId());
+	public Comments deactivateComment(int commentId) {
+		Comments comment = em.find(Comments.class, commentId);
 		comment.setActive(false);
 		return comment;
+	}
+	@Override
+	public Comments findComment(int commentId) {
+		return em.find(Comments.class, commentId);
 	}
 
 	@Override
@@ -149,8 +153,8 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	@Override
-	public Comments reactivateComment(Comments comment) {
-		comment = em.find(Comments.class, comment.getId());
+	public Comments reactivateComment(int commentId) {
+		Comments comment = em.find(Comments.class, commentId);
 		comment.setActive(true);
 		return comment;
 	}

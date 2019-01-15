@@ -22,9 +22,10 @@ public interface ProjectDAO {
 	State getStateById(int stateId);
 	Address updateAddress(Address address);
 	Address createAddress(Address address);
-	Comments deactivateComment(Comments comment);
-	Comments reactivateComment(Comments comment);
+	Comments deactivateComment(int commentId);
+	Comments reactivateComment(int commentId);
 	Comments createComment(Comments comment);
+	Comments findComment(int commentId);
 
 
 }
