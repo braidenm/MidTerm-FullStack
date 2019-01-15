@@ -40,10 +40,11 @@
 		  				<strong>Project Description: </strong>${project.description}
 		  				 <br>
 		  					<strong>Category: </strong> 
-		  				 <c:forEach items="${project.categories}" var="cat">
+		  				 <c:forEach items="${project.categories}" var="cat" varStatus="loop">
 		  				 	${cat.name}
-		  				 	<br>
+		  				 	<c:if test="${!loop.last}">,</c:if>
 		  				 </c:forEach>
+		  				 	<br>
 		  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
 		  				 <br>
 		  				 <strong>Address: </strong>${project.address }

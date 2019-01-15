@@ -104,17 +104,24 @@
 		  				 <br>
 						<strong>Time: </strong>${project.time}
 		  				 <br> --%>
+		  				<strong>Category: </strong>
+		  				<c:forEach items="${project.categories}" var="cat" varStatus="loop">
+		  				 	${cat.name}
+		  				 	<c:if test="${!loop.last}">,</c:if>
+		  				</c:forEach>
+		  				<br>
 						<c:if
 							test="${(project.volunteersNeeded - fn:length(project.volunteers)) <= 0}">
 							<strong>Volunteer:</strong>
 		  					Volunteer Goal Met
 		  				</c:if>
 		  				<c:if test="${project.active }">
-							<strong>Project is:</strong><h6 class="open">OPEN</h6>
+							<strong>Project is: </strong><span class="open">OPEN</span>
 						</c:if>
 						<c:if test="${not project.active }">
-							<strong>Project is:</strong><h6 class="closed">CLOSED</h6>
+							<strong>Project is: </strong><span class="closed">CLOSED</span>
 						</c:if>
+						<br>
 						<c:if
 							test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
 							<strong>Volunteers still needed: </strong>
