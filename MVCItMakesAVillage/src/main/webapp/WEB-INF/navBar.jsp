@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 		  <div class="navbar-header">
-	      <a class="navbar-brand" href="home.do">WebSiteName</a>
+	      <a class="navbar-brand" href="home.do">ItMakesAVillage</a>
 	  	  </div>
 	  	  <ul class="nav navbar-nav navbar-left">
 		      <c:if test="${not empty user && user.role == 'admin'}">
