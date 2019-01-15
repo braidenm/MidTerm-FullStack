@@ -65,6 +65,20 @@ public class Project {
 	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
 	private List<ProjectVolunteer> projectVolunteer;
 
+	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
+	private List<Comments> comments;
+	
+	
+	
+	
+	public List<Comments> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comments> comments) {
+		this.comments = comments;
+	}
+
 	public Project() {
 	}
 
