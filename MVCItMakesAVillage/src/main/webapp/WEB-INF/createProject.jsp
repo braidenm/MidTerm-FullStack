@@ -28,20 +28,20 @@
             <div class="col-sm-4">
                 <form action="createProject.do" method="post">
                     <div class="form-group">
-                        <label id="title">Title</label> <input type="text" required
+                        <label id="title">Title</label> <input class="form-control" type="text" required
                             id="title" name="title"></input>
                     </div>
                     <div class="form-group">
 						<!-- Street 1 -->
 						<label for="street1_id" class="control-label">Street
 							Address </label> <input type="text" class="form-control" id="street1_id"
-							name="street" value="${ project.address.street}">
+							name="street" placeholder="123 Main St.">
 					</div>
 					<div class="form-group">
 						<!-- City-->
 						<label for="city_id" class="control-label">City</label> <input
 							type="text" class="form-control" id="city_id" name="city"
-							value="${ project.address.city}">
+							placeholder="Townville">
 					</div>
 
 					<div class="form-group">
@@ -58,7 +58,7 @@
 						<!-- Zip Code-->
 						<label for="zip_id" class="control-label">Zip Code</label> <input
 							type="number" class="form-control" id="zip_id" name="zip"
-							value="${ project.address.zip}">
+							placeholder="12345">
 					</div>
                     
                     <div class="form-group">
@@ -74,18 +74,28 @@
                             required name="sTime"></input>
                     </div>
                     <div class="form-group">
-                        <label id="volunteersNeeded">Volunteers Needed</label> <input
-                            type="number" id="volunteersNeeded" required
-                            name="volunteersNeeded"></input>
+                        <label id="volunteersNeeded">Volunteers Needed</label> 
+                        <input type="number" 
+                            id="volunteersNeeded" 
+                            required
+                            name="volunteersNeeded" 
+                            min="0" 
+                            size="5" 
+                            maxlength="5"></input>
                     </div>
                     <div class="form-group">
-                        <label id="hoursNeeded">Hours Needed</label> <input type="number"
-                            id="hoursNeeded" name="hoursNeeded"></input>
+                        <label id="hoursNeeded">Hours Needed</label> 
+                        <input type="number" 
+                        	   id="hoursNeeded" 
+                        	   min="0" 
+                       		   name="hoursNeeded" 
+                       		   size="5" 
+                       		   maxlength="5"></input>
                     </div>
                     <div class="form-group">
                         <label id="description">Project Description</label>
                         <br>
-                        <textarea id="description" name="description" cols="35" rows="4"
+                        <textarea id="description" name="description" cols="45" rows="4"
                             required placeholder="Tell us about your Project"></textarea>
                     </div>
                     
@@ -106,7 +116,7 @@
                         <input type="hidden" value="true" id="active" name="active" />
                     </div>
                     
-                    <input type="submit" class="btn btn-primary" value="Submit" />
+                    <input type="submit" class="btn btn-primary" value="Create Project" />
                 </form>
             </div>
         </div>
