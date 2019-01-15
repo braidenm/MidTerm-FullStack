@@ -3,19 +3,19 @@
 		<div class="navbar-header">
 			<a class="navbar-brand" href="home.do">ItMakesAVillage</a>
 		</div>
-		<ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav navbar-left">
 			<c:if test="${not empty user && user.role == 'admin'}">
 				<li class="nav-item"><a class="nav-link" href="admin.do">Admin
 						page</a></li>
 			</c:if>
 		</ul>
-		<ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav navbar-left">
 			<c:if test="${user != null}">
 				<li class="nav-item"><a class="nav-link" href="account.do"><span
 						class="glyphicon glyphicon-user"></span> Account</a></li>
 			</c:if>
 		</ul>
-		<ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav navbar-left">
 			<li class="nav-item"><a class="nav-link" href="about.do">
 					About</a></li>
 		</ul>
