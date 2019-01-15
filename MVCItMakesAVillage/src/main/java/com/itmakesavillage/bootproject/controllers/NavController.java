@@ -45,7 +45,9 @@ public class NavController {
 	@RequestMapping(path = "account.do", method = RequestMethod.GET)
 	public String account(HttpSession session) {
 		User user = (User) session.getAttribute("user");
+		
 		if (user == null) {
+			
 			return "index";
 		}
 		System.out.println("USerID= "+user.getId());
