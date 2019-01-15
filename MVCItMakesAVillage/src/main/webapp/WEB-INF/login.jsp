@@ -31,7 +31,7 @@
 	<header> </header>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6" >
+			<div id="login" class="col-sm-6" >
 				<!-- <h4>Create Account</h4> -->
 				<c:if test="${loginFail }">
 					<div class="message"> Username or password is incorrect</div>

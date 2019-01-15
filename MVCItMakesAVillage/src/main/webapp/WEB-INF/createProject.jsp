@@ -31,7 +31,7 @@
     <header>
         <h2>Create Project</h2>
     </header>
-    <div class=container>
+    <div class=container id="loginbox">
         <div class=row>
             <div class="col-sm-4">
                 <form action="createProject.do" method="post">

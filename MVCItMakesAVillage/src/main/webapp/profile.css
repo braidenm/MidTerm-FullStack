@@ -14,3 +14,7 @@ a:link{
 	background-color: #4CAF50;
 	color: white;
 }
+
+#id {
+	border-right: solid;
+}
