@@ -42,21 +42,20 @@
 						value="Search" class="btn btn-primary" />
 				</form>
 			</div>
-			<div class="col-sm-4">
-				<form form-check action="searchCat.do" method="get" id="searchByCat"
+			<div class="col-sm-5">
+				<form action="searchCat.do" method="get" id="searchByCat"
 					class="containerCategory">
 					<div class="CategoryHeader">
 						<label for="keyword">Search by Category </label>
 					</div>
-					<div>
+					
 					<c:forEach var="cat" items="${catList}">
 						<strong>${cat.name}:</strong>
-						<input id="inlineCheckbox1" name="keyword" type="checkbox"
+						<input id="keyword" name="keyword" type="checkbox"
 							value="${cat.name}">
-							<label class="form-check-label" >${cat.name}:</label>
 							<br>
 					</c:forEach>
-					</div>
+					
 					 <br> <input type="submit" value="Search"
 						class="btn btn-primary" />
 				</form>

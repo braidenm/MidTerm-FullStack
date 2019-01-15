@@ -13,7 +13,7 @@ body, html {
   background-image: url("https://rs.projects-abroad.org/v1/hero/product-5be05922d05e9.[1600].jpeg");
 
   /* image height*/
-  min-height: 400px;
+  min-height: 500px;
 
   /* BG image position */
   background-position: center;
@@ -39,14 +39,14 @@ color: white;
   background-color: rgba(255, 255, 255, .5);
 }
 
-/* Full-width input fields */
-  input[type=text], input[type=password] {
+ /* Full-width input fields */
+input[type=text], input[type=password] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
   background: #f1f1f1;
-}
+} 
 
 .CategoryHeader{
 
@@ -57,7 +57,7 @@ color: white;
   position: absolute;
   right: 0;
   margin: 20px;
-  max-width: 600px;
+  max-width: 300px;
   padding: 16px;
   background-color: rgba(255, 255, 255, .5);
   
