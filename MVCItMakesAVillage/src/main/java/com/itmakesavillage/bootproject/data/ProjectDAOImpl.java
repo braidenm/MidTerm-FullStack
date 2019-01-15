@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Category;
+import com.itmakesavillage.jpaproject.entities.Comments;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.State;
 
@@ -49,7 +50,6 @@ public class ProjectDAOImpl implements ProjectDAO {
 		managed.setAddress(project.getAddress());
 		managed.setCategories(project.getCategories());
 		managed.setActive(project.isActive());
-		
 		return managed;
 	}
 
