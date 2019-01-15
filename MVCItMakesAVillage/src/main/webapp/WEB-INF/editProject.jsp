@@ -54,18 +54,19 @@
 							name="sTime" required value="${project.time}"></input>
 					</div>
 					<div class="form-group">
-						<label id="volunteersNeeded">Volunteers Needed</label> <input
-							type="number" required id="volunteersNeeded"
-							name="volunteersNeeded" value="${project.volunteersNeeded}"></input>
+						<label id="volunteersNeeded">Volunteers Needed</label>
+						<input type="number" required id="volunteersNeeded"
+							name="volunteersNeeded" size="5" maxlength="5" min="0"
+							value="${project.volunteersNeeded}"></input>
 					</div>
 					<div class="form-group">
 						<label id="hoursNeeded">Hours Needed</label> <input type="number"
 							id="hoursNeeded" required name="hoursNeeded"
-							value="${project.hoursNeeded}"></input>
+							value="${project.hoursNeeded}" size="5" maxlength="5" min="0"></input>
 					</div>
 					<div class="form-group">
 						<label id="description">Project Description</label> <br>
-						<textarea id="description" required name="description" cols="35"
+						<textarea id="description" required name="description" cols="45"
 							rows="4">${project.description}</textarea>
 					</div>
 					<div class="form-group">
