@@ -9,27 +9,34 @@ body, html {
 }
 
 .bg-img {
-  /* The image used */
+  
   background-image: url("https://rs.projects-abroad.org/v1/hero/product-5be05922d05e9.[1600].jpeg");
 
-  /* Control the height of the image */
+  /* image height*/
   min-height: 400px;
 
-  /* Center and scale the image nicely */
+  /* BG image position */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
+.headerText{
+color: white;
+}
 
-/* Add styles to the form container */
-.container {
+.KWHeader{
+	
+}
+
+/* KW form*/
+.containerKW{
   position: absolute;
   right: 0;
   margin: 20px;
   max-width: 300px;
   padding: 16px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, .5);
 }
 
 /* Full-width input fields */
@@ -41,12 +48,22 @@ body, html {
   background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+.CategoryHeader{
+
+
+}
+/*Category form*/
+.containerCategory {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  max-width: 600px;
+  padding: 16px;
+  background-color: rgba(255, 255, 255, .5);
+  
 }
 
-/* Set a style for the submit button */
+/*submit button */
 .btn {
   background-color: #4CAF50;
   color: white;
@@ -55,6 +72,23 @@ input[type=text]:focus, input[type=password]:focus {
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
+}
+
+.btn1 {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 5px;
+  border: none;
+  cursor: pointer;
+ /*  width: 100%; */
+  opacity: 0.9;
+}
+
+.open{
+	color: green;
+}
+.closed{
+	color: red;
 }
 
 .btn:hover {

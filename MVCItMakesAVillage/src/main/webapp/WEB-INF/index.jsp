@@ -25,84 +25,101 @@
 
 	<%@include file="navBar.jsp"%>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<div class="headerText">
-		<h1>Welcome to Your Community Volunteer Page</h1>
-	</div>
-	<br>
-	<br>
 
 	<div class="bg-img">
+		<div class="headerText">
+			<h1>Welcome to Your Community Volunteer Page</h1>
+		</div>
 		<div class="row" id="centered">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-3">
+			<div class="col-sm-5">
 				<form action="searchKW.do" method="get" id="searchByKW"
-					class="container">
-					<h3>
+					class="containerKW">
+					<div class="KWHeader">
 						<label for="keyword">Search by KeyWord(s): </label>
-					</h3>
+					</div>
 					<br> <input type="text" name="keyword" id="keyword"
 						placeholder="Search" maxlength="45" /> <input type="submit"
 						value="Search" class="btn btn-primary" />
 				</form>
 			</div>
-			<div class="col-sm-6">
-				<form action="searchCat.do" method="get" id="searchByCat"
-					class="container">
-					<h3>
-						<label for="keyword">Search by Category: </label>
-					</h3>
-					<br>
+			<div class="col-sm-4">
+				<form form-check action="searchCat.do" method="get" id="searchByCat"
+					class="containerCategory">
+					<div class="CategoryHeader">
+						<label for="keyword">Search by Category </label>
+					</div>
+					<div>
 					<c:forEach var="cat" items="${catList}">
 						<strong>${cat.name}:</strong>
-						<input id="keyword" name="keyword" type="checkbox"
+						<input id="inlineCheckbox1" name="keyword" type="checkbox"
 							value="${cat.name}">
+							<label class="form-check-label" >${cat.name}:</label>
+							<br>
 					</c:forEach>
-					<br> <br> <input type="submit" value="Search"
+					</div>
+					 <br> <input type="submit" value="Search"
 						class="btn btn-primary" />
 				</form>
-			</div>
+			</div> 
 		</div>
 	</div>
+	<%-- <div class="container">
+		<form form-check form-check-inline action="searchCat.do" method="get"
+			id="searchByCat" class="containerCategory">
+			<label class="categoryHeader" for="keyword">Search by
+				Category </label>
 
+			<c:forEach var="cat" items="${catList}">
+					<strong>${cat.name}:</strong>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" id="inlineCheckbox1" name="keyword"
+						type="checkbox" value="${cat.name}"> <label
+						class="form-check-label" for="inlineCheckbox1">${cat.name}:</label>
+				</div>
+			</c:forEach>
+			<input type="submit" value="Search" class="btn1 btn-primary" />
+		</form>
+	</div> --%>
+	<br>
+	<br>
+	<br>
+	<br>
 
-	<div class="container">
+	<div class="containerProject">
 		<div class="row">
-			<div class="col-sm-4"></div>
+		<div class="col-sm-1"></div>
 			<div class="col-sm-4">
 				<c:if test="${not empty projectList }">
 					<c:forEach var="project" items="${projectList}">
-
-						<c:if test="${project.active }">
-							<h4>Project is Open</h4>
-						</c:if>
-						<c:if test="${not project.active }">
-							<h4>Project is Closed</h4>
-						</c:if>
 						<strong>Project name: </strong>${project.title}
 		  				 <br>
-						<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
+						<%-- <strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
 		  				 <br>
 						<strong>Address: </strong>${project.address }
+		  				 <br> --%>
+						<Strong>Location: </Strong>${project.address.city }, ${project.address.state}
 		  				 <br>
 						<strong>StartDate: </strong>${project.startDate}
 		  				 <br>
-						<strong>EndDate: </strong>${project.endDate}
+						<%-- <strong>EndDate: </strong>${project.endDate}
 		  				 <br>
 						<strong>Time: </strong>${project.time}
-		  				 <br>
-						<c:if
-							test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
-							<strong>Volunteers still needed: </strong>
-		  					${project.volunteersNeeded - fn:length(project.volunteers) }
-		  				</c:if>
+		  				 <br> --%>
 						<c:if
 							test="${(project.volunteersNeeded - fn:length(project.volunteers)) <= 0}">
 							<strong>Volunteer:</strong>
 		  					Volunteer Goal Met
+		  				</c:if>
+		  				<c:if test="${project.active }">
+							<strong>Project is:</strong><h6 class="open">OPEN</h6>
+						</c:if>
+						<c:if test="${not project.active }">
+							<strong>Project is:</strong><h6 class="closed">CLOSED</h6>
+						</c:if>
+						<c:if
+							test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
+							<strong>Volunteers still needed: </strong>
+		  					${project.volunteersNeeded - fn:length(project.volunteers) }
 		  				</c:if>
 
 						<div class="bottomButton">
