@@ -23,6 +23,15 @@ public class User {
 	private String password;
 	private String email;
 	private String role;
+	public List<Comments> getComments() {
+		return comments;
+	}
+
+
+	public void setComments(List<Comments> comments) {
+		this.comments = comments;
+	}
+
 	@OneToOne(mappedBy="user")
 	private Volunteer volunteer;
 	private boolean active;
