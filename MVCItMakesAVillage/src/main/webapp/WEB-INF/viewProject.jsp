@@ -41,7 +41,7 @@
 		  				 <br>
 		  					<strong>Category: </strong> 
 		  				 <c:forEach items="${project.categories}" var="cat">
-		  				 	${cat}
+		  				 	${cat.name}
 		  				 	<br>
 		  				 </c:forEach>
 		  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
@@ -63,14 +63,17 @@
 		  					Volunteer Goal Met
 		  				</c:if>
 		  				<br>
-			  			<form action="joinProject.do" method="post">
-			  				<label for="hours">Add Volunteer: </label>
-			  				<input type="hidden" name="userId" id="userId" value="${user.id}">
-			  				<input type="hidden" name="projectId" id="projectId" value="${project.id}">
-			  				<input type="number" name="hours" id="hours" placeholder="pledged hours" required>
-			  				<input type="submit" class="btn btn-primary" value="Join Project">
-			  				
-			  			</form>
+				  			<c:if test="${!inList && project.active}">
+				  			
+					  			<form action="joinProject.do" method="post">
+					  				<label for="hours">Add Volunteer: </label>
+					  				<input type="hidden" name="userId" id="userId" value="${user.id}">
+					  				<input type="hidden" name="projectId" id="projectId" value="${project.id}">
+					  				<input type="number" name="hours" id="hours" placeholder="pledged hours" required>
+					  				<input type="submit" class="btn btn-primary" value="Join Project">
+					  				
+					  			</form>
+				  			</c:if>
 		  				<c:if test="${project.owner.userid == user.id or user.role == 'admin' }">
 		  					<form action="editProject.do" method="GET">
 									<input name="projectId" value="${project.id}" type="hidden">

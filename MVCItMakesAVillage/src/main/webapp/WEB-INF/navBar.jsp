@@ -7,7 +7,7 @@
 		      <c:if test="${not empty user && user.role == 'admin'}">
 		      	<li><a href="admin.do">Admin page</a></li>
 		      </c:if>
-		      <c:if test="${not empty user}" >
+		      <c:if test="${user != null}" >
 			      <li><a href="account.do"><span class="glyphicon glyphicon-user"></span> Account</a></li>
 			  </c:if>
 			  <li><a href="about.do"> About</a></li>

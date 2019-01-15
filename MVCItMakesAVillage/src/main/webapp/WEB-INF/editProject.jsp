@@ -33,6 +33,14 @@
 						<label id="title">Title</label> <input type="text" id="title"
 							name="title" required value="${project.title }"></input>
 					</div>
+					
+					<div class="form-group">
+						<label id="active">Project Status</label> 
+						<input type="radio" id="active"
+							name="active" value="true"  checked="checked" required>Open
+						<input type="radio" id="active"
+							name="active" value="false">Closed
+					</div>
 					<div class="form-group">
 						<label id="sDate">Start Date</label> <input type="date" id="sDate"
 							required name="sDate" value="${project.startDate}"></input>
@@ -42,7 +50,7 @@
 							required name="eDate" value="${project.endDate}"></input>
 					</div>
 					<div class="form-group">
-						<label id="sTime">Time</label> <input type="text" id="sTime"
+						<label id="sTime">Time</label> <input type="time" id="sTime"
 							name="sTime" required value="${project.time}"></input>
 					</div>
 					<div class="form-group">
@@ -108,12 +116,13 @@
 						</c:forEach>
 						<c:forEach items="${rCatList}" var="cat">
 							${cat.name }: 
-							<input value="${cat.id }" type="checkbox" name="cat" id="cat">
+							<input value="${cat.id }" type="checkbox" name="cat" id="cat" >
 							<br>
 						</c:forEach>
 
 
 					</div>
+					
 					<%-- <div>
 						<input type="hidden" value="${sessions.user.id}" id="ownerId"
 							name="ownerId" />

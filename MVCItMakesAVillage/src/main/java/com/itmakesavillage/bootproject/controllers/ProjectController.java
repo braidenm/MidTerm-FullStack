@@ -73,7 +73,7 @@ public class ProjectController {
 	}
 
 	@RequestMapping(path = "viewProject.do", method = RequestMethod.GET)
-	public String goToViewProject(Integer projectId, Model model, RedirectAttributes redir) {
+	public String goToViewProject(Integer projectId, Model model, RedirectAttributes redir, HttpSession session) {
 		System.out.println(projectId);
 		if(projectId == null) {
 			Map<String, Object> projectIdKey = redir.asMap();
@@ -83,6 +83,13 @@ public class ProjectController {
 		}
 		
 		Project project = projectDAO.findProject(projectId);
+		User user = (User)session.getAttribute("user");
+		boolean inList = false;
+		if(user != null) {
+			
+			inList = project.getVolunteers().contains(user.getVolunteer());
+		}
+		model.addAttribute("inList", inList);
 		model.addAttribute("pvList", project.getProjectVolunteer());
 		System.out.println(project.getProjectVolunteer());
 		model.addAttribute("project", project);
@@ -120,12 +127,18 @@ public class ProjectController {
 			return "login";
 		}
 		List<Category> catList = new ArrayList<>();
-
-		for (Integer catId : cat) {
-			catList.add(projectDAO.findCategoryById(catId));
+		
+		if (cat != null && cat.length > 0) {
+			for (Integer catId : cat) {
+				catList.add(projectDAO.findCategoryById(catId));
+			}
+			project.setCategories(null);
+			project.setCategories(catList);
+		} else {
+			List<Category> catList2 = new ArrayList<>();
+			catList2.add(projectDAO.findCategoryById(6));
+			project.setCategories(catList2);
 		}
-		project.setCategories(null);
-		project.setCategories(catList);
 		project = projectDAO.createProject(project);
 
 		redir.addAttribute("projectId", project.getId());
@@ -135,11 +148,12 @@ public class ProjectController {
 	}
 
 	@RequestMapping(path = "joinProject.do", method = RequestMethod.POST)
-	public String joinProject(HttpSession session, Integer projectId, Integer hours, RedirectAttributes redir) {
+	public String joinProject(HttpSession session, Integer projectId, Integer hours, Model model, RedirectAttributes redir) {
 		User user = (User) session.getAttribute("user");
 
 		if (user == null) {
-			return "login";
+			model.addAttribute("projectId", projectId);
+			return "loginToProject";
 		}
 		Project project = projectDAO.findProject(projectId);
 		Volunteer volunteer = volunteerDAO.findVolunteer(user.getId());
@@ -188,7 +202,7 @@ public class ProjectController {
 	@RequestMapping(path = "editProject.do", method = RequestMethod.POST)
 	public String editProject(HttpSession session, RedirectAttributes redir, Project project,
 			@RequestParam("sTime") String[] sTime, @RequestParam("sDate") String[] sDate,
-			@RequestParam("eDate") String[] eDate, @RequestParam(required=false, name = "cat") Integer[] cat,
+			@RequestParam("eDate") String[] eDate, @RequestParam(required=false, name="cat") Integer[] cat,
 			Address address, @RequestParam(name="stateId") Integer stateId) {
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
@@ -202,15 +216,17 @@ public class ProjectController {
 		project.setStartDate(sDate[0]);
 		project.setEndDate(eDate[0]);
 		List<Category> catList = new ArrayList<>();
-
-		if (cat.length > 0) {
+		System.out.println("catList arr" + cat);
+		if (cat != null && cat.length > 0) {
 			for (Integer catId : cat) {
 				catList.add(projectDAO.findCategoryById(catId));
 			}
 			project.setCategories(null);
 			project.setCategories(catList);
 		} else {
-			project.setCategories(null);
+			List<Category> catList2 = new ArrayList<>();
+			catList2.add(projectDAO.findCategoryById(6));
+			project.setCategories(catList2);
 		}
 		System.out.println(project);
 		project = projectDAO.updateProject(project.getId(), project);

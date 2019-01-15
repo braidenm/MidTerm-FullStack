@@ -160,7 +160,7 @@ public class UserController {
 			model.addAttribute("notFound", notFound);
 			return "admin";
 		}
-		session.setAttribute("userList", userList);
+		model.addAttribute("userList", userList);
 		return "admin";
 	}
 	

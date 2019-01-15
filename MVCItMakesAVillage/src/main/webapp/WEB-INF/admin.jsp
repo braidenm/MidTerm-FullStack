@@ -76,16 +76,23 @@
 					</div>
 				</form>
 				<c:if test="${not empty userList }">
-					<c:forEach var="user" items="${userList }">
+					<c:forEach var="userInList" items="${userList }">
 						<div class="users">
-							ID: ${user.id } <br> 
-							Username: ${user.userName} <br> 
-							Name: ${user.volunteer.firstName} ${user.volunteer.lastName}<br>
-							Email: ${user.email} <br> 
-							Role: ${user.role } <br>
+							ID: ${userInList.id } <br> 
+							Username: ${userInList.userName} <br> 
+							Name: ${userInList.volunteer.firstName} ${userInList.volunteer.lastName}<br>
+							Email: ${userInList.email} <br> 
+							Role: ${userInList.role } <br>
+							Status:
+							<c:if test="${userInList.active }">
+								Active 
+							</c:if>
+							<c:if test="${!userInList.active }">
+								De-activated
+							</c:if>
 							<form action="adminEditProfile.do" method="GET">
 								<div class="form-group">
-									<input name="id" value="${user.id}" type="hidden">
+									<input name="id" value="${userInList.id}" type="hidden">
 								</div>
 								<div class="form-group">
 									<input type="submit" class="btn btn-primary"

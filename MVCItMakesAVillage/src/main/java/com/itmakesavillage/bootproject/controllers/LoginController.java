@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itmakesavillage.bootproject.data.UserDAO;
 import com.itmakesavillage.jpaproject.entities.User;
@@ -25,28 +26,63 @@ public class LoginController {
 		return "login";		
 	}
 	@RequestMapping(path="login.do", method=RequestMethod.POST)
-	public String userLogin(User user, HttpSession session, Model model) {
+	public String userLogin(User user, HttpSession session, RedirectAttributes redir) {
 		System.out.println(user);
 		user = userDAO.getUserByUserNameAndPassword(user.getUserName(), user.getPassword());
+		System.out.println(user);
+		
 		boolean loginFail = false;
 		boolean activeFail = false;
 		
 		if(user == null) {
 			loginFail = true;
-			model.addAttribute("loginFail", loginFail);
-			return "login";
+			redir.addFlashAttribute("loginFail", loginFail);
+			session.removeAttribute("user");
+			session.setAttribute("user", null);
+			System.out.println("checking my stuff");
+			return "redirect:login.do";
 		}
 		if(!user.isActive()) {
 			activeFail=true;
-			model.addAttribute("activeFail", activeFail);
-			model.addAttribute("userId", user.getId());
+			redir.addFlashAttribute("activeFail", activeFail);
+			redir.addFlashAttribute("userId", user.getId());
 			session.setAttribute("user", null);
-			return "login";
+			return "redirect:login.do";
 		
 		}
 			session.setAttribute("user", user);
 		
 		return "redirect:home.do";
+	}
+	@RequestMapping(path="loginToProject.do", method=RequestMethod.POST)
+	public String userLoginToProject(User user, Integer projectId, HttpSession session, RedirectAttributes redir) {
+		System.out.println(user);
+		user = userDAO.getUserByUserNameAndPassword(user.getUserName(), user.getPassword());
+		System.out.println(user);
+		
+		boolean loginFail = false;
+		boolean activeFail = false;
+		
+		if(user == null) {
+			loginFail = true;
+			redir.addFlashAttribute("loginFail", loginFail);
+			session.removeAttribute("user");
+			session.setAttribute("user", null);
+			System.out.println("checking my stuff");
+			return "redirect:login.do";
+		}
+		if(!user.isActive()) {
+			activeFail=true;
+			redir.addFlashAttribute("activeFail", activeFail);
+			redir.addFlashAttribute("userId", user.getId());
+			session.setAttribute("user", null);
+			return "redirect:login.do";
+			
+		}
+		session.setAttribute("user", user);
+		redir.addAttribute("projectId", projectId);
+		
+		return "redirect:viewProject.do";
 	}
 	
 	@RequestMapping(path="logout.do", method=RequestMethod.GET)
