@@ -204,6 +204,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `comment` VARCHAR(200) NULL,
   `date` VARCHAR(45) NULL,
   `time` VARCHAR(45) NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_comment_to_user_idx` (`user_id` ASC),
   INDEX `fk_cooment_to_project_idx` (`project_id` ASC),
@@ -445,7 +446,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `villagedb`;
-INSERT INTO `comments` (`id`, `user_id`, `project_id`, `comment`, `date`, `time`) VALUES (1, 1, 1, 'This Project is going to be awesome!', '2019-01-15', '10:00');
+INSERT INTO `comments` (`id`, `user_id`, `project_id`, `comment`, `date`, `time`, `active`) VALUES (1, 1, 1, 'This Project is going to be awesome!', '2019-01-15', '10:00', 1);
 
 COMMIT;
 

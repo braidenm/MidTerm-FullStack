@@ -40,7 +40,7 @@
 					<img src="${user.volunteer.pictureURL}" class="img-fluid">
 				</c:if>
 				<c:if test="${empty user.volunteer.pictureURL }">
-					<img src="https://pbs.twimg.com/profile_images/821849411991044096/lQFa_Vly_400x400.jpg" class="img-fluid">
+					<img src="https://pbs.twimg.com/profile_images/821849411991044096/lQFa_Vly_400x400.jpg" class="img-fluid" >
 				</c:if>
 					<br>
 					<br>

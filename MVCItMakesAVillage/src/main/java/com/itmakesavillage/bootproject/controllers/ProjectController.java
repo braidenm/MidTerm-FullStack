@@ -21,6 +21,7 @@ import com.itmakesavillage.bootproject.data.ProjectVolunteerDAO;
 import com.itmakesavillage.bootproject.data.VolunteerDAO;
 import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Category;
+import com.itmakesavillage.jpaproject.entities.Comments;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.ProjectVolunteer;
 import com.itmakesavillage.jpaproject.entities.User;
@@ -246,6 +247,16 @@ public class ProjectController {
 		}
 		model.addAttribute("projectList", projectList);
 
+		return "admin";
+	}
+	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
+	public String addComment(Comments comment, HttpSession session, Model model) {
+		
+		return "admin";
+	}
+	@RequestMapping(path = "removeCooment.do", method = RequestMethod.POST)
+	public String RemoveComment(Comments cooment, HttpSession session, Model model) {
+		
 		return "admin";
 	}
 
