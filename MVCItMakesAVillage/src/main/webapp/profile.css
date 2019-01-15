@@ -3,6 +3,7 @@
 .navbar{
 	background-color: rgb(0, 179, 60);
 	color: white;
+	position: fixed;
 }
 
 a:link{
