@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Category;
+import com.itmakesavillage.jpaproject.entities.Comments;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.State;
 
@@ -21,6 +22,9 @@ public interface ProjectDAO {
 	State getStateById(int stateId);
 	Address updateAddress(Address address);
 	Address createAddress(Address address);
+	Comments deactivateComment(Comments comment);
+	Comments reactivateComment(Comments comment);
+	Comments createComment(Comments comment);
 
 
 }
