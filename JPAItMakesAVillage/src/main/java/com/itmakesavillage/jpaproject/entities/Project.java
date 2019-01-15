@@ -65,7 +65,7 @@ public class Project {
 	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
 	private List<ProjectVolunteer> projectVolunteer;
 
-	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
 	private List<Comments> comments;
 	
 	
@@ -242,6 +242,15 @@ public class Project {
 		this.categories = categories;
 	}
 	
+	public void addComment(Comments comment) {
+		if(comments == null) {
+			comments = new ArrayList<Comments>();
+		}
+		if(!comments.contains(comment)) {
+			comments.add(comment);
+		}
+		
+	}
 	public void addVolunteer(Volunteer volunteer) {
 		if(volunteers == null) {
 			volunteers = new ArrayList<Volunteer>();

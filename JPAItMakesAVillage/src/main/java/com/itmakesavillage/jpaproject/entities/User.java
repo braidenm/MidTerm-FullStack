@@ -1,10 +1,12 @@
 package com.itmakesavillage.jpaproject.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +37,8 @@ public class User {
 	@OneToOne(mappedBy="user")
 	private Volunteer volunteer;
 	private boolean active;
-	@OneToMany(mappedBy="user", cascade = {CascadeType.ALL})
+	
+	@OneToMany(mappedBy="user", cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
 	private List<Comments> comments;
 	
 	public boolean isActive() {
@@ -135,6 +138,17 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	
+	public void addComment(Comments comment) {
+		if(comments == null) {
+			comments = new ArrayList<Comments>();
+		}
+		if(!comments.contains(comment)) {
+			comments.add(comment);
+		}
+		
 	}
 
 }

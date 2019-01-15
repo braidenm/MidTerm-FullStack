@@ -15,6 +15,7 @@ import com.itmakesavillage.jpaproject.entities.Category;
 import com.itmakesavillage.jpaproject.entities.Comments;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.State;
+import com.itmakesavillage.jpaproject.entities.User;
 
 @Service
 @Transactional
@@ -22,6 +23,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
+
 
 	@Override
 	public Project findProject(int id) {
@@ -50,6 +52,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		managed.setAddress(project.getAddress());
 		managed.setCategories(project.getCategories());
 		managed.setActive(project.isActive());
+
 		return managed;
 	}
 
@@ -127,6 +130,31 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return address;
 		
 	}
+
+	@Override
+	public Comments deactivateComment(Comments comment) {
+		comment = em.find(Comments.class, comment.getId());
+		comment.setActive(false);
+		return comment;
+	}
+
+	@Override
+	public Comments createComment(Comments comment) {
+		Project managedProject = em.find(Project.class, comment.getProject().getId());
+		User managedUser = em.find(User.class, comment.getUser().getId());
+		em.persist(comment);
+			managedProject.addComment(comment);
+			managedUser.addComment(comment);
+		return comment;
+	}
+
+	@Override
+	public Comments reactivateComment(Comments comment) {
+		comment = em.find(Comments.class, comment.getId());
+		comment.setActive(true);
+		return comment;
+	}
+
 	
 
 }

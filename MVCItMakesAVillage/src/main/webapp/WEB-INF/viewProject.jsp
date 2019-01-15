@@ -11,14 +11,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
+<!-- <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <title>View Project</title>
 <link rel="stylesheet" type="text/css" href="viewProject.css">
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
 	<%@include file="navBar.jsp"%>
@@ -32,7 +34,8 @@
 		<div class="col-sm-2"></div>
 		<div class="col-sm-4">
 			<c:if test="${project.active }">
-				<h4 class="open">Project is Open</h4>
+				<h4 class="open">Project is Open ${project.address.street},
+					${project.address.city}, ${project.address.state.name}</h4>
 			</c:if>
 			<c:if test="${not project.active }">
 				<h4 class="closed">Project is Closed</h4>
@@ -80,131 +83,69 @@
 					<input type="submit" class="btn btn-primary" value="Edit Project" />
 				</form>
 			</c:if>
+	</div>
+	<div class="container">
+			<div id="map-canvas"></div>
+			<input type="hidden" id="address"
+				value="${project.address.street}, ${project.address.city}, ${project.address.state.name}">
 		</div>
-		
-		
-		<!-- put map here -->
-		<!-- <script  type="text/javascript">
-		// Initialize and add the map
-    function initMap() {
-      var sd = {lat: 39.609012, lng: -104.902477};
-      var map = new google.maps.Map(
-          document.getElementById('map'), {zoom: 13, center: sd});
-      var marker = new google.maps.Marker({position: sd, map: map});
-    }
-    
-    
-    $(document).ready(function(){
-      // Add smooth scrolling to all links
-      $("a").on('click', function(event) {
-
-        // Make sure this.hash has a value before overriding default behavior
-        if (this.hash !== "") {
-          // Prevent default anchor click behavior
-          event.preventDefault();
-
-          // Store hash
-          var hash = this.hash;
-
-          // Using jQuery's animate() method to add smooth page scroll
-          // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top
-          }, 800, function(){
-      
-            // Add hash (#) to URL when done scrolling (default click behavior)
-            window.location.hash = hash;
-          });
-        } // End if
-      });
-    });
-    
-    $(document).ready(function() {
-           var $rows = $('#table .searchRows');
-           $('#search').keyup(function() {
-             var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase().split(' ');
-
-             $rows.hide().filter(function() {
-               var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-               var matchesSearch = true;
-               $(val).each(function(index, value) {
-                 matchesSearch = (!matchesSearch) ? false : ~text.indexOf(value);
-               });
-               return matchesSearch;
-             }).show();
-           });
-    });
-    
-    $(document).ready(function() {
-        // Gets the video src from the data-src on each button
-         $(function() {
-                $(".video").click(function () {
-                  var theModal = $(this).data("target"),
-                  videoSRC = $(this).attr("data-video"),
-                  videoSRCauto = videoSRC + "?modestbranding=1&rel=0&controls=0&showinfo=0&html5=1&autoplay=1";
-                  $(theModal + ' iframe').attr('src', videoSRCauto);
-                  $(theModal + ' button.close').click(function () {
-                    $(theModal + ' iframe').attr('src', videoSRC);
-                  });
-                });
-              });
-        });
-</script> -->
-		<div class="col-sm-3">
 
 
-			<h3>Volunteers:</h3>
-			<div>
-				<c:forEach items="${project.volunteers}" var="volunteer">
-					<strong>Name: </strong>${volunteer.firstName } ${volunteer.lastName }
+	<!-- put map here -->
+	<div class="col-sm-3">
+
+
+		<h3>Volunteers:</h3>
+		<div>
+			<c:forEach items="${project.volunteers}" var="volunteer">
+				<strong>${volunteer.firstName } ${volunteer.lastName } </strong>
+				<br>
+				<strong>Number: </strong>${volunteer.phone}
 		  		<br>
-					<strong>Number: </strong>${volunteer.phone}
-		  		<br>
-					<strong>Email: </strong>${volunteer.user.email}
+				<strong>Email: </strong>${volunteer.user.email}
 		  		<br>
 
-					<c:forEach items="${pvList}" var="pv">
-						<c:if test="${volunteer.userid == pv.volunteer.userid}">
-							<strong>Pledged Hours: </strong>${pv.hoursPledged}
+				<c:forEach items="${pvList}" var="pv">
+					<c:if test="${volunteer.userid == pv.volunteer.userid}">
+						<strong>Pledged Hours: </strong>${pv.hoursPledged}
 		  				<br>
-							<strong>Actual Hours: </strong>${pv.hoursActual }
+						<strong>Actual Hours: </strong>${pv.hoursActual }
 		  				<br>
-							<c:if
-								test="${volunteer.userid == user.id or project.owner.userid == user.id or user.role == 'admin' }">
-								<form action="submitHours.do" method="post">
-									<label for="hoursActual">Edit Hours: </label> <input
-										type="hidden" name="userId" id="userId"
-										value="${volunteer.userid}"> <input type="hidden"
-										name="projectId" id="projectId" value="${project.id}">
-									<input type="number" name="hours" id="hours" min="0"
-										value="${pv.hoursPledged}"> <input type="submit"
-										class="btn btn-primary" value="Submit Hours">
-								</form>
-								<br>
-								<form action="removeVolunteer.do" method="post">
-									<input type="hidden" name="userId" id="userId"
-										value="${volunteer.userid}"> <input type="hidden"
-										name="projectId" id="projectId" value="${project.id}">
-									<input type="submit" class="btn btn-primary"
-										value="Remove Volunteer">
+						<c:if
+							test="${volunteer.userid == user.id or project.owner.userid == user.id or user.role == 'admin' }">
+							<form action="submitHours.do" method="post">
+								<label for="hoursActual">Edit Hours: </label> <input
+									type="hidden" name="userId" id="userId"
+									value="${volunteer.userid}"> <input type="hidden"
+									name="projectId" id="projectId" value="${project.id}">
+								<input type="number" name="hours" id="hours" min="0"
+									value="${pv.hoursPledged}"> <input type="submit"
+									class="btn btn-primary" value="Submit Hours">
+							</form>
+							<br>
+							<form action="removeVolunteer.do" method="post">
+								<input type="hidden" name="userId" id="userId"
+									value="${volunteer.userid}"> <input type="hidden"
+									name="projectId" id="projectId" value="${project.id}">
+								<input type="submit" class="btn btn-primary"
+									value="Remove Volunteer">
 
-								</form>
+							</form>
 
-							</c:if>
 						</c:if>
+					</c:if>
 
 
-
-					</c:forEach>
-					<br>
-					<br>
-					<br>
 
 				</c:forEach>
+				<br>
 
 
-			</div>
+			</c:forEach>
+
+
 		</div>
+	</div>
 	</div>
 
 
@@ -213,6 +154,8 @@
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -224,6 +167,10 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		crossorigin="anonymous"></script>
-
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu3z8H8wEptTmzLK1unAnBejz0QmTc_h8&callback=initMap">
+		
+	</script>
+	<script src="JS/googleMaps.js"></script>
 </body>
 </html>
