@@ -15,6 +15,7 @@
   
   
 <title>View Project</title>
+<link rel="stylesheet" type="text/css" href="viewProject.css">
 </head>
 <body>
 	<%@include file="navBar.jsp"%>
@@ -29,10 +30,10 @@
 		  </div>
 		  <div class="col-sm-4">
 		  			<c:if test="${project.active }"> 
-		  					<h4>Project is Open</h4>
+		  					<h4 class="open">Project is Open</h4>
 		  				</c:if>
 		  				<c:if test="${not project.active }"> 
-		  					<h4>Project is Closed</h4>
+		  					<h4 class="closed">Project is Closed</h4>
 		  				</c:if>
 		  			
 		  				<strong>Project name: </strong>${project.title}
@@ -40,10 +41,11 @@
 		  				<strong>Project Description: </strong>${project.description}
 		  				 <br>
 		  					<strong>Category: </strong> 
-		  				 <c:forEach items="${project.categories}" var="cat">
+		  				 <c:forEach items="${project.categories}" var="cat" varStatus="loop">
 		  				 	${cat.name}
-		  				 	<br>
+		  				 	<c:if test="${!loop.last}">,</c:if>
 		  				 </c:forEach>
+		  				 	<br>
 		  				<strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
 		  				 <br>
 		  				 <strong>Address: </strong>${project.address }
