@@ -34,8 +34,7 @@
 		<div class="col-sm-2"></div>
 		<div class="col-sm-4">
 			<c:if test="${project.active }">
-				<h4 class="open">Project is Open ${project.address.street},
-					${project.address.city}, ${project.address.state.name}</h4>
+				<h4 class="open">Project is Open</h4>
 			</c:if>
 			<c:if test="${not project.active }">
 				<h4 class="closed">Project is Closed</h4>
@@ -84,11 +83,11 @@
 				</form>
 			</c:if>
 	</div>
-	<div class="container">
+	
 			<div id="map-canvas"></div>
 			<input type="hidden" id="address"
 				value="${project.address.street}, ${project.address.city}, ${project.address.state.name}">
-		</div>
+		
 
 
 	<!-- put map here -->

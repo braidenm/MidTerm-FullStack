@@ -5,3 +5,9 @@
 .open{
 	color: green;
 }
+
+#map-canvas {
+    justify-content: center;
+    height: 300px;
+    width: 100%;
+}
