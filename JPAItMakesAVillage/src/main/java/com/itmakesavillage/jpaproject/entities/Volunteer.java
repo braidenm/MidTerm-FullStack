@@ -3,7 +3,6 @@ package com.itmakesavillage.jpaproject.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,8 +22,9 @@ public class Volunteer {
 	@Column(name="phone_number")
 	private String phone;
 	private String dob;
-	@Column(name="address_id")
-	private int addressId;
+	@OneToOne
+	@JoinColumn(name="address_id")
+	private Address address;
 	@Column(name="first_name")
 	private String firstName;
 	@Column(name="last_name")
@@ -81,13 +81,13 @@ public class Volunteer {
 		super();
 	}
 
-	public Volunteer(int userid, String phone, String dob, int addressId, String firstName, String lastName,
+	public Volunteer(int userid, String phone, String dob, Address addressId, String firstName, String lastName,
 			String pictureURL, String about) {
 		super();
 		this.userid = userid;
 		this.phone = phone;
 		this.dob = dob;
-		this.addressId = addressId;
+		this.address = addressId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.pictureURL = pictureURL;
@@ -96,7 +96,7 @@ public class Volunteer {
 
 	@Override
 	public String toString() {
-		return "Volunteer [userid=" + userid + ", phone=" + phone + ", dob=" + dob + ", addressId=" + addressId
+		return "Volunteer [userid=" + userid + ", phone=" + phone + ", dob=" + dob + ", address=" + address
 				+ ", firstName=" + firstName + ", lastName=" + lastName + ", pictureURL=" + pictureURL + ", about="
 				+ about + "]";
 	}
@@ -148,12 +148,13 @@ public class Volunteer {
 		this.dob = dob;
 	}
 
-	public int getAddressId() {
-		return addressId;
+
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public String getFirstName() {

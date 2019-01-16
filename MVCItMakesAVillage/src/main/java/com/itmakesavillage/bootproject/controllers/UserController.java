@@ -18,8 +18,10 @@ import com.itmakesavillage.bootproject.data.ProjectDAO;
 import com.itmakesavillage.bootproject.data.ProjectVolunteerDAO;
 import com.itmakesavillage.bootproject.data.UserDAO;
 import com.itmakesavillage.bootproject.data.VolunteerDAO;
+import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.ProjectVolunteer;
+import com.itmakesavillage.jpaproject.entities.State;
 import com.itmakesavillage.jpaproject.entities.User;
 import com.itmakesavillage.jpaproject.entities.Volunteer;
 
@@ -106,6 +108,7 @@ public class UserController {
 			redir.addFlashAttribute("usernameInUse", usernameInUse);
 			return "redirect:createAccount.do";
 		}
+		
 		user.setActive(true);
 		user =	userDAO.createUser(user);
 		session.setAttribute("user", user);
@@ -128,9 +131,13 @@ public class UserController {
 		return "redirect:account.do";
 	}
 	@RequestMapping(path = "createProfile.do", method = RequestMethod.POST)
-	public String createProfile(Volunteer volunteer, HttpSession session, @RequestParam("dob") String[] dob) {
+	public String createProfile(Volunteer volunteer, Integer stateId, Address address, HttpSession session, @RequestParam("dob") String[] dob) {
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
+			State state = projectDAO.getStateById(stateId);
+			address = projectDAO.createAddress(address);
+			address.setState(state);
+			volunteer.setAddress(address);
 			volunteer.setDob(dob[0]);
 			volunteer.setUser(user);
 			volunteer = volunteerDAO.createVolunteer(volunteer);
@@ -141,8 +148,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "createProfile.do", method = RequestMethod.GET)
-	public String goToCreateProfile() {
-		
+	public String goToCreateProfile(Model model) {
+		model.addAttribute("stateList", projectDAO.getAllStates());
 		return "createProfile";
 	}
 
@@ -176,18 +183,24 @@ public class UserController {
 		if (!admin.getRole().equals("admin")) {
 			return "index";
 		}
+		model.addAttribute("stateList", projectDAO.getAllStates());
 		User user = userDAO.findUser(id);
 		model.addAttribute(user);
 		return "adminEditProfile";
 	}
 	
 	@RequestMapping(path = "adminEditProfile.do", method = RequestMethod.POST)
-	public String adminEditProfile(@RequestParam(name="dob") String[] dob, HttpSession session, Model model, User user, Volunteer volunteer) {
+	public String adminEditProfile(@RequestParam(name="dob") String[] dob, Integer stateId, Address address, HttpSession session, Model model, User user, Volunteer volunteer) {
 		System.out.println(user);
 		User admin = (User) session.getAttribute("user");
 		if (!admin.getRole().equals("admin")) {
 			return "index";
 		}
+		State state = projectDAO.getStateById(stateId);
+	
+		address = projectDAO.createAddress(address);
+		address.setState(state);
+		volunteer.setAddress(address);
 		volunteer.setDob(dob[0]);
 		Volunteer vol = volunteerDAO.updateVolunteer(volunteer.getUserid(), volunteer);
 		user.setVolunteer(vol);
@@ -198,10 +211,14 @@ public class UserController {
 	
 	
 	@RequestMapping(path = "editProfile.do", method = RequestMethod.POST)
-	public String editProfile(@RequestParam(name="date") String[] dob, Volunteer volunteer, HttpSession session) {
+	public String editProfile(@RequestParam(name="date") String[] dob, Address address, Integer stateId, Volunteer volunteer, HttpSession session) {
 		System.out.println(dob[0]);
 		User user = (User)session.getAttribute("user");
 		System.out.println(volunteer);
+		address = projectDAO.createAddress(address);
+		State state = projectDAO.getStateById(stateId);
+		address.setState(state);
+		volunteer.setAddress(address);
 		volunteer.setDob(dob[0]);
 		volunteer = volunteerDAO.updateVolunteer(volunteer.getUserid(), volunteer);
 		user = userDAO.findUser(user.getId());
@@ -211,10 +228,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "editProfile.do", method = RequestMethod.GET)
-	public String goToEditProfile(HttpSession session) {
+	public String goToEditProfile(HttpSession session, Model model) {
 		if(session.getAttribute("user") == null) {
 			return "index";
 		}
+		model.addAttribute("stateList", projectDAO.getAllStates());
 		return "editProfile";
 	}
 	

@@ -36,50 +36,81 @@
 				<h4>Create Profile</h4>
 				<br>
 				<form action="createProfile.do" method="POST">
-				<div class="form-group">
-					ID: ${user.id }
-					<input type="hidden" id="userid" name="userid"
-						   value="${user.id }">
-				</div>
-				<div class="form-group">
-					<label id="firstName">First Name:</label> 
-					<input type="text" id="John"
-						   required maxlength="45"
-						   name="firstName" placeholder="First Name">
-				</div>
-				<div class="form-group">
-					<label id="lastName">Last Name:</label> 
-					<input type="text" id="Smith"
-						   required  maxlength="45"
-						   name="lastName" placeholder="Last Name">
-				</div>
-				<div class="form-group">
-					<label id="dob">Birth date:</label> 
-					<input type="date" id="dob"
-						   required
-						   name="dob"></input>
-				</div>
-				<div class="form-group">
-					<label id="phone">Phone Number:</label> 
-					<input type="text" id="phone"
-						    maxlength="15" name="phone" placeholder="555-555-5555">
-				</div>
-				<div class="form-group">
-					<label id="about">About me:</label> 
-					<textarea id="about" maxlength="250" 
-							  name="about" 
-							  required 
-							  placeholder="Tell us a little about yourself..." 
-							  cols="35" rows="3"></textarea>
-				</div>
-				<div class="form-group">
-					<label id="pictureURL">Profile Image:</label> 
-					<input type="text" id="pictureURL"
-						   name="pictureURL" placeholder="Please enter a valid image URL">
-				</div>
-				<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="Submit" />
-				</div>
+					<div class="form-group">
+						ID: ${user.id }
+						<input type="hidden" id="userid" name="userid"
+							   value="${user.id }">
+					</div>
+					<div class="form-group">
+						<label id="firstName">First Name:</label> 
+						<input type="text" id="John"
+							   required maxlength="45"
+							   name="firstName" placeholder="First Name">
+					</div>
+					<div class="form-group">
+						<label id="lastName">Last Name:</label> 
+						<input type="text" id="Smith"
+							   required  maxlength="45"
+							   name="lastName" placeholder="Last Name">
+					</div>
+					<div class="form-group">
+						<label id="dob">Birth date:</label> 
+						<input type="date" id="dob"
+							   required
+							   name="dob"></input>
+					</div>
+					<div class="form-group">
+						<label id="phone">Phone Number:</label> 
+						<input type="text" id="phone"
+							    maxlength="15" name="phone" placeholder="555-555-5555">
+					</div>
+						<div class="form-group">
+							<!-- Street 1 -->
+							<label for="street1_id" class="control-label">Street
+								Address </label> 
+							<input type="text" class="form-control" id="street1_id"
+								name="street" placeholder="123 Main St." required>
+						</div>
+						<div class="form-group">
+							<!-- City-->
+							<label for="city_id" class="control-label">City</label> 
+							<input type="text" class="form-control" id="city_id" name="city"
+								placeholder="Townville" required>
+						</div>
+	
+						<div class="form-group">
+							<!-- State Button -->
+							<label for="stateId" class="control-label">State</label> 
+							<select class="form-control" id="stateId" name="stateId" required >
+								<c:forEach items="${ stateList}" var="state">
+									<option value="${state.id }">${state.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+	
+						<div class="form-group">
+							<!-- Zip Code-->
+							<label for="zip_id" class="control-label">Zip Code</label> 
+							<input type="number" class="form-control" id="zip_id" name="zip"
+								placeholder="12345" required>
+						</div>
+						
+					<div class="form-group">
+						<label id="about">About me:</label> 
+						<textarea id="about" maxlength="250" 
+								  name="about" 
+								  required 
+								  placeholder="Tell us a little about yourself..." 
+								  cols="35" rows="3"></textarea>
+					</div>
+					<div class="form-group">
+						<label id="pictureURL">Profile Image:</label> 
+						<input type="text" id="pictureURL"
+							   name="pictureURL" placeholder="Please enter a valid image URL">
+					</div>
+					<div class="form-group">
+					<input type="submit" class="btn btn-primary" value="Submit" />
+					</div>
 				</form>
 			</div>
 		</div>
