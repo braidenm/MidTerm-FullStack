@@ -1,5 +1,8 @@
 package com.itmakesavillage.jpaproject.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,6 +39,21 @@ public class ProjectVolunteer {
 	@ManyToOne
 	@JoinColumn(name="company_id")
 	private Company company;
+	
+	@OneToMany(mappedBy="projectVolunteer")
+	private List<ItemsCommitted> itemscommitted;
+	
+	
+	
+	public List<ItemsCommitted> getItemscommitted() {
+		return itemscommitted;
+	}
+
+
+	public void setItemscommitted(List<ItemsCommitted> itemscommitted) {
+		this.itemscommitted = itemscommitted;
+	}
+
 
 	public Volunteer getVolunteer() {
 		return volunteer;
@@ -124,6 +143,22 @@ public class ProjectVolunteer {
 	public ProjectVolunteer() {
 		super();
 	}
+	
+	public void addItemsNeeded(ItemsCommitted itemcommitted) {
+		if(itemscommitted == null) {
+			itemscommitted = new ArrayList<>();
+		}
+		if(!itemscommitted.contains(itemcommitted)) {
+			itemscommitted.add(itemcommitted);
+		}
+		
+	}
+	public void removeVolunteer(ItemsCommitted itemcommitted) {
+		if(itemscommitted !=null && itemscommitted.contains(itemcommitted)) {
+			itemscommitted.remove(itemcommitted);
+		}
+	}
+
 	
 
 }

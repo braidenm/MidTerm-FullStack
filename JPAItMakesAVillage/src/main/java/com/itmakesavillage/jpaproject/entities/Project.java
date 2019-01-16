@@ -68,9 +68,20 @@ public class Project {
 	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
 	private List<Comments> comments;
 	
+	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
+	private List<ItemsNeeded> itemsNeeded;
 	
 	
 	
+	
+	public List<ItemsNeeded> getItemsNeeded() {
+		return itemsNeeded;
+	}
+
+	public void setItemsNeeded(List<ItemsNeeded> itemsNeeded) {
+		this.itemsNeeded = itemsNeeded;
+	}
+
 	public List<Comments> getComments() {
 		return comments;
 	}
@@ -265,6 +276,20 @@ public class Project {
 		if(volunteers !=null && volunteers.contains(volunteer)) {
 			volunteers.remove(volunteer);
 			volunteer.removeProject(this);
+		}
+	}
+	public void addItemsNeeded(ItemsNeeded itemNeeded) {
+		if(itemsNeeded == null) {
+			itemsNeeded = new ArrayList<>();
+		}
+		if(!itemsNeeded.contains(itemNeeded)) {
+			itemsNeeded.add(itemNeeded);
+		}
+		
+	}
+	public void removeVolunteer(ItemsNeeded itemNeeded) {
+		if(itemsNeeded !=null && itemsNeeded.contains(itemNeeded)) {
+			itemsNeeded.remove(itemNeeded);
 		}
 	}
 

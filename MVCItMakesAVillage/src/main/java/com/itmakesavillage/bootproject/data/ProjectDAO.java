@@ -6,6 +6,8 @@ import java.util.Set;
 import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Category;
 import com.itmakesavillage.jpaproject.entities.Comments;
+import com.itmakesavillage.jpaproject.entities.Item;
+import com.itmakesavillage.jpaproject.entities.ItemsNeeded;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.State;
 
@@ -26,6 +28,11 @@ public interface ProjectDAO {
 	public Comments reactivateComment(int commentId);
 	public Comments createComment(Comments comment);
 	public Comments findComment(int commentId);
+	public List<Item> getAllItems();
+	public Item getItem(int itemId);
+	ItemsNeeded getItemsNeeded(int itemId);
+	Item createItem(Item item);
+	ItemsNeeded createItemsNeeded(ItemsNeeded itemsNeeded);
 
 
 }

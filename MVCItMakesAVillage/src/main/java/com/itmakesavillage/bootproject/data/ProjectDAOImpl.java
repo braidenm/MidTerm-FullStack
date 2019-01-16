@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Category;
 import com.itmakesavillage.jpaproject.entities.Comments;
+import com.itmakesavillage.jpaproject.entities.Item;
+import com.itmakesavillage.jpaproject.entities.ItemsNeeded;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.State;
 import com.itmakesavillage.jpaproject.entities.User;
@@ -158,7 +160,32 @@ public class ProjectDAOImpl implements ProjectDAO {
 		comment.setActive(true);
 		return comment;
 	}
-
+	@Override
+	public List<Item> getAllItems() {
+		String query = "select i from Item i";
+		
+		return em.createQuery(query, Item.class).getResultList();
+	}
+	@Override
+	public Item getItem(int itemId) {
+		
+		return em.find(Item.class, itemId);
+	}
+	@Override
+	public Item createItem(Item item) {
+		em.persist(item);
+		return item;
+	}
+	@Override
+	public ItemsNeeded getItemsNeeded(int itemId) {
+		
+		return em.find(ItemsNeeded.class, itemId);
+	}
+	@Override
+	public ItemsNeeded createItemsNeeded(ItemsNeeded itemsNeeded) {
+		em.persist(itemsNeeded);
+		return itemsNeeded;
+	}
 	
 
 }

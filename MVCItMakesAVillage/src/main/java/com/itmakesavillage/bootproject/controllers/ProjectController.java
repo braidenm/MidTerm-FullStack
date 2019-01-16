@@ -26,6 +26,8 @@ import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Category;
 import com.itmakesavillage.jpaproject.entities.Comments;
 import com.itmakesavillage.jpaproject.entities.Company;
+import com.itmakesavillage.jpaproject.entities.Item;
+import com.itmakesavillage.jpaproject.entities.ItemsNeeded;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.ProjectVolunteer;
 import com.itmakesavillage.jpaproject.entities.User;
@@ -134,6 +136,7 @@ public class ProjectController {
         if (session.getAttribute("user") == null) {
             return "login";
         }
+        model.addAttribute("itemList", projectDAO.getAllItems());
         model.addAttribute("catList", projectDAO.getAllCategories());
         model.addAttribute("stateList", projectDAO.getAllStates());
         return "createProject";
@@ -141,11 +144,26 @@ public class ProjectController {
     @RequestMapping(path = "createProject.do", method = RequestMethod.POST)
     public String createProject(HttpSession session, Project project, RedirectAttributes redir,
             @RequestParam("sTime") String[] sTime, @RequestParam("sDate") String[] sDate,
-            @RequestParam("eDate") String[] eDate, @RequestParam(required=false, name = "cat") Integer[] cat, @RequestParam(name="ownerId") Integer ownerId,
+            @RequestParam("eDate") String[] eDate, @RequestParam(required=false, name = "cat") Integer[] cat, @RequestParam(required=false, name = "itemid") Integer[] itemId,
+            @RequestParam(required=false, name = "itemQuantity") Integer itemQuantity,  @RequestParam(name="ownerId") Integer ownerId,
             Address address, @RequestParam(name="stateId") Integer stateId) {
         
+    	List<ItemsNeeded> itemsNeeded = new ArrayList<>();
+    	if(itemId != null) {
+	    	for (int id: itemId) {
+	    		ItemsNeeded needed = new ItemsNeeded();
+	    		Item item = projectDAO.getItem(id);
+	    		needed.setItem(item);
+	    		needed.setProject(project);
+	    		needed.setQuantiy(itemQuantity);
+	    		needed = projectDAO.createItemsNeeded(needed);
+				itemsNeeded.add(needed);
+			}
+    	}
+    	
         address.setState(projectDAO.getStateById(stateId));
         address = projectDAO.createAddress(address);
+        project.setItemsNeeded(itemsNeeded);
         project.setAddress(address);
         project.setTime(sTime[0]);
         project.setStartDate(sDate[0]);
@@ -203,6 +221,7 @@ public class ProjectController {
     @RequestMapping(path = "editProject.do", method = RequestMethod.GET)
     public String goToEditProject(@RequestParam("projectId") Integer projectId, HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
+        Project project = projectDAO.findProject(projectId);
         if (user == null) {
             return "login";
         }
@@ -211,10 +230,20 @@ public class ProjectController {
         if (projectCategories != null) {
             allCategories.removeAll(projectCategories);
         }
+        List<Item> allItems = projectDAO.getAllItems();
+        List<ItemsNeeded> projectItemsNeeded = project.getItemsNeeded();
+        if (projectItemsNeeded != null) {
+        	for (ItemsNeeded itemsNeeded : projectItemsNeeded) {
+				
+        		allItems.remove(itemsNeeded.getItem());
+			}
+        }
+        model.addAttribute("remainingItems", allItems);
+        model.addAttribute("currentItemsNeeded", projectItemsNeeded);
+        
         model.addAttribute("rCatList", allCategories);
         model.addAttribute("pCatList", projectCategories);
         model.addAttribute("stateList", projectDAO.getAllStates());
-        Project project = projectDAO.findProject(projectId);
         model.addAttribute("project", project);
         return "editProject";
     }
@@ -222,15 +251,34 @@ public class ProjectController {
     public String editProject(HttpSession session, RedirectAttributes redir, Project project,
             @RequestParam("sTime") String[] sTime, @RequestParam("sDate") String[] sDate,
             @RequestParam("eDate") String[] eDate, @RequestParam(required=false, name="cat") Integer[] cat,
-            Address address, @RequestParam(name="stateId") Integer stateId) {
+            Address address, @RequestParam(name="stateId") Integer stateId,  @RequestParam(required=false, name = "itemid") Integer[] itemId,
+            @RequestParam(required=false, name = "itemQuantity") Integer itemQuantity) {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             return "login";
         }
+        
+        List<ItemsNeeded> itemsNeeded = new ArrayList<>();
+    	if(itemId != null) {
+	    	for (int id: itemId) {
+	    		ItemsNeeded needed = new ItemsNeeded();
+	    		Item item = projectDAO.getItem(id);
+	    		needed.setItem(item);
+	    		needed.setProject(project);
+	    		needed.setQuantiy(itemQuantity);
+	    		needed = projectDAO.createItemsNeeded(needed);
+				itemsNeeded.add(needed);
+			}
+	    	for (ItemsNeeded item : itemsNeeded) {
+				project.addItemsNeeded(item);
+			}
+    	}
+    	if(itemId == null) {
+    		project.setItemsNeeded(null);
+    	}
         address.setState(projectDAO.getStateById(stateId));
         address = projectDAO.updateAddress(address);
         project.setAddress(address);
-        
         project.setTime(sTime[0]);
         project.setStartDate(sDate[0]);
         project.setEndDate(eDate[0]);

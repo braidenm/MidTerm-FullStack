@@ -239,6 +239,70 @@ CREATE TABLE IF NOT EXISTS `comments` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `Items`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Items` ;
+
+CREATE TABLE IF NOT EXISTS `Items` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `items_pv`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `items_pv` ;
+
+CREATE TABLE IF NOT EXISTS `items_pv` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `items_id` INT NOT NULL,
+  `pv_id` INT NOT NULL,
+  `quatity` INT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  INDEX `fk_to_items_idx` (`items_id` ASC),
+  INDEX `fk_to_pv_from_items_pv_idx` (`pv_id` ASC),
+  CONSTRAINT `fk_to_items`
+    FOREIGN KEY (`items_id`)
+    REFERENCES `Items` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_to_pv_from_items_pv`
+    FOREIGN KEY (`pv_id`)
+    REFERENCES `project_volunteer` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `items_project`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `items_project` ;
+
+CREATE TABLE IF NOT EXISTS `items_project` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `project_id` INT NOT NULL,
+  `item_id` INT NOT NULL,
+  `quantity_needed` INT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  INDEX `fk_items_project_to_project_idx` (`project_id` ASC),
+  INDEX `fk_items_project_to_items_idx` (`item_id` ASC),
+  CONSTRAINT `fk_items_project_to_project`
+    FOREIGN KEY (`project_id`)
+    REFERENCES `project` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_items_project_to_items`
+    FOREIGN KEY (`item_id`)
+    REFERENCES `Items` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS panda1@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -486,6 +550,63 @@ COMMIT;
 START TRANSACTION;
 USE `villagedb`;
 INSERT INTO `comments` (`id`, `user_id`, `project_id`, `comment`, `date`, `time`, `active`) VALUES (1, 1, 1, 'This Project is going to be awesome!', '2019-01-15', '10:00', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `Items`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `villagedb`;
+INSERT INTO `Items` (`id`, `name`) VALUES (1, 'Construction Skills');
+INSERT INTO `Items` (`id`, `name`) VALUES (2, 'Shovel');
+INSERT INTO `Items` (`id`, `name`) VALUES (3, 'Hoe');
+INSERT INTO `Items` (`id`, `name`) VALUES (4, 'Drill');
+INSERT INTO `Items` (`id`, `name`) VALUES (5, 'Hammer');
+INSERT INTO `Items` (`id`, `name`) VALUES (6, 'Saw');
+INSERT INTO `Items` (`id`, `name`) VALUES (7, 'Axe');
+INSERT INTO `Items` (`id`, `name`) VALUES (8, 'Level');
+INSERT INTO `Items` (`id`, `name`) VALUES (9, 'Gloves');
+INSERT INTO `Items` (`id`, `name`) VALUES (10, 'Pick Axe');
+INSERT INTO `Items` (`id`, `name`) VALUES (11, 'Bobcat');
+INSERT INTO `Items` (`id`, `name`) VALUES (12, 'Hazmat Suit');
+INSERT INTO `Items` (`id`, `name`) VALUES (13, 'Crutches');
+INSERT INTO `Items` (`id`, `name`) VALUES (14, 'Sack');
+INSERT INTO `Items` (`id`, `name`) VALUES (15, 'Body Bag');
+INSERT INTO `Items` (`id`, `name`) VALUES (16, 'Rope');
+INSERT INTO `Items` (`id`, `name`) VALUES (17, 'Garden Shears');
+INSERT INTO `Items` (`id`, `name`) VALUES (18, 'Beer');
+INSERT INTO `Items` (`id`, `name`) VALUES (19, 'Weed Killer');
+INSERT INTO `Items` (`id`, `name`) VALUES (20, 'Toilet Paper');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `items_pv`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `villagedb`;
+INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quatity`) VALUES (1, 20, 1, 5);
+INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quatity`) VALUES (2, 20, 2, 3);
+INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quatity`) VALUES (3, 18, 3, 5);
+INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quatity`) VALUES (4, 18, 1, 1);
+INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quatity`) VALUES (5, 14, 5, 1);
+INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quatity`) VALUES (6, 11, 4, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `items_project`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `villagedb`;
+INSERT INTO `items_project` (`id`, `project_id`, `item_id`, `quantity_needed`) VALUES (1, 1, 20, 15);
+INSERT INTO `items_project` (`id`, `project_id`, `item_id`, `quantity_needed`) VALUES (2, 1, 18, 24);
+INSERT INTO `items_project` (`id`, `project_id`, `item_id`, `quantity_needed`) VALUES (3, 1, 14, 10);
+INSERT INTO `items_project` (`id`, `project_id`, `item_id`, `quantity_needed`) VALUES (4, 1, 11, 1);
 
 COMMIT;
 
