@@ -8,11 +8,22 @@
 
 a:link{
 	color: white;
+	text-decoration:none;
 }
 
 .btn {
 	background-color: #4CAF50;
 	color: white;
+}
+.btn2 {
+	background-color: #4CAF50;
+	color: white;
+	padding: 16px 20px;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	opacity: 0.9;
+	margin: 5px;
 }
 
 #/* loginBox {
