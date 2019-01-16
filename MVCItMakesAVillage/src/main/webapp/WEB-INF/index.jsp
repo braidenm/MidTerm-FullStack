@@ -16,10 +16,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link
-	href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+	href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto+Condensed"
 	rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" href="index.css">
@@ -61,15 +58,13 @@
 					<br>
 
 					<c:forEach var="cat" items="${catList}">
-					<!-- <div class="form-check form-check-inline"></div> -->
+						<!-- <div class="form-check form-check-inline"></div> -->
 						<strong>${cat.name}:</strong>
 						<input id="keyword" name="keyword" type="checkbox"
 							value="${cat.name}">
-						
+
 					</c:forEach>
-					<br>
-					<br>
-					<br> <input type="submit" value="Search"
+					<br> <br> <br> <input type="submit" value="Search"
 						class="btn btn-primary" />
 				</form>
 			</div>
@@ -145,7 +140,7 @@
 						<div class="bottomButton">
 							<form action="viewProject.do" method="get">
 								<input type="hidden" value="${project.id }" name="projectId">
-								<input type="submit" class="btn btn-primary"
+								<input type="submit" class="btnP btn-primary"
 									value="View Project">
 							</form>
 						</div>
