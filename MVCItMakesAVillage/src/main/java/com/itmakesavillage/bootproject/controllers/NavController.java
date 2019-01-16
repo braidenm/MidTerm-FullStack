@@ -90,10 +90,14 @@ public class NavController {
 			return "index";
 		}
 		System.out.println("USerID= "+user.getId());
+		
 		Volunteer volunteer = vDAO.findVolunteer(user.getId());
-		volunteer.setProjects(vDAO.findProjects(user.getId()));
-		volunteer.setOwnedProjects(vDAO.findOwnedProjects(user.getId()));
-		user.setVolunteer(volunteer);
+		if(volunteer != null) {
+				
+			volunteer.setProjects(vDAO.findProjects(user.getId()));
+			volunteer.setOwnedProjects(vDAO.findOwnedProjects(user.getId()));
+			user.setVolunteer(volunteer);
+		}
 		session.setAttribute("user", user);
 		
 		

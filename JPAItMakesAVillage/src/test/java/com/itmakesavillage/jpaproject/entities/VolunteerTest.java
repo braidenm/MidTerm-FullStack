@@ -45,7 +45,6 @@ class VolunteerTest {
 	void test_volunteer_field_mappings() {
 		assertEquals("303-867-5309", volunteer.getPhone());
 		assertEquals("1900-01-01", volunteer.getDob().toString());
-		assertEquals(1, volunteer.getAddressId());
 		assertEquals("Nuclear", volunteer.getFirstName());
 		assertEquals("Panda", volunteer.getLastName());
 		assertEquals("Bombs and Bambo", volunteer.getAbout());

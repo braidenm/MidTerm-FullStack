@@ -36,7 +36,6 @@
 				<h4>Edit Profile</h4>
 				<form action="editProfile.do" method="POST">
 					<div class="form-group">
-					ID: ${user.id }
 						<input type="hidden" id="userid" name="userid"
 							   value="${user.id }"></input>
 					</div>
@@ -62,6 +61,44 @@
 						<label for="phone">Phone Number:</label> 
 						<input type="text" id="phone" maxlength="15"
 							   name="phone" value=${user.volunteer.phone }>
+					</div>
+					<div class="form-group">
+						<!-- Street 1 -->
+						<label for="street1_id" class="control-label">Street
+							Address </label> 
+						<input type="text" class="form-control" id="street1_id"
+							name="street" value="${user.volunteer.address.street }" required>
+					</div>
+					<div class="form-group">
+						<!-- City-->
+						<label for="city_id" class="control-label">City</label> 
+						<input type="text" class="form-control" id="city_id" name="city"
+							value="${user.volunteer.address.city }" required>
+					</div>
+
+					<div class="form-group">
+						<!-- State Button -->
+						<label for="stateId" class="control-label">State</label> 
+						<select class="form-control" id="stateId" name="stateId" required>
+							<c:forEach items="${ stateList}" var="state">
+								<c:choose>
+									<c:when test="${state.id == user.volunteer.address.state.id }">
+									
+										<option value="${state.id }" selected> ${state.name}</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${state.id }">${state.name}</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<!-- Zip Code-->
+						<label for="zip_id" class="control-label">Zip Code</label> 
+						<input type="number" class="form-control" id="zip_id" name="zip"
+							value="${user.volunteer.address.zip }" required>
 					</div>
 					<div class="form-group">
 						<label for="about">About me:</label> 
