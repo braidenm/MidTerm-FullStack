@@ -44,6 +44,9 @@
 					<div class="KWHeader">
 						<label for="keyword">Search by Keyword(s): </label>
 					</div>
+					<c:if test="${notFound }">
+						<div class="notFoundMessage">No Projects Found</div>
+					</c:if>
 					<br> <input type="text" name="keyword" id="keyword"
 						placeholder="Search" maxlength="45" /> <input type="submit"
 						value="Search" class="btn btn-primary" />
@@ -55,6 +58,13 @@
 					<div class="CategoryHeader">
 						<label for="keyword">Search by Category </label>
 					</div>
+					<br>
+					<c:if test="${notFound }">
+						<div class="notFoundMessage">No Projects Found</div>
+					</c:if>
+					<c:if test="${needCategory }">
+						<div class="needCategoryMessage">Please pick a category</div>
+					</c:if>
 					<br>
 
 					<c:forEach var="cat" items="${catList}">
@@ -148,14 +158,13 @@
 					</c:forEach>
 				</c:if>
 				<br>
-				<c:if test="${notFound }">
-					<div class="notFoundMessage">No Projects Found</div>
-				</c:if>
-				<c:if test="${needCategory }">
-					<div class="needCategoryMessage">Please pick a category</div>
-				</c:if>
+
 			</div>
 		</div>
+	</div>
+	<div class="footer">
+		<a href="about.do"> About</a>
+		</ul>
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
