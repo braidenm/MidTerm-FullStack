@@ -43,15 +43,14 @@
 					<h4 class="closed">Project is Closed</h4>
 				</c:if>
 
-				<strong>Project name: </strong>${project.title} <br>
-				<strong>Project Description: </strong>${project.description} <br> 
-				<strong>Category: </strong>
+				<strong>Project name: </strong>${project.title} <br> <strong>Project
+					Description: </strong>${project.description} <br> <strong>Category:
+				</strong>
 				<c:forEach items="${project.categories}" var="cat" varStatus="loop">
 			  				 	${cat.name}
 			  		<c:if test="${!loop.last}">,</c:if>
 				</c:forEach>
-				<br> 
-				<strong>Owner Name: </strong>${project.owner.firstName}
+				<br> <strong>Owner Name: </strong>${project.owner.firstName}
 				${project.owner.lastName}
 				<div>
 					<form action="viewProfile.do" method="post">
@@ -74,8 +73,7 @@
 					<strong>Volunteer:</strong>
 			  					Volunteer Goal Met
 			  				</c:if>
-				<br>
-				<strong>Companies Involved:</strong>
+				<br> <strong>Companies Involved:</strong>
 
 				<c:forEach items="${project.projectVolunteer }"
 					var="projectVolunteer">
@@ -178,7 +176,7 @@
 
 								<c:forEach items="${pvList}" var="pv">
 									<c:if test="${volunteer.userid == pv.volunteer.userid}">
-									<br>
+										<br>
 										<strong>Pledged Hours: </strong>${pv.hoursPledged}
 					  				<br>
 										<strong>Actual Hours: </strong>${pv.hoursActual }
@@ -230,7 +228,10 @@
 			value="${project.address.street} ${project.address.city} ${project.address.state.name}">
 	</div>
 
-
+	<div class="footer">
+		<a href="about.do"> About</a>
+		</ul>
+	</div>
 
 	<!-- put map here -->
 

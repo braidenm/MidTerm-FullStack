@@ -4,7 +4,7 @@
 <ul>
 	<a class="navbar-brand " href="home.do"> <img
 		src="http://www.iagreenstar.org/new/wp-content/uploads/hands.png"
-		width="30" height="30" class="d-inline-block align-top" alt="logo"></a>
+		width="35" height="35" class="d-inline-block align-top" alt="logo"></a>
 	</ul>
 	<ul class="nav navbar-nav navbar-left">
 		<li class="nav-item navh"><a class="nav-link " href="home.do">VolunteerUp</a></li>

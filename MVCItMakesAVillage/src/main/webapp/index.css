@@ -40,7 +40,7 @@ body, html {
 	color: rgba(255, 255, 255);
 }
 
-a:link {
+a{
 	color: rgba(255, 255, 255);
 }
 
@@ -57,6 +57,12 @@ a:link {
 	color: white;
 	font-family: 'Open Sans Condensed', sans-serif;
 	position: absolute;
+	margin-left: 60px;
+	margin-top: 40px;
+}
+
+h1{
+	font-size: 60px;
 }
 
 .KWHeader {
@@ -165,4 +171,5 @@ input[type=text], input[type=password] {
 	background-color: #4CAF50;
 	color: white;
 	text-align: center;
+	padding: 20px;
 }

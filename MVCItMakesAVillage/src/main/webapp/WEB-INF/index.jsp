@@ -34,7 +34,7 @@
 			${projects } <strong>Total Volunteers: </strong> ${volunteers}
 		</div>
 		<div class="headerText">
-			<h1>A Little Dirt Doesn't Hurt</h1>
+			<h1>Organize Projects in Your Community</h1>
 		</div>
 
 		<div class="row" id="centered">
@@ -142,11 +142,7 @@
                             <c:if test="${!loop.last}">,</c:if>
 						</c:forEach>
 						<br>
-						<c:if
-							test="${(project.volunteersNeeded - fn:length(project.volunteers)) <= 0}">
-							<strong>Volunteer:</strong>
-                            Volunteer Goal Met
-                        </c:if>
+
 						<c:if test="${project.active }">
 							<strong>Project is: </strong>
 							<span class="open">OPEN</span>
@@ -157,6 +153,12 @@
 						</c:if>
 						<br>
 						<c:if
+							test="${(project.volunteersNeeded - fn:length(project.volunteers)) <= 0}">
+							<strong>Volunteer:</strong>
+                            Volunteer Goal Met
+						<br>
+                        </c:if>
+						<c:if
 							test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
 							<strong>Volunteers still needed: </strong>
                             ${project.volunteersNeeded - fn:length(project.volunteers) }
@@ -164,7 +166,7 @@
 						<div cla ss="bottomButton">
 							<form action="viewProject.do" method="get">
 								<input type="hidden" value="${project.id }" name="projectId">
-								<input type="submit" class="btnP btn-primary"
+								<input type="submit" class="btn btnP btn-primary"
 									value="View Project">
 							</form>
 						</div>
@@ -178,7 +180,7 @@
 		</div>
 	</div>
 	<div class="footer">
-		<a href="about.do"> About</a>
+		<a href="about.do"> About Nuclear Panda</a>
 		</ul>
 	</div>
 	<!-- Optional JavaScript -->
