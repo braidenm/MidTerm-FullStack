@@ -6,7 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.itmakesavillage.bootproject.data.CompanyDAO;
 import com.itmakesavillage.bootproject.data.ProjectDAO;
 import com.itmakesavillage.bootproject.data.ProjectVolunteerDAO;
 import com.itmakesavillage.bootproject.data.UserDAO;
@@ -21,6 +25,7 @@ import com.itmakesavillage.bootproject.data.VolunteerDAO;
 import com.itmakesavillage.jpaproject.entities.Address;
 import com.itmakesavillage.jpaproject.entities.Category;
 import com.itmakesavillage.jpaproject.entities.Comments;
+import com.itmakesavillage.jpaproject.entities.Company;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.ProjectVolunteer;
 import com.itmakesavillage.jpaproject.entities.User;
@@ -35,6 +40,9 @@ public class ProjectController {
     private ProjectVolunteerDAO pvDAO;
     @Autowired
     private UserDAO userDAO;
+    @Autowired
+    private CompanyDAO companyDAO;
+    
     @RequestMapping(path = "searchKW.do", method = RequestMethod.GET)
     public String searchKW(String keyword, Model model) {
         Set<Project> projectList = projectDAO.searchProject(keyword);
@@ -78,6 +86,8 @@ public class ProjectController {
             System.out.println(projectId);
         }
         
+        List<Company> companyList = companyDAO.getAllCompanies();
+        
         Project project = projectDAO.findProject(projectId);
         User user = (User)session.getAttribute("user");
         boolean inList = false;
@@ -85,6 +95,8 @@ public class ProjectController {
             
             inList = project.getVolunteers().contains(user.getVolunteer());
         }
+        
+        model.addAttribute("companyList", companyList);
         model.addAttribute("inList", inList);
         model.addAttribute("pvList", project.getProjectVolunteer());
         System.out.println(project.getProjectVolunteer());
@@ -134,7 +146,8 @@ public class ProjectController {
         return "redirect:viewProject.do";
     }
     @RequestMapping(path = "joinProject.do", method = RequestMethod.POST)
-    public String joinProject(HttpSession session, Integer projectId, Integer hours, Model model, RedirectAttributes redir) {
+    public String joinProject(HttpSession session, Integer projectId, Integer hours, 
+    		Integer companyId, Model model, RedirectAttributes redir) {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             model.addAttribute("projectId", projectId);
@@ -142,8 +155,13 @@ public class ProjectController {
         }
         Project project = projectDAO.findProject(projectId);
         Volunteer volunteer = volunteerDAO.findVolunteer(user.getId());
-        
         ProjectVolunteer pv = new ProjectVolunteer();
+        if(companyId != 0) {
+        	
+	        Company company = companyDAO.findCompany(companyId);
+	        pv.setCompany(company);
+        
+        }
         pv.setVolunteer(volunteer);
         pv.setProject(project);
         pv.setHoursPledged(hours);
@@ -259,5 +277,7 @@ public class ProjectController {
         redir.addAttribute("projectId", comment.getProject().getId());
         return "redirect:viewProject.do";
     }
+    
+    
     
 }

@@ -79,14 +79,29 @@
 			  					Volunteer Goal Met
 			  				</c:if>
 				<br>
+				<strong>Companies Involved:</strong>
+				
+				<c:forEach items="${project.projectVolunteer }" var="projectVolunteer">
+						<div>${projectVolunteer.company.name}</div>
+				</c:forEach>
+				<br>
 				<c:if test="${!inList && project.active}">
 	
 					<form action="joinProject.do" method="post">
-						<label for="hours">Add Volunteer: </label>
+						<label for="hours">Join Project: </label>
 						 <input type="hidden"
 							name="userId" id="userId" value="${user.id}"> 
 						<input type="hidden" name="projectId" id="projectId"
 							value="${project.id}"> 
+							
+					      <label for="companyId">Select A Company</label>
+					      <select class="form-control" required id="companyId" name="companyId">
+					        <c:forEach items="${companyList}" var="company">
+					        	<option value="${company.id}">${company.name }</option>
+					        </c:forEach>
+					        <option value="0">None</option>
+					      </select>
+					      <br>
 						<input type="number" name="hours"
 							id="hours" placeholder="pledged hours" required> 
 						<input type="submit" class="btn btn-primary" value="Join Project">
@@ -175,6 +190,11 @@
 									<strong>Pledged Hours: </strong>${pv.hoursPledged}
 					  				<br>
 									<strong>Actual Hours: </strong>${pv.hoursActual }
+					  				<br>
+					  				<c:if test="${not empty pv.company}">
+						  				<strong>Company: </strong>
+						  				${pv.company.name}
+					  				</c:if>
 					  				<br>
 									<c:if test="${volunteer.userid == user.id or project.owner.userid == user.id or user.role == 'admin' }">
 										<form action="submitHours.do" method="post">

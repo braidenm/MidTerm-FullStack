@@ -31,10 +31,25 @@ public class ProjectVolunteer {
 	@ManyToOne
 	@JoinColumn(name = "volunteer_id")
 	private Volunteer volunteer;
+	
+	@ManyToOne
+	@JoinColumn(name="company_id")
+	private Company company;
 
 	public Volunteer getVolunteer() {
 		return volunteer;
 	}
+	
+
+	public Company getCompany() {
+		return company;
+	}
+
+
+	public void setCompany(Company companies) {
+		this.company = companies;
+	}
+
 
 	public void setVolunteer(Volunteer volunteer) {
 		this.volunteer = volunteer;
@@ -109,5 +124,6 @@ public class ProjectVolunteer {
 	public ProjectVolunteer() {
 		super();
 	}
+	
 
 }
