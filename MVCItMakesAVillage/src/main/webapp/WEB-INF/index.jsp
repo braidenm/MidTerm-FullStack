@@ -58,14 +58,17 @@
 					<div class="CategoryHeader">
 						<label for="keyword">Search by Category </label>
 					</div>
+					<br>
 
 					<c:forEach var="cat" items="${catList}">
+					<!-- <div class="form-check form-check-inline"></div> -->
 						<strong>${cat.name}:</strong>
 						<input id="keyword" name="keyword" type="checkbox"
 							value="${cat.name}">
-						<br>
+						
 					</c:forEach>
-
+					<br>
+					<br>
 					<br> <input type="submit" value="Search"
 						class="btn btn-primary" />
 				</form>

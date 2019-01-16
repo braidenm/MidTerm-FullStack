@@ -63,10 +63,10 @@
 				</ul>
 				<br>
 				<form action="editProfile.do" method="get">
-					<input type="submit" class="btn btn-primary" value="Edit Profile">
+					<input type="submit" class="btn2 btn-primary" value="Edit Profile">
 				</form>
 				<form action="createProject.do" method="get">
-					<input type="submit" class="btn btn-primary" value="CreateProject">
+					<input type="submit" class="btn2 btn-primary" value="CreateProject">
 				</form>
 				<br>
 				<h3>Projects You Are In</h3>
@@ -117,13 +117,13 @@
 								
 									<form action="viewProject.do" method="get">
 										<input type="hidden" value="${project.id }" name="projectId">
-										<input type="submit" class="btn btn-primary" value="View Project">
+										<input type="submit" class="btn2 btn2-primary" value="View Project">
 			
 									</form>
 									<c:if test="${project.owner.userid == user.id }">
 										<form action="editProject.do" method="get">
 											<input type="hidden" value="{project.id}" name="projectId">
-											<input type="submit" class="btn btn-primary" value="Edit Project">
+											<input type="submit" class="btn2 btn-primary" value="Edit Project">
 										
 										
 										</form>
@@ -187,13 +187,13 @@
 									
 										<form action="viewProject.do" method="get">
 											<input type="hidden" value="${project.id }" name="projectId">
-											<input type="submit" class="btn btn-primary" value="View Project">
+											<input type="submit" class="btn2 btn-primary" value="View Project">
 				
 										</form>
 										
 										<form action="editProject.do" method="get">
 											<input type="hidden" value="${project.id}" name="projectId">
-											<input type="submit" class="btn btn-primary" value="Edit Project">
+											<input type="submit" class="btn2 btn-primary" value="Edit Project">
 										
 										
 										</form>
