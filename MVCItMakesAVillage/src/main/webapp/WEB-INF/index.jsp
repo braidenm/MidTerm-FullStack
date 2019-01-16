@@ -16,10 +16,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link
-	href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+	href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto+Condensed"
 	rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" href="index.css">
@@ -47,10 +44,19 @@
 					<div class="KWHeader">
 						<label for="keyword">Search by Keyword(s): </label>
 					</div>
+					<c:if test="${notFound }">
+						<div class="notFoundMessage">No Projects Found</div>
+					</c:if>
 					<br> <input type="text" name="keyword" id="keyword"
 						placeholder="Search" maxlength="45" /> <input type="submit"
 						value="Search" class="btn btn-primary" />
 				</form>
+				<c:if test="${not empty user }">
+					<form action="searchLocal.do" path="get">
+						<input type="submit" value="Search Local Projects"
+							class="btn btn-primary" />
+					</form>
+				</c:if>
 			</div>
 			<div class="col-sm-5">
 				<form action="searchCat.do" method="get" id="searchByCat"
@@ -59,17 +65,22 @@
 						<label for="keyword">Search by Category </label>
 					</div>
 					<br>
+					<c:if test="${notFound }">
+						<div class="notFoundMessage">No Projects Found</div>
+					</c:if>
+					<c:if test="${needCategory }">
+						<div class="needCategoryMessage">Please pick a category</div>
+					</c:if>
+					<br>
 
 					<c:forEach var="cat" items="${catList}">
-					<!-- <div class="form-check form-check-inline"></div> -->
+						<!-- <div class="form-check form-check-inline"></div> -->
 						<strong>${cat.name}:</strong>
 						<input id="keyword" name="keyword" type="checkbox"
 							value="${cat.name}">
-						
+
 					</c:forEach>
-					<br>
-					<br>
-					<br> <input type="submit" value="Search"
+					<br> <br> <br> <input type="submit" value="Search"
 						class="btn btn-primary" />
 				</form>
 			</div>
@@ -101,9 +112,15 @@
 			<div class="col-sm-1"></div>
 			<div class="col-sm-4">
 				<c:if test="${not empty projectList }">
+					<c:if test="${(fn:length(projectList)) > 1}">
+						<h2 class="projectListHeader">Your Project Search Results</h2>
+					</c:if>
+					<c:if test="${(fn:length(projectList)) == 1}">
+						<h2 class="projectListHeader">Your Project Search Result</h2>
+					</c:if>
 					<c:forEach var="project" items="${projectList}">
-						<strong>Project name: </strong>${project.title}
-                         <br>
+						<strong>${project.title}</strong>
+						<br>
 						<%-- <strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
                          <br>
                         <strong>Address: </strong>${project.address }
@@ -142,25 +159,25 @@
 							<strong>Volunteers still needed: </strong>
                             ${project.volunteersNeeded - fn:length(project.volunteers) }
                         </c:if>
-						<div class="bottomButton">
+						<div cla ss="bottomButton">
 							<form action="viewProject.do" method="get">
 								<input type="hidden" value="${project.id }" name="projectId">
-								<input type="submit" class="btn btn-primary"
+								<input type="submit" class="btnP btn-primary"
 									value="View Project">
 							</form>
 						</div>
+
 						<br>
 					</c:forEach>
 				</c:if>
 				<br>
-				<c:if test="${notFound }">
-					<div class="notFoundMessage">No Projects Found</div>
-				</c:if>
-				<c:if test="${needCategory }">
-					<div class="needCategoryMessage">Please pick a category</div>
-				</c:if>
+
 			</div>
 		</div>
+	</div>
+	<div class="footer">
+		<a href="about.do"> About</a>
+		</ul>
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

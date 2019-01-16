@@ -42,20 +42,21 @@
                     <div class="form-group">
 						<!-- Street 1 -->
 						<label for="street1_id" class="control-label">Street
-							Address </label> <input type="text" class="form-control" id="street1_id"
-							name="street" placeholder="123 Main St.">
+							Address </label> 
+							<input type="text" class="form-control" id="street1_id"
+							name="street" placeholder="123 Main St." required>
 					</div>
 					<div class="form-group">
 						<!-- City-->
-						<label for="city_id" class="control-label">City</label> <input
-							type="text" class="form-control" id="city_id" name="city"
-							placeholder="Townville">
+						<label for="city_id" class="control-label">City</label> 
+						<input type="text" class="form-control" id="city_id" name="city"
+							placeholder="Townville" required>
 					</div>
 
 					<div class="form-group">
 						<!-- State Button -->
 						<label for="stateId" class="control-label">State</label> 
-						<select class="form-control" id="stateId" name="stateId" >
+						<select class="form-control" id="stateId" name="stateId" required>
 							<c:forEach items="${ stateList}" var="state">
 								<option value="${state.id }">${state.name}</option>
 							</c:forEach>
@@ -64,9 +65,9 @@
 
 					<div class="form-group">
 						<!-- Zip Code-->
-						<label for="zip_id" class="control-label">Zip Code</label> <input
-							type="number" class="form-control" id="zip_id" name="zip"
-							placeholder="12345">
+						<label for="zip_id" class="control-label">Zip Code</label> 
+						<input type="number" class="form-control" id="zip_id" name="zip"
+							placeholder="12345" required>
 					</div>
                     
                     <div class="form-group">

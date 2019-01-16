@@ -59,6 +59,7 @@
 						${user.volunteer.lastName}</li>
 					<li class="list-group-item">DOB: ${user.volunteer.dob}</li>
 					<li class="list-group-item">Phone: ${user.volunteer.phone}</li>
+					<li class="list-group-item">Address: ${user.volunteer.address }</li>
 					<li class="list-group-item">About: ${user.volunteer.about}</li>
 				</ul>
 				<br>
