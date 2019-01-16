@@ -149,6 +149,11 @@ public class UserController {
 	
 	@RequestMapping(path = "adminFindUser.do", method = RequestMethod.GET)
 	public String adminFindUser(HttpSession session, Model model, String keyword) {
+		User admin = (User) session.getAttribute("user");
+		if (!admin.getRole().equals("admin")) {
+			return "index";
+		}
+		
 		Set<Volunteer> volunteerList = volunteerDAO.searchVolunteer(keyword);
 		Set<User> userList = userDAO.searchUser(keyword);
 		for (Volunteer volunteer : volunteerList) {
@@ -178,6 +183,10 @@ public class UserController {
 	@RequestMapping(path = "adminEditProfile.do", method = RequestMethod.POST)
 	public String adminEditProfile(@RequestParam(name="dob") String[] dob, HttpSession session, Model model, User user, Volunteer volunteer) {
 		System.out.println(user);
+		User admin = (User) session.getAttribute("user");
+		if (!admin.getRole().equals("admin")) {
+			return "index";
+		}
 		volunteer.setDob(dob[0]);
 		Volunteer vol = volunteerDAO.updateVolunteer(volunteer.getUserid(), volunteer);
 		user.setVolunteer(vol);
@@ -227,6 +236,10 @@ public class UserController {
 	}
 	@RequestMapping(path = "adminReactivate.do", method = RequestMethod.POST)
 	public String adminReactivateAccount(Integer id, HttpSession session) {
+		User admin = (User) session.getAttribute("user");
+		if (!admin.getRole().equals("admin")) {
+			return "index";
+		}
 		User user = userDAO.findUser(id);
 		user.setActive(true);
 		user = userDAO.updateUser(id, user);
@@ -234,11 +247,22 @@ public class UserController {
 	}
 	@RequestMapping(path = "adminDeactivate.do", method = RequestMethod.POST)
 	public String adminDeactivateAccount(Integer id, HttpSession session) {
+		User admin = (User) session.getAttribute("user");
+		if (!admin.getRole().equals("admin")) {
+			return "index";
+		}
 		User user = userDAO.findUser(id);
 		user.setActive(false);
 		user = userDAO.updateUser(id, user);
 		user=null;
 		return"redirect:admin.do";
+	}
+	@RequestMapping(path = "viewProfile.do", method = RequestMethod.POST)
+	public String viewUserProfil(Integer viewId, Model model) {
+		
+		model.addAttribute("userView", userDAO.findUser(viewId));
+		
+		return"viewProfile";
 	}
 	
 

@@ -37,3 +37,37 @@ a:link{
 /* .container{
 	margin-left: 500px;
 } */
+
+.profilePicture img{
+	max-height: 400px;
+	max-width: 350px;
+	border: solid;
+}
+
+.navbar ul li{
+  background-color: rgb(0, 179, 60);
+  margin: 0px;
+  list-style-type: none;
+  border-style: none;
+  border-color: none;
+  border-radius: 0;
+  padding: 0px; 
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

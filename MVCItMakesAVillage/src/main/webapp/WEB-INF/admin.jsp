@@ -51,6 +51,8 @@
 							Start Date: ${project.startDate } <br> 
 							Start Time: ${project.time } <br> 
 							Owner: ${project.owner.firstName} ${project.owner.lastName} <br>
+							<strong>Contact Phone: </strong> ${project.owner.phone }
+				  			<strong>Contact Email: </strong> ${project.owner.user.email }
 							Volunteers Needed: ${project.volunteersNeeded } <br> 
 							Hours Needed: ${project.hoursNeeded }
 							<form action="editProject.do" method="GET">
@@ -88,7 +90,8 @@
 							ID: ${userInList.id } <br> 
 							Username: ${userInList.userName} <br> 
 							Name: ${userInList.volunteer.firstName} ${userInList.volunteer.lastName}<br>
-							Email: ${userInList.email} <br> 
+							<strong>Contact Phone: </strong> ${userInList.volunteer.phone }
+				  			<strong>Contact Email: </strong> ${userInList.email }
 							Role: ${userInList.role } <br>
 							Status:
 							<c:if test="${userInList.active }">
