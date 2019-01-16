@@ -46,14 +46,15 @@
 				<c:if test="${not empty projectList }">
 					<c:forEach var="project" items="${projectList}">
 						<div class="projects">
-							ID: ${project.id } <br> 
-							Project: ${project.title } <br>
-							Start Date: ${project.startDate } <br> 
-							Start Time: ${project.time } <br> 
-							Owner: ${project.owner.firstName} ${project.owner.lastName} <br>
+							<strong>ID: </strong> ${project.id } <br> 
+							<strong>Project: </strong>${project.title } <br>
+							<strong>Start Date: </strong>${project.startDate } <br> 
+							<strong>Start Time: </strong>${project.time } <br> 
+							<strong>Owner: </strong>${project.owner.firstName} ${project.owner.lastName} <br>
 							<strong>Contact Phone: </strong> ${project.owner.phone }
-				  			<strong>Contact Email: </strong> ${project.owner.user.email }
-							Volunteers Needed: ${project.volunteersNeeded } <br> 
+							<br>
+				  			<strong>Contact Email: </strong> ${project.owner.user.email }<br>
+							<strong>Volunteers Needed: </strong>${project.volunteersNeeded } <br> 
 							Hours Needed: ${project.hoursNeeded }
 							<form action="editProject.do" method="GET">
 								<div class="form-group">
@@ -87,13 +88,15 @@
 				<c:if test="${not empty userList }">
 					<c:forEach var="userInList" items="${userList }">
 						<div class="users">
-							ID: ${userInList.id } <br> 
-							Username: ${userInList.userName} <br> 
-							Name: ${userInList.volunteer.firstName} ${userInList.volunteer.lastName}<br>
+							<strong>ID: </strong>${userInList.id } <br> 
+							<strong>Username: </strong>${userInList.userName} <br> 
+							<strong>Name: </strong>${userInList.volunteer.firstName} ${userInList.volunteer.lastName}<br>
 							<strong>Contact Phone: </strong> ${userInList.volunteer.phone }
+							<br>
 				  			<strong>Contact Email: </strong> ${userInList.email }
-							Role: ${userInList.role } <br>
-							Status:
+				  			<br>
+							<strong>Role: </strong>${userInList.role } <br>
+							<strong>Status: </strong>
 							<c:if test="${userInList.active }">
 								Active 
 							</c:if>

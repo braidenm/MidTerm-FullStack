@@ -39,24 +39,26 @@
 
 		<div class="row" id="centered">
 			<div class="col-sm-5">
-				<form action="searchKW.do" method="get" id="searchByKW"
-					class="containerKW">
-					<div class="KWHeader">
-						<label for="keyword">Search by Keyword(s): </label>
-					</div>
-					<c:if test="${notFound }">
-						<div class="notFoundMessage">No Projects Found</div>
-					</c:if>
-					<br> <input type="text" name="keyword" id="keyword"
-						placeholder="Search" maxlength="45" /> <input type="submit"
-						value="Search" class="btn btn-primary" />
-				</form>
-				<c:if test="${not empty user }">
-					<form action="searchLocal.do" path="get">
-						<input type="submit" value="Search Local Projects"
-							class="btn btn-primary" />
+				<div class="containerKW">
+					<form action="searchKW.do" method="get" id="searchByKW">
+						<div class="KWHeader">
+							<label for="keyword">Search by Keyword(s): </label>
+						</div>
+						<c:if test="${notFound }">
+							<div class="notFoundMessage">No Projects Found</div>
+						</c:if>
+						<br> <input type="text" name="keyword" id="keyword"
+							placeholder="Search" maxlength="45" /> <input type="submit"
+							value="Search" class="btn btn-primary" />
 					</form>
-				</c:if>
+					<br>
+					<c:if test="${not empty user }">
+						<form action="searchLocal.do" path="get">
+							<input type="submit" value="Search Local Projects"
+								class="btn btn-primary" />
+						</form>
+					</c:if>
+				</div>
 			</div>
 			<div class="col-sm-5">
 				<form action="searchCat.do" method="get" id="searchByCat"
