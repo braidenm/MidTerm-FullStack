@@ -59,13 +59,10 @@
 	  			</c:if>
 			</div>
 		</div>
-	
-	
-	
-	
-	
-	
-	
+	</div>
+	<div class="footer">
+		<a href="about.do"> About</a>
+		</ul>
 	</div>
 
 	<!-- Optional JavaScript -->

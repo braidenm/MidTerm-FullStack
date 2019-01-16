@@ -156,6 +156,10 @@
 		</div>
 
 	</div>
+	<div class="footer">
+		<a href="about.do"> About</a>
+		</ul>
+	</div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

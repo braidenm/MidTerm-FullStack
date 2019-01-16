@@ -142,11 +142,7 @@
                             <c:if test="${!loop.last}">,</c:if>
 						</c:forEach>
 						<br>
-						<c:if
-							test="${(project.volunteersNeeded - fn:length(project.volunteers)) <= 0}">
-							<strong>Volunteer:</strong>
-                            Volunteer Goal Met
-                        </c:if>
+
 						<c:if test="${project.active }">
 							<strong>Project is: </strong>
 							<span class="open">OPEN</span>
@@ -156,6 +152,12 @@
 							<span class="closed">CLOSED</span>
 						</c:if>
 						<br>
+						<c:if
+							test="${(project.volunteersNeeded - fn:length(project.volunteers)) <= 0}">
+							<strong>Volunteer:</strong>
+                            Volunteer Goal Met
+						<br>
+                        </c:if>
 						<c:if
 							test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
 							<strong>Volunteers still needed: </strong>
@@ -178,7 +180,7 @@
 		</div>
 	</div>
 	<div class="footer">
-		<a href="about.do"> About</a>
+		<a href="about.do"> About Nuclear Panda</a>
 		</ul>
 	</div>
 	<!-- Optional JavaScript -->

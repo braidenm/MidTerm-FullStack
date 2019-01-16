@@ -23,6 +23,9 @@ provided by volunteers.
 
 ## How to use
 
+From the home page you have a couple of options to interact with the website. You have the choice to search the existing projects in the database by keyword. Type the keyword you would like to search by in the search field under "Search by Keyword(s)" and press the green search button directly under the field. Your list of results will populate below the large picture  with each project's vital information listed. To learn more about a project, press the green "View Project" below the project description.
+If this is your first time visiting VolunteerUp you will want to register and create an account. In the top right hand corner press the "Login/Register" icon to proceed to the respective page. At the Login/Register page you have a choice on the right to "Create Account". In future visits, after you create an account, you will return to this page to sign in with your username and password. Click the "Create Account" button. Enter your email address, username, and password in their respective fields and continue to enter further information to set up your account on the following page. Press Submit and your profile is created. You are now capable of creating projects, joining projects, and leaving comments you're apart of.
+
 
 
 ## Requirements
