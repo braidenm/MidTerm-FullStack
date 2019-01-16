@@ -51,6 +51,12 @@
 						placeholder="Search" maxlength="45" /> <input type="submit"
 						value="Search" class="btn btn-primary" />
 				</form>
+				<c:if test="${not empty user }">
+					<form action="searchLocal.do" path="get">
+						<input type="submit" value="Search Local Projects"
+							class="btn btn-primary" />
+					</form>
+				</c:if>
 			</div>
 			<div class="col-sm-5">
 				<form action="searchCat.do" method="get" id="searchByCat"
@@ -106,11 +112,15 @@
 			<div class="col-sm-1"></div>
 			<div class="col-sm-4">
 				<c:if test="${not empty projectList }">
-				<c:if test="${fn:length(projectList > 1)}"><h2 class="projectListHeader">Your Project Search Results</h2></c:if>
-				<c:if test="${fn:length(projectList == 1)}"><h2 class="projectListHeader">Your Project Search Result</h2></c:if>
+					<c:if test="${(fn:length(projectList)) > 1}">
+						<h2 class="projectListHeader">Your Project Search Results</h2>
+					</c:if>
+					<c:if test="${(fn:length(projectList)) == 1}">
+						<h2 class="projectListHeader">Your Project Search Result</h2>
+					</c:if>
 					<c:forEach var="project" items="${projectList}">
 						<strong>${project.title}</strong>
-                         <br>
+						<br>
 						<%-- <strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
                          <br>
                         <strong>Address: </strong>${project.address }
@@ -149,13 +159,14 @@
 							<strong>Volunteers still needed: </strong>
                             ${project.volunteersNeeded - fn:length(project.volunteers) }
                         </c:if>
-						<div class="bottomButton">
+						<div cla ss="bottomButton">
 							<form action="viewProject.do" method="get">
 								<input type="hidden" value="${project.id }" name="projectId">
 								<input type="submit" class="btnP btn-primary"
 									value="View Project">
 							</form>
 						</div>
+
 						<br>
 					</c:forEach>
 				</c:if>
