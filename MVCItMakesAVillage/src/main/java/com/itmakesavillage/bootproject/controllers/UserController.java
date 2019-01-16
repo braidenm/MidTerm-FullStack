@@ -38,7 +38,8 @@ public class UserController {
 	public String removeVolunteer(Model model, Integer userId, Integer projectId, HttpSession session, RedirectAttributes redir) {
 		User user = userDAO.findUser(userId);
 		Project project = projectDAO.findProject(projectId);
-		
+		ProjectVolunteer pv = pvDAO.findPV(projectId, userId);
+		pv.setCompany(null);
 		user.getVolunteer().removeProject(project);
 		user = userDAO.updateUser(user.getId(), user);
 		redir.addAttribute("projectId", project.getId());

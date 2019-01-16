@@ -131,6 +131,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `company`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `company` ;
+
+CREATE TABLE IF NOT EXISTS `company` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `project_volunteer`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `project_volunteer` ;
@@ -141,8 +153,10 @@ CREATE TABLE IF NOT EXISTS `project_volunteer` (
   `project_id` INT NOT NULL,
   `hours_actual` INT NULL DEFAULT 0,
   `hours_pledged` INT NULL DEFAULT 0,
+  `company_id` INT NULL,
   INDEX `fk_to_project_idx` (`project_id` ASC),
   PRIMARY KEY (`id`),
+  INDEX `fk_to_company_idx` (`company_id` ASC),
   CONSTRAINT `fk_to_volunteer`
     FOREIGN KEY (`volunteer_id`)
     REFERENCES `volunteer` (`user_id`)
@@ -151,6 +165,11 @@ CREATE TABLE IF NOT EXISTS `project_volunteer` (
   CONSTRAINT `fk_to_project`
     FOREIGN KEY (`project_id`)
     REFERENCES `project` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_to_company`
+    FOREIGN KEY (`company_id`)
+    REFERENCES `company` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -365,42 +384,61 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `company`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `villagedb`;
+INSERT INTO `company` (`id`, `name`) VALUES (1, 'Skill Distillery');
+INSERT INTO `company` (`id`, `name`) VALUES (2, 'Nuclear Panda inc');
+INSERT INTO `company` (`id`, `name`) VALUES (3, 'Brainwave Coffee');
+INSERT INTO `company` (`id`, `name`) VALUES (4, 'RealLife Service inc');
+INSERT INTO `company` (`id`, `name`) VALUES (5, 'Strawberry Sultan');
+INSERT INTO `company` (`id`, `name`) VALUES (6, 'Andromeda Electron');
+INSERT INTO `company` (`id`, `name`) VALUES (7, 'Redwood MilkyWay');
+INSERT INTO `company` (`id`, `name`) VALUES (8, 'Railroad Legend');
+INSERT INTO `company` (`id`, `name`) VALUES (9, 'Party Vision LLC');
+INSERT INTO `company` (`id`, `name`) VALUES (10, 'Cookie Basic ');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `project_volunteer`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `villagedb`;
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (1, 1, 1, 0, 1);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (2, 2, 1, 0, 1);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (3, 3, 1, 0, 1);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (4, 4, 1, 0, 1);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (5, 5, 1, 0, 1);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (6, 6, 1, 0, 1);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (7, 1, 2, 0, 2);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (8, 2, 2, 0, 7);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (9, 3, 2, 0, 5);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (10, 7, 2, 0, 3);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (11, 10, 3, 0, 2);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (12, 8, 3, 0, 4);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (13, 5, 3, 0, 6);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (14, 2, 3, 0, 3);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (15, 4, 3, 0, 10);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (16, 7, 4, 0, 2);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (17, 3, 4, 0, 2);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (18, 4, 4, 0, 1);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (19, 2, 4, 0, 2);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (20, 6, 4, 0, 1);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (21, 5, 4, 0, 2);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (22, 10, 5, 0, 1000);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (23, 3, 5, 0, 10);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (24, 1, 5, 0, 1000);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (25, 8, 5, 0, 10);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (26, 7, 5, 0, 30);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (27, 5, 5, 0, 30);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (28, 8, 6, 0, 20);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (29, 7, 6, 0, 10);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (30, 1, 6, 0, 40);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (31, 10, 6, 0, 33);
-INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`) VALUES (32, 2, 6, 0, 1);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (1, 1, 1, 0, 1, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (2, 2, 1, 0, 1, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (3, 3, 1, 0, 1, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (4, 4, 1, 0, 1, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (5, 5, 1, 0, 1, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (6, 6, 1, 0, 1, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (7, 1, 2, 0, 2, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (8, 2, 2, 0, 7, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (9, 3, 2, 0, 5, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (10, 7, 2, 0, 3, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (11, 10, 3, 0, 2, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (12, 8, 3, 0, 4, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (13, 5, 3, 0, 6, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (14, 2, 3, 0, 3, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (15, 4, 3, 0, 10, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (16, 7, 4, 0, 2, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (17, 3, 4, 0, 2, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (18, 4, 4, 0, 1, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (19, 2, 4, 0, 2, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (20, 6, 4, 0, 1, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (21, 5, 4, 0, 2, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (22, 10, 5, 0, 1000, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (23, 3, 5, 0, 10, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (24, 1, 5, 0, 1000, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (25, 8, 5, 0, 10, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (26, 7, 5, 0, 30, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (27, 5, 5, 0, 30, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (28, 8, 6, 0, 20, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (29, 7, 6, 0, 10, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (30, 1, 6, 0, 40, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (31, 10, 6, 0, 33, NULL);
+INSERT INTO `project_volunteer` (`id`, `volunteer_id`, `project_id`, `hours_actual`, `hours_pledged`, `company_id`) VALUES (32, 2, 6, 0, 1, NULL);
 
 COMMIT;
 

@@ -18,14 +18,14 @@ public interface ProjectDAO {
 	public List<Project> getAllProject();
 	public List<Category> getAllCategories();
 	public Category findCategoryById(int id);
-	List<State> getAllStates();
-	State getStateById(int stateId);
-	Address updateAddress(Address address);
-	Address createAddress(Address address);
-	Comments deactivateComment(int commentId);
-	Comments reactivateComment(int commentId);
-	Comments createComment(Comments comment);
-	Comments findComment(int commentId);
+	public List<State> getAllStates();
+	public State getStateById(int stateId);
+	public Address updateAddress(Address address);
+	public Address createAddress(Address address);
+	public Comments deactivateComment(int commentId);
+	public Comments reactivateComment(int commentId);
+	public Comments createComment(Comments comment);
+	public Comments findComment(int commentId);
 
 
 }
