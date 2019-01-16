@@ -6,7 +6,7 @@
 		width="30" height="30" class="d-inline-block align-top" alt="logo"></a>
 	</ul>
 	<ul class="nav navbar-nav navbar-left">
-		<li class="nav-item"><a class="nav-link " href="home.do">VolunteerUp</a></li>
+		<li class="nav-item navh"><a class="nav-link " href="home.do">VolunteerUp</a></li>
 	</ul>
 
 	<ul class="nav navbar-nav navbar-left">
@@ -21,10 +21,7 @@
 				class="nav-link glyphicon glyphicon-user" href="account.do">Account</a></li>
 		</c:if>
 	</ul>
-	<ul class="nav navbar-nav navbar-left">
-		<li class="nav-item"><a class="nav-link glyphicon"
-			href="about.do"> About</a></li>
-	</ul>
+	
 
 	<ul class="nav navbar-nav navbar-right">
 		<c:if test="${empty user}">
