@@ -40,6 +40,10 @@ body, html {
 	color: rgba(255, 255, 255);
 }
 
+a:link {
+	color: rgba(255, 255, 255);
+}
+
 .navh {
 	font-size: 15px;
 }
@@ -101,8 +105,6 @@ input[type=text], input[type=password] {
 	width: 100%;
 	opacity: 0.9;
 }
-
-
 
 .btnP {
 	background-color: #4CAF50;
