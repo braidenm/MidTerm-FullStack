@@ -43,6 +43,32 @@ public class ProjectController {
     @Autowired
     private CompanyDAO companyDAO;
     
+    @RequestMapping(path = "searchLocal.do", method = RequestMethod.GET)
+    public String searchLocal(Model model, HttpSession session) {
+    	 User user = (User) session.getAttribute("user");
+         if (user == null) {
+             return "login";
+         }
+         
+    	List<Project> projectList = projectDAO.getAllProject();
+    	List<Project> localProjects = new ArrayList<>();
+    	
+    	for (Project project : projectList) {
+			if(project.getAddress().getState().equals(user.getVolunteer().getAddress().getState())) {
+				localProjects.add(project);
+			}
+		}
+    	
+    	boolean notFound = false;
+    	if (projectList.isEmpty()) {
+    		notFound = true;
+    		model.addAttribute("notFound", notFound);
+    		return "index";
+    	}
+    	
+    	model.addAttribute("projectList", localProjects);
+    	return "index";
+    }
     @RequestMapping(path = "searchKW.do", method = RequestMethod.GET)
     public String searchKW(String keyword, Model model) {
         Set<Project> projectList = projectDAO.searchProject(keyword);
