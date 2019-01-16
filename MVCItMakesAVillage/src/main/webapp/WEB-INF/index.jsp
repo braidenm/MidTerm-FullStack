@@ -31,12 +31,15 @@
 	<div class="bg-img">
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
+
+		<div class="ticker">
+			<strong>Hours Pledged: </strong> ${hoursPledged } <strong>Hours Contributed: </strong> ${hoursContributed}
+			<strong>Total Projects: </strong> ${projects } <strong>Total Volunteers: </strong> ${volunteers}	
+		</div>
 		<div class="headerText">
 			<h1>A Little Dirt Doesn't Hurt</h1>
 		</div>
+		
 		<div class="row" id="centered">
 			<div class="col-sm-5">
 				<form action="searchKW.do" method="get" id="searchByKW"
@@ -69,10 +72,7 @@
 			</div> 
 		</div>
 	</div>
-	<div class="ticker">
-		<strong>Hours Pledged: </strong> ${hoursPledged } <strong>Hours Contributed: </strong> ${hoursContributed}
-		<strong>Total Projects: </strong> ${projects } <strong>Total Volunteers: </strong> ${volunteers}	
-	</div>
+
 	
 	<%-- <div class="container">
 		<form form-check form-check-inline action="searchCat.do" method="get"
