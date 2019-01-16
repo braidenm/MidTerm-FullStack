@@ -158,6 +158,12 @@
 						
 							<strong>${volunteer.firstName } ${volunteer.lastName } </strong>
 							<br>
+							<c:if test="${project.owner.userid == user.id }">
+									<strong>Contact Phone: </strong>${volunteer.phone}
+									<br>
+									<strong>Contact Email: </strong>${volunteer.user.email}
+								 
+							</c:if>
 							<div>
 								<form action="viewProfile.do" method="post">
 									<input type="hidden" name="viewId" value="${volunteer.userid}">
