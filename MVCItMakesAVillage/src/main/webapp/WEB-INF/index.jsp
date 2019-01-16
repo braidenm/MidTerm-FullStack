@@ -34,7 +34,7 @@
 			${projects } <strong>Total Volunteers: </strong> ${volunteers}
 		</div>
 		<div class="headerText">
-			<h1>A Little Dirt Doesn't Hurt</h1>
+			<h1>Organize Projects in Your Community</h1>
 		</div>
 
 		<div class="row" id="centered">
@@ -164,7 +164,7 @@
 						<div cla ss="bottomButton">
 							<form action="viewProject.do" method="get">
 								<input type="hidden" value="${project.id }" name="projectId">
-								<input type="submit" class="btnP btn-primary"
+								<input type="submit" class="btn btnP btn-primary"
 									value="View Project">
 							</form>
 						</div>
