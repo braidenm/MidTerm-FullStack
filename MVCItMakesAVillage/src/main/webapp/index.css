@@ -34,12 +34,8 @@ body, html {
 	position: fixed;
 	
 }
-.nav-link{
+a:link{
 	color: rgba(255, 255, 255);
-}
-.navbar-brand{
-	color: rgba(255, 255, 255);
-	
 }
 .headerText {
 	text-align: center;
@@ -49,8 +45,6 @@ body, html {
 }
 
 .KWHeader {
-	
-	font-size: 20px;
 	
 }
 
@@ -75,7 +69,6 @@ input[type=text], input[type=password] {
 
 .CategoryHeader {
 	
-	font-size: 20px;
 }
 /*Category form*/
 .containerCategory {
