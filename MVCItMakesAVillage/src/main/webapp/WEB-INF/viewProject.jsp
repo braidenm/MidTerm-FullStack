@@ -8,16 +8,16 @@
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="viewProject.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
   
+<link rel="stylesheet" type="text/css" href="viewProject.css">
 <title>View Project</title>
 </head>
 <body>
@@ -46,11 +46,28 @@
 			  				 	${cat.name}
 			  				 	<c:if test="${!loop.last}">,</c:if>
 				</c:forEach>
-				<br> <strong>Owner Name: </strong>${project.owner.firstName}
-				${project.owner.lastName} <br> <strong>Address: </strong>${project.address }
-				<br> <strong>StartDate: </strong>${project.startDate} <br>
-				<strong>EndDate: </strong>${project.endDate} <br> <strong>Time:
-				</strong>${project.time} <br>
+				<br> 
+				<strong>Owner Name: </strong>${project.owner.firstName}
+				${project.owner.lastName} 
+				<div>
+					<form action="viewProfile.do" method="post">
+						<input type="hidden" name="viewId" value="${project.owner.userid}">
+						<input type="submit" value="View Profile" class="btn btn-primary">
+					</form>
+				</div>
+				<br> 
+				<strong>Address: </strong>${project.address }
+				<br> 
+				<strong>Contact Phone: </strong> ${project.owner.phone }
+				<br>
+				<strong>Contact Email: </strong> ${project.owner.user.email }
+				<br>
+				
+				<strong>StartDate: </strong>${project.startDate} 
+				<br>
+				<strong>EndDate: </strong>${project.endDate} 
+				<br> 
+				<strong>Time: </strong>${project.time} <br>
 				<c:if
 					test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
 					<strong>Volunteers still needed: </strong>
@@ -65,12 +82,14 @@
 				<c:if test="${!inList && project.active}">
 	
 					<form action="joinProject.do" method="post">
-						<label for="hours">Add Volunteer: </label> <input type="hidden"
-							name="userId" id="userId" value="${user.id}"> <input
-							type="hidden" name="projectId" id="projectId"
-							value="${project.id}"> <input type="number" name="hours"
-							id="hours" placeholder="pledged hours" required> <input
-							type="submit" class="btn btn-primary" value="Join Project">
+						<label for="hours">Add Volunteer: </label>
+						 <input type="hidden"
+							name="userId" id="userId" value="${user.id}"> 
+						<input type="hidden" name="projectId" id="projectId"
+							value="${project.id}"> 
+						<input type="number" name="hours"
+							id="hours" placeholder="pledged hours" required> 
+						<input type="submit" class="btn btn-primary" value="Join Project">
 	
 					</form>
 				</c:if>
@@ -85,32 +104,36 @@
 				</c:if>
 				<c:if test="${not empty project.comments }">
 					<h3>Comments:</h3>
-					<c:forEach items="${project.comments }" var="comment">
-						<div class="commentDisplay">
-							<c:if test="${comment.active || user.role == 'admin'}">
-								${comment.comment }<br>
-								- ${comment.user.volunteer.firstName }<br>
-								${comment.date }, 
-								${comment.time }
-								<c:if test="${ !comment.active && user.role == 'admin'}">
-									<div class="commentButton">
-										<form action="reactivateComment.do" method="POST">
-											<input name="commentId" value="${comment.id }" type="hidden">
-											<input type="submit" class="btn btn-primary" value="Reactivate Comment" />
-										</form>
-									</div>
-								</c:if>
-								<c:if test="${comment.active && user.id == project.owner.userid || user.id == comment.user.id || user.role == 'admin'}">
-									<div class="commentButton">
-										<form action="removeComment.do" method="POST">
-											<input name="commentId" value="${comment.id }" type="hidden">
-											<input type="submit" class="btn btn-primary" value="Remove Comment" />
-										</form>
-									</div>
-								</c:if>
-							</c:if>
-						</div>
-					</c:forEach>
+					<ul>
+						<c:forEach items="${project.comments }" var="comment">
+							<li>
+								<div class="commentDisplay">
+									<c:if test="${comment.active || user.role == 'admin'}">
+										${comment.comment }<br>
+										- ${comment.user.volunteer.firstName }<br>
+										${comment.date }, 
+										${comment.time }
+										<c:if test="${ !comment.active && user.role == 'admin'}">
+											<div class="commentButton">
+												<form action="reactivateComment.do" method="POST">
+													<input name="commentId" value="${comment.id }" type="hidden">
+													<input type="submit" class="btn btn-primary" value="Reactivate Comment" />
+												</form>
+											</div>
+										</c:if>
+										<c:if test="${comment.active && user.id == project.owner.userid || user.id == comment.user.id || user.role == 'admin'}">
+											<div class="commentButton">
+												<form action="removeComment.do" method="POST">
+													<input name="commentId" value="${comment.id }" type="hidden">
+													<input type="submit" class="btn btn-primary" value="Remove Comment" />
+												</form>
+											</div>
+										</c:if>
+									</c:if>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
 				</c:if>
 				<br>
 				<c:if test="${not empty user }">
@@ -129,52 +152,64 @@
 		<div class="col-sm-3">
 			<h3>Volunteers:</h3>
 			<div>
-				<c:forEach items="${project.volunteers}" var="volunteer">
-					<strong>${volunteer.firstName } ${volunteer.lastName } </strong>
-					<br>
-					<strong>Number: </strong>${volunteer.phone}
-			  		<br>
-					<strong>Email: </strong>${volunteer.user.email}
-			  		<br>
-	
-					<c:forEach items="${pvList}" var="pv">
-						<c:if test="${volunteer.userid == pv.volunteer.userid}">
-							<strong>Pledged Hours: </strong>${pv.hoursPledged}
-			  				<br>
-							<strong>Actual Hours: </strong>${pv.hoursActual }
-			  				<br>
-							<c:if test="${volunteer.userid == user.id or project.owner.userid == user.id or user.role == 'admin' }">
-								<form action="submitHours.do" method="post">
-									<label for="hoursActual">Edit Hours: </label> <input
-										type="hidden" name="userId" id="userId"
-										value="${volunteer.userid}"> <input type="hidden"
-										name="projectId" id="projectId" value="${project.id}">
-									<input type="number" name="hours" id="hours" min="0"
-										value="${pv.hoursPledged}"> <input type="submit"
-										class="btn btn-primary" value="Submit Hours">
-								</form>
-								<br>
-								<form action="removeVolunteer.do" method="post">
-									<input type="hidden" name="userId" id="userId"
-										value="${volunteer.userid}"> <input type="hidden"
-										name="projectId" id="projectId" value="${project.id}">
-									<input type="submit" class="btn btn-primary"
-										value="Remove Volunteer">
-	
-								</form>
-	
+				<ul>
+					<c:forEach items="${project.volunteers}" var="volunteer">
+						<li>
+						
+							<strong>${volunteer.firstName } ${volunteer.lastName } </strong>
+							<br>
+							<c:if test="${project.owner.userid == user.id }">
+									<strong>Contact Phone: </strong>${volunteer.phone}
+									<br>
+									<strong>Contact Email: </strong>${volunteer.user.email}
+								 
 							</c:if>
-						</c:if>
-	
-	
-	
+							<div>
+								<form action="viewProfile.do" method="post">
+									<input type="hidden" name="viewId" value="${volunteer.userid}">
+									<input type="submit" value="View Profile" class="btn btn-primary">
+								</form>
+							</div>
+							<c:forEach items="${pvList}" var="pv">
+								<c:if test="${volunteer.userid == pv.volunteer.userid}">
+									<strong>Pledged Hours: </strong>${pv.hoursPledged}
+					  				<br>
+									<strong>Actual Hours: </strong>${pv.hoursActual }
+					  				<br>
+									<c:if test="${volunteer.userid == user.id or project.owner.userid == user.id or user.role == 'admin' }">
+										<form action="submitHours.do" method="post">
+											<label for="hoursActual">Edit Hours: </label> <input
+												type="hidden" name="userId" id="userId"
+												value="${volunteer.userid}"> <input type="hidden"
+												name="projectId" id="projectId" value="${project.id}">
+											<input type="number" name="hours" id="hours" min="0"
+												value="${pv.hoursPledged}"> <input type="submit"
+												class="btn btn-primary" value="Submit Hours">
+										</form>
+										<br>
+										<form action="removeVolunteer.do" method="post">
+											<input type="hidden" name="userId" id="userId"
+												value="${volunteer.userid}"> <input type="hidden"
+												name="projectId" id="projectId" value="${project.id}">
+											<input type="submit" class="btn btn-primary"
+												value="Remove Volunteer">
+			
+										</form>
+			
+									</c:if>
+								</c:if>
+			
+			
+			
+							</c:forEach>
+							<br>
+			
+			
+						</li>
 					</c:forEach>
-					<br>
-	
-	
-				</c:forEach>
-	
-	
+		
+		
+				</ul>
 			</div>
 		</div>
 	</div>
