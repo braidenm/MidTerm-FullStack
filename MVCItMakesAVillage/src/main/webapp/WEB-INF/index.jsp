@@ -106,8 +106,10 @@
 			<div class="col-sm-1"></div>
 			<div class="col-sm-4">
 				<c:if test="${not empty projectList }">
+				<c:if test="${fn:length(projectList > 1)}"><h2 class="projectListHeader">Your Project Search Results</h2></c:if>
+				<c:if test="${fn:length(projectList == 1)}"><h2 class="projectListHeader">Your Project Search Result</h2></c:if>
 					<c:forEach var="project" items="${projectList}">
-						<strong>Project name: </strong>${project.title}
+						<strong>${project.title}</strong>
                          <br>
 						<%-- <strong>Owner Name: </strong>${project.owner.firstName} ${project.owner.lastName} 
                          <br>

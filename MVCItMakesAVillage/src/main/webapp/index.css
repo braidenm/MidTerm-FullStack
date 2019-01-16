@@ -138,6 +138,9 @@ input[type=text], input[type=password] {
 	opacity: 1;
 }
 
+.log{
+	margin-right: 10px;
+}
 .navbar ul li{
   background-color: rgb(0, 179, 60);
   margin: 0px;
