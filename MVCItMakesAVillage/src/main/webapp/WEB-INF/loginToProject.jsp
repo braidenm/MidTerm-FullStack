@@ -27,7 +27,12 @@
 	<br>
 	<br>
 	<br>
-	<header> </header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6" >
@@ -77,7 +82,20 @@
 	<br>
 	<br>
 	<br>
-	<div class="footer id="footer">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="footer" id="footer">
 		<a href="about.do"> About</a>
 		
 	</div>

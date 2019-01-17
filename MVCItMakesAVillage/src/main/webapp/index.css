@@ -53,6 +53,7 @@ a{
 }
 
 .headerText {
+	animation: slidein 3s linear 1s running;
 	text-align: center;
 	color: white;
 	font-family: 'Open Sans Condensed', sans-serif;
