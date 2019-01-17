@@ -2,6 +2,7 @@ package com.itmakesavillage.bootproject.data;
 
 import java.util.List;
 
+import com.itmakesavillage.jpaproject.entities.ItemsCommitted;
 import com.itmakesavillage.jpaproject.entities.ProjectVolunteer;
 
 public interface ProjectVolunteerDAO {
@@ -14,5 +15,8 @@ public interface ProjectVolunteerDAO {
 	public ProjectVolunteer createPV(ProjectVolunteer pv);
 	List<ProjectVolunteer> getAllProjectVolunteers();
 	ProjectVolunteer findPVById(int id);
+	ItemsCommitted findItemsCommittedById(int id);
+	ItemsCommitted createItemsCommitted(ItemsCommitted itemsCommitted);
+	ItemsCommitted deleteItemsCommitted(ItemsCommitted itemsCommitted);
 
 }

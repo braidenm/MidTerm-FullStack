@@ -44,6 +44,7 @@ public class UserController {
 		Project project = projectDAO.findProject(projectId);
 		ProjectVolunteer pv = pvDAO.findPV(projectId, userId);
 		pv.setCompany(null);
+		pv.setItemsCommitted(null);
 		user.getVolunteer().removeProject(project);
 		user = userDAO.updateUser(user.getId(), user);
 		redir.addAttribute("projectId", project.getId());
@@ -287,10 +288,12 @@ public class UserController {
 		return"viewProfile";
 	}
 	@RequestMapping(path = "updateItemsCommitted.do", method = RequestMethod.POST)
-	public String updateItemsCommitted(ItemsCommitted itemsCommitted, Integer projectId,
-			Integer pvId, Model model, RedirectAttributes redir) {
-		ProjectVolunteer pv = pvDAO.findPVById(pvId);
-    	itemsCommitted.setProjectVolunteer(pv);
+	public String updateItemsCommitted(Integer committedId, Integer itemQuantity,  Integer projectId,
+			 Model model, RedirectAttributes redir) {
+		
+		ItemsCommitted itemsCommitted = pvDAO.findItemsCommittedById(committedId);
+		ProjectVolunteer pv = itemsCommitted.getProjectVolunteer();
+//		itemsCommitted.setQuantity(itemQuantity);
     	
     	Project project = pv.getProject();
     	List<ItemsNeeded> neededList = project.getItemsNeeded();
@@ -301,31 +304,40 @@ public class UserController {
 				break;
 			}
 		}
-    	ItemsCommitted originalCommittedItem = null;
-    	for(ItemsCommitted item : pv.getItemscommitted()) {
-    		if(item.getItem().equals(itemNeeded.getItem())) {
-    			originalCommittedItem = item;
-    		}
+//    	ItemsCommitted originalCommittedItem = null;
+//    	for(ItemsCommitted item : pv.getItemsCommitted()) {
+//    		if(item.getItem().equals(itemNeeded.getItem())) {
+//    			originalCommittedItem = item;
+//    		}
+//    	}
+    	if(itemsCommitted.getQuantity() > itemQuantity) {
+    		int quantity = itemsCommitted.getQuantity() - itemQuantity;
+    		itemNeeded.setQuantity(quantity + itemNeeded.getQuantity());
     	}
-    	if(originalCommittedItem.getQuantity() > itemsCommitted.getQuantity()) {
-    		int quantity = originalCommittedItem.getQuantity() - itemsCommitted.getQuantity();
-    		itemNeeded.setQuantiy(quantity + itemNeeded.getQuantiy());
-    	}
-    	if(originalCommittedItem.getQuantity() < itemsCommitted.getQuantity()) {
-    		int quantity = itemsCommitted.getQuantity() - originalCommittedItem.getQuantity();
-    		itemNeeded.setQuantiy(itemNeeded.getQuantiy() - quantity);
-    		if(itemNeeded.getQuantiy()<0) {
-    			itemNeeded.setQuantiy(0);
+    	if(itemsCommitted.getQuantity() < itemQuantity) {
+    		int quantity = itemQuantity - itemsCommitted.getQuantity() ;
+    		itemNeeded.setQuantity(itemNeeded.getQuantity() - quantity);
+    		if(itemNeeded.getQuantity()<0) {
+    			itemNeeded.setQuantity(0);
     		}
     	}
     	
     	project.removeItemsNeeded(itemNeeded);
     	project.addItemsNeeded(itemNeeded);
     	
+    	itemsCommitted.setQuantity(itemQuantity);
     	//calls .equals which is only set to the id
     	//this should update any changes to the item
     	pv.removeItemsCommitted(itemsCommitted);
     	pv.addItemsCommitted(itemsCommitted);
+    	System.out.println("****"+ itemQuantity);
+    	System.out.println("****"+ pv);
+    	if(itemQuantity <= 0) {
+    		pv.removeItemsCommitted(itemsCommitted);
+    		pvDAO.deleteItemsCommitted(itemsCommitted);
+    		
+    	}
+    	System.out.println("****"+ pv);
     	
     	pv = pvDAO.updatePV(pv);
     	project = projectDAO.updateProject(project.getId(), project);
@@ -334,4 +346,74 @@ public class UserController {
 		
 		return"redirect:viewProject.do";
 	}
+	@RequestMapping(path = "addItemsCommitted.do", method = RequestMethod.POST)
+	public String addItemsCommitted(Integer itemId, Integer itemQuantity,  Integer projectId,
+			Integer pvId,  Model model, RedirectAttributes redir) {
+		
+		Project project = projectDAO.findProject(projectId);
+		ProjectVolunteer pv = pvDAO.findPVById(pvId);
+		ItemsCommitted itemC = new ItemsCommitted();
+		itemC.setItem(projectDAO.getItem(itemId));
+		itemC.setProjectVolunteer(pv);
+		itemC.setQuantity(itemQuantity);
+		for (ItemsCommitted itemsCommitted : pv.getItemsCommitted()) {
+			if(itemsCommitted.getItem().equals(itemC.getItem())) {
+				redir.addAttribute("projectId", project.getId());
+				
+				return"redirect:viewProject.do";
+			}
+		}
+		itemC = pvDAO.createItemsCommitted(itemC);
+		
+		ItemsNeeded itemN = new ItemsNeeded();
+		for (ItemsNeeded itemNeeded : project.getItemsNeeded()) {
+			if(itemNeeded.getItem().equals(itemC.getItem())) {
+				itemN=itemNeeded;
+				break;
+			}
+		}
+		
+		itemN.setQuantity(itemN.getQuantity()-itemQuantity);
+		
+		if(itemN.getQuantity() < 0) {
+			itemN.setQuantity(0);
+		}
+		
+		project.removeItemsNeeded(itemN);
+		project.addItemsNeeded(itemN);
+		
+		pv.removeItemsCommitted(itemC);
+		pv.addItemsCommitted(itemC);
+		
+		project = projectDAO.updateProject(project.getId(), project);
+		pv= pvDAO.updatePV(pv);
+		
+		
+		
+		redir.addAttribute("projectId", project.getId());
+		
+		return"redirect:viewProject.do";
+	}
 }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -25,7 +25,7 @@ public class ItemsNeeded {
 	@JoinColumn(name="item_id")
 	private Item item;
 	@Column(name="quantity_needed")
-	private int quantiy;
+	private int quantity;
 	
 	
 	public int getId() {
@@ -46,11 +46,11 @@ public class ItemsNeeded {
 	public void setItem(Item item) {
 		this.item = item;
 	}
-	public int getQuantiy() {
-		return quantiy;
+	public int getQuantity() {
+		return quantity;
 	}
-	public void setQuantiy(int quantiy) {
-		this.quantiy = quantiy;
+	public void setQuantity(int quantiy) {
+		this.quantity = quantiy;
 	}
 	@Override
 	public int hashCode() {
@@ -74,14 +74,14 @@ public class ItemsNeeded {
 	}
 	@Override
 	public String toString() {
-		return "ItemsNeeded [id=" + id + ", project=" + project + ", item=" + item + ", quantiy=" + quantiy + "]";
+		return "ItemsNeeded [id=" + id + ", project=" + project + ", item=" + item + ", quantiy=" + quantity + "]";
 	}
 	public ItemsNeeded(int id, Project project, Item item, int quantiy) {
 		super();
 		this.id = id;
 		this.project = project;
 		this.item = item;
-		this.quantiy = quantiy;
+		this.quantity = quantiy;
 	}
 	public ItemsNeeded() {
 		super();

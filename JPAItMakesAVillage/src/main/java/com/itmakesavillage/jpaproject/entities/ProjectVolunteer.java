@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,18 +41,18 @@ public class ProjectVolunteer {
 	@JoinColumn(name="company_id")
 	private Company company;
 	
-	@OneToMany(mappedBy="projectVolunteer")
-	private List<ItemsCommitted> itemscommitted;
+	@OneToMany(mappedBy="projectVolunteer", fetch=FetchType.EAGER)
+	private List<ItemsCommitted> itemsCommitted;
 	
 	
 	
-	public List<ItemsCommitted> getItemscommitted() {
-		return itemscommitted;
+	public List<ItemsCommitted> getItemsCommitted() {
+		return itemsCommitted;
 	}
 
 
-	public void setItemscommitted(List<ItemsCommitted> itemscommitted) {
-		this.itemscommitted = itemscommitted;
+	public void setItemsCommitted(List<ItemsCommitted> itemscommitted) {
+		this.itemsCommitted = itemscommitted;
 	}
 
 
@@ -145,17 +146,17 @@ public class ProjectVolunteer {
 	}
 	
 	public void addItemsCommitted(ItemsCommitted itemcommitted) {
-		if(itemscommitted == null) {
-			itemscommitted = new ArrayList<>();
+		if(itemsCommitted == null) {
+			itemsCommitted = new ArrayList<>();
 		}
-		if(!itemscommitted.contains(itemcommitted)) {
-			itemscommitted.add(itemcommitted);
+		if(!itemsCommitted.contains(itemcommitted)) {
+			itemsCommitted.add(itemcommitted);
 		}
 		
 	}
 	public void removeItemsCommitted(ItemsCommitted itemcommitted) {
-		if(itemscommitted !=null && itemscommitted.contains(itemcommitted)) {
-			itemscommitted.remove(itemcommitted);
+		if(itemsCommitted !=null && itemsCommitted.contains(itemcommitted)) {
+			itemsCommitted.remove(itemcommitted);
 		}
 	}
 

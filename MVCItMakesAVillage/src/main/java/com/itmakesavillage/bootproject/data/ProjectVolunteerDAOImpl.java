@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.itmakesavillage.jpaproject.entities.ItemsCommitted;
 import com.itmakesavillage.jpaproject.entities.ProjectVolunteer;
 
 @Transactional
@@ -25,7 +26,7 @@ public class ProjectVolunteerDAOImpl implements ProjectVolunteerDAO {
 		managed.setHoursPledged(pv.getHoursPledged());
 		managed.setProject(pv.getProject());
 		managed.setVolunteer(pv.getVolunteer());
-		managed.setItemscommitted(pv.getItemscommitted());
+		managed.setItemsCommitted(pv.getItemsCommitted());
 		return managed;
 	}
 
@@ -86,6 +87,21 @@ public class ProjectVolunteerDAOImpl implements ProjectVolunteerDAO {
 	public ProjectVolunteer findPVById(int id) {
 		
 		return em.find(ProjectVolunteer.class, id);
+	}
+	@Override
+	public ItemsCommitted findItemsCommittedById(int id) {
+		
+		return em.find(ItemsCommitted.class, id);
+	}
+	@Override
+	public ItemsCommitted createItemsCommitted(ItemsCommitted itemsCommitted) {
+		em.persist(itemsCommitted);
+		return itemsCommitted;
+	}
+	@Override
+	public ItemsCommitted deleteItemsCommitted(ItemsCommitted itemsCommitted) {
+		em.remove(itemsCommitted);
+		return itemsCommitted;
 	}
 	
 	

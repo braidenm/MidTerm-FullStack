@@ -54,6 +54,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		managed.setAddress(project.getAddress());
 		managed.setCategories(project.getCategories());
 		managed.setActive(project.isActive());
+		managed.setItemsNeeded(project.getItemsNeeded());
 
 		return managed;
 	}

@@ -124,11 +124,11 @@ public class ProjectController {
             
             inList = project.getVolunteers().contains(user.getVolunteer());
         }
+        System.out.println("******"+project.getProjectVolunteer());
         
         model.addAttribute("companyList", companyList);
         model.addAttribute("inList", inList);
         model.addAttribute("pvList", project.getProjectVolunteer());
-        System.out.println(project.getProjectVolunteer());
         model.addAttribute("project", project);
         return "viewProject";
     }
@@ -158,7 +158,7 @@ public class ProjectController {
 	    		Item item = projectDAO.getItem(id);
 	    		needed.setItem(item);
 	    		needed.setProject(project);
-	    		needed.setQuantiy(itemQuantity[i]);
+	    		needed.setQuantity(itemQuantity[i]);
 	    		needed = projectDAO.createItemsNeeded(needed);
 				itemsNeeded.add(needed);
 				i++;
@@ -197,8 +197,8 @@ public class ProjectController {
     @RequestMapping(path = "joinProject.do", method = RequestMethod.POST)
     public String joinProject(HttpSession session, Integer projectId, Integer hours, 
     		Integer companyId, Model model, RedirectAttributes redir,
-    		@RequestParam(required=false, name = "itemid") Integer[] itemId,
-            @RequestParam(required=false, name = "itemQuantity") Integer[] itemQuantity) {
+    		@RequestParam(required=false, name = "itemid") Integer itemId,
+            @RequestParam(required=false, name = "itemQuantity") Integer itemQuantity) {
        
     	User user = (User) session.getAttribute("user");
         if (user == null) {
@@ -221,53 +221,44 @@ public class ProjectController {
         pv.setHoursPledged(hours);
         pvDAO.createPV(pv);
         
-        List<ItemsCommitted> itemsCommitted = new ArrayList<>();
         
+        ItemsCommitted itemC = new ItemsCommitted();
         if(itemId != null) {
-        	int i =0;
-        	for (int id: itemId) {
-        		Item item = projectDAO.getItem(id);
-        		ItemsCommitted itemC = new ItemsCommitted();
+        		Item item = projectDAO.getItem(itemId);
         		itemC.setItem(item);
         		itemC.setProjectVolunteer(pv);
-        		itemC.setQuantity(itemQuantity[i]);
-        		itemsCommitted.add(itemC);
-        		i++;
-        	}
-        	pv.setItemscommitted(itemsCommitted);
+        		itemC.setQuantity(itemQuantity);
+        		itemC = pvDAO.createItemsCommitted(itemC);
+        		pv.addItemsCommitted(itemC);
+        }
         	
         	List<ItemsNeeded> neededList = project.getItemsNeeded();
         	List<ItemsNeeded> remainingList = new ArrayList<>();
         	int remainingQ =0;
-        	for (ItemsCommitted committed: itemsCommitted) {
 				for (ItemsNeeded needed : neededList) {
-					if(needed.getItem().equals(committed.getItem())) {
-						remainingQ = needed.getQuantiy() - committed.getQuantity();
+					if(needed.getItem().equals(itemC.getItem())) {
+						remainingQ = needed.getQuantity() - itemC.getQuantity();
 						if(remainingQ >0) {
-							needed.setQuantiy(remainingQ);
+							needed.setQuantity(remainingQ);
 							remainingList.add(needed);
 						}
 						else {
-							needed.setQuantiy(0);
+							needed.setQuantity(0);
 							remainingList.add(needed);
 						}
+						break;
 					}
 				}
 					
-			}
         	for (ItemsNeeded item : remainingList) {
 				//item has a .equals on id only. so by doing this 
         		//then adding it back in will set the new fields
         		project.getItemsNeeded().remove(item);
         		project.getItemsNeeded().add(item);
-        		
-        		
         	}
         	
         	project = projectDAO.updateProject(project.getId(), project);
         	pv = pvDAO.updatePV(pv);
-        }
-        
         
 //      volunteer = volunteerDAO.updateVolunteer(
 //              volunteer.getUserid(),
@@ -328,7 +319,7 @@ public class ProjectController {
 	    		Item item = projectDAO.getItem(id);
 	    		needed.setItem(item);
 	    		needed.setProject(project);
-	    		needed.setQuantiy(itemQuantity[i]);
+	    		needed.setQuantity(itemQuantity[i]);
 	    		needed = projectDAO.createItemsNeeded(needed);
 				itemsNeeded.add(needed);
 				i++;
