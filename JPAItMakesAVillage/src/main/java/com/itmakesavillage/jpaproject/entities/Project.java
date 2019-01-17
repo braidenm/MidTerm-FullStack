@@ -287,7 +287,7 @@ public class Project {
 		}
 		
 	}
-	public void removeVolunteer(ItemsNeeded itemNeeded) {
+	public void removeItemsNeeded(ItemsNeeded itemNeeded) {
 		if(itemsNeeded !=null && itemsNeeded.contains(itemNeeded)) {
 			itemsNeeded.remove(itemNeeded);
 		}

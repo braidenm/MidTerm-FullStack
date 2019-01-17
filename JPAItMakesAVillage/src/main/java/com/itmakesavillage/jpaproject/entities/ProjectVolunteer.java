@@ -144,7 +144,7 @@ public class ProjectVolunteer {
 		super();
 	}
 	
-	public void addItemsNeeded(ItemsCommitted itemcommitted) {
+	public void addItemsCommitted(ItemsCommitted itemcommitted) {
 		if(itemscommitted == null) {
 			itemscommitted = new ArrayList<>();
 		}
@@ -153,7 +153,7 @@ public class ProjectVolunteer {
 		}
 		
 	}
-	public void removeVolunteer(ItemsCommitted itemcommitted) {
+	public void removeItemsCommitted(ItemsCommitted itemcommitted) {
 		if(itemscommitted !=null && itemscommitted.contains(itemcommitted)) {
 			itemscommitted.remove(itemcommitted);
 		}

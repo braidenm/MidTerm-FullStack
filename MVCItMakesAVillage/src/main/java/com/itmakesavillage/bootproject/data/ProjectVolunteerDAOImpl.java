@@ -25,6 +25,7 @@ public class ProjectVolunteerDAOImpl implements ProjectVolunteerDAO {
 		managed.setHoursPledged(pv.getHoursPledged());
 		managed.setProject(pv.getProject());
 		managed.setVolunteer(pv.getVolunteer());
+		managed.setItemscommitted(pv.getItemscommitted());
 		return managed;
 	}
 
@@ -81,6 +82,13 @@ public class ProjectVolunteerDAOImpl implements ProjectVolunteerDAO {
 		pvList = em.createQuery(query, ProjectVolunteer.class).getResultList();
 		return pvList;
 	}
+	@Override
+	public ProjectVolunteer findPVById(int id) {
+		
+		return em.find(ProjectVolunteer.class, id);
+	}
+	
+	
 	
 	
 	

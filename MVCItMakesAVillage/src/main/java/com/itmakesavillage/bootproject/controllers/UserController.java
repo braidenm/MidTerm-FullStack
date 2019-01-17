@@ -19,6 +19,8 @@ import com.itmakesavillage.bootproject.data.ProjectVolunteerDAO;
 import com.itmakesavillage.bootproject.data.UserDAO;
 import com.itmakesavillage.bootproject.data.VolunteerDAO;
 import com.itmakesavillage.jpaproject.entities.Address;
+import com.itmakesavillage.jpaproject.entities.ItemsCommitted;
+import com.itmakesavillage.jpaproject.entities.ItemsNeeded;
 import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.ProjectVolunteer;
 import com.itmakesavillage.jpaproject.entities.State;
@@ -225,6 +227,7 @@ public class UserController {
 		session.setAttribute("user", user);
 		System.out.println(user);
 		return "redirect:account.do";
+		
 	}
 	
 	@RequestMapping(path = "editProfile.do", method = RequestMethod.GET)
@@ -283,9 +286,52 @@ public class UserController {
 		
 		return"viewProfile";
 	}
-	
-
-
-//	editProfile
-//	editProfile.do/(volunteer)/POST/profile.jsp
+	@RequestMapping(path = "updateItemsCommitted.do", method = RequestMethod.POST)
+	public String updateItemsCommitted(ItemsCommitted itemsCommitted, Integer projectId,
+			Integer pvId, Model model, RedirectAttributes redir) {
+		ProjectVolunteer pv = pvDAO.findPVById(pvId);
+    	itemsCommitted.setProjectVolunteer(pv);
+    	
+    	Project project = pv.getProject();
+    	List<ItemsNeeded> neededList = project.getItemsNeeded();
+    	ItemsNeeded itemNeeded = null;
+    	for (ItemsNeeded needed : neededList) {
+			if(needed.getItem().equals(itemsCommitted.getItem())) {
+				itemNeeded = needed;
+				break;
+			}
+		}
+    	ItemsCommitted originalCommittedItem = null;
+    	for(ItemsCommitted item : pv.getItemscommitted()) {
+    		if(item.getItem().equals(itemNeeded.getItem())) {
+    			originalCommittedItem = item;
+    		}
+    	}
+    	if(originalCommittedItem.getQuantity() > itemsCommitted.getQuantity()) {
+    		int quantity = originalCommittedItem.getQuantity() - itemsCommitted.getQuantity();
+    		itemNeeded.setQuantiy(quantity + itemNeeded.getQuantiy());
+    	}
+    	if(originalCommittedItem.getQuantity() < itemsCommitted.getQuantity()) {
+    		int quantity = itemsCommitted.getQuantity() - originalCommittedItem.getQuantity();
+    		itemNeeded.setQuantiy(itemNeeded.getQuantiy() - quantity);
+    		if(itemNeeded.getQuantiy()<0) {
+    			itemNeeded.setQuantiy(0);
+    		}
+    	}
+    	
+    	project.removeItemsNeeded(itemNeeded);
+    	project.addItemsNeeded(itemNeeded);
+    	
+    	//calls .equals which is only set to the id
+    	//this should update any changes to the item
+    	pv.removeItemsCommitted(itemsCommitted);
+    	pv.addItemsCommitted(itemsCommitted);
+    	
+    	pv = pvDAO.updatePV(pv);
+    	project = projectDAO.updateProject(project.getId(), project);
+    	
+    	redir.addAttribute("projectId", project.getId());
+		
+		return"redirect:viewProject.do";
+	}
 }

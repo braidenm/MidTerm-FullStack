@@ -13,5 +13,6 @@ public interface ProjectVolunteerDAO {
 	public List<ProjectVolunteer> findPVbyProjectId(int projectId);
 	public ProjectVolunteer createPV(ProjectVolunteer pv);
 	List<ProjectVolunteer> getAllProjectVolunteers();
+	ProjectVolunteer findPVById(int id);
 
 }
