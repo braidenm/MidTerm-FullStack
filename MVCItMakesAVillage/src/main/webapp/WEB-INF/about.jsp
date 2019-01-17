@@ -35,7 +35,7 @@
 			<div class="col-sm-3">
 			</div>
 			<div class="col-sm-6">
-			<p>Welcome to *websitename*! We believe that change starts locally, in our neighborhoods and communities, and that we can do more together than we can do on our own. We wanted to find a way to get together with other people in our community who want to make a positive impact, and empower us to get shit done. Please browse the projects other users have planned and executed, and if you haven't yet, join our site, create an account, and plan or join your first project!</p>
+			<p>Welcome to VolunteerUp! We believe that change starts locally, in our neighborhoods and communities, and that we can do more together than we can do on our own. We wanted to find a way to get together with other people in our community who want to make a positive impact, and empower us to get shit done. Please browse the projects other users have planned and executed, and if you haven't yet, join our site, create an account, and plan or join your first project!</p>
 			<br>
 			</div>
 		</div>
@@ -61,18 +61,21 @@
 		<div class="row">
 			<div class="col-sm-4" >
 			<img src="https://i.pinimg.com/736x/70/24/d5/7024d50af95eaf03f3ac86ef17d8febc.jpg" width="250" height="250">
+			<br>
 			<strong>Jimmy Fruchterman</strong>
 			<br>
 			<text>Scrumbum, doesn't use control space enough. "Why not just make another JSP?"</text>
 			</div>
 			<div class="col-sm-4">
 			<img src="https://i.pinimg.com/originals/f4/a9/1c/f4a91c2267d1657a1d2dc9a5dcc1e464.jpg" width="250" height="250">
+			<br>
 			<strong>Braiden Miller</strong>
 			<br>
-			<text>DBA, someone get this guy a Snickers. </text>
+			<text>DBA, someone get this guy a Snickers. "Can't we do just one more stretch goal?" </text>
 			</div>
 			<div class="col-sm-4">
 			<img src="http://www.comedycentral.co.uk/sites/default/files/styles/image-w-520-h-520-scale/public/cc_uk/galleries/large/2017/01/10/ross_finds_out_rachel_pregnant.jpg?itok=gYlbc7Cn" width="250" height="250">
+			<br>
 			<strong>Michael Murrell</strong>
 			<br>
 			<text>Repo depot, chill beats. Straight edge ninja. </text>
