@@ -99,16 +99,16 @@
 						<label for="hours">Join Project: </label> 
 						<input type="hidden" name="userId" id="userId" value="${user.id}"> 
 						<input type="hidden" name="projectId" id="projectId" value="${project.id}"> 
-						<label for="companyId"><strong>Want to bring Something? (if wanted add more Later)</strong></label> 
-						<br>
-						<select name="itemId">
-							<c:forEach items="${project.itemsNeeded }" var="needed">
-								<%-- <c:if test="${needed.quantity > 0 }"> --%>
-									    <option value="${needed.item.id}">${needed.item}</option>
-								<%-- </c:if> --%>
-							</c:forEach>
-						</select>
-						<input type="number" value="0" min="0" name="itemQuantity">
+						<c:if test="${not empty project.itemsNeeded }">
+							<label for="companyId"><strong>Want to bring Something? (if wanted add more Later)</strong></label> 
+							<br>
+							<select name="itemId">
+								<c:forEach items="${project.itemsNeeded }" var="needed">
+									<option value="${needed.item.id}">${needed.item}</option>
+								</c:forEach>
+							</select>
+							<input type="number" value="0" min="0" name="itemQuantity">
+						</c:if>
 						<br>
 						<label for="companyId">Select A Company</label> 
 						<select class="form-control" required id="companyId" name="companyId">

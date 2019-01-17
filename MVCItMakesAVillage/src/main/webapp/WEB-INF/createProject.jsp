@@ -117,9 +117,23 @@
                         </c:forEach>
                 
                     </div>
+                    <h3>Choose Items/Skills Needed:</h3>
+                    <div class="form-group">
+                    	<select name="itemId">
+                    		<option>None</option>
+	                        <c:forEach items="${itemList}" var="item">
+	                            
+	                            <option value="${item.id }">${item.name }</option>
+	                        </c:forEach>
+                    	</select>
+                        <input type="number" id="itemQuantity" name="itemQuantity" min="1" value="1" required />
+                    	
+                
+                    </div>
+                    
+                    
                     <div>
-                        <input type="hidden" value="${user.id}" id="ownerId"
-                            name="ownerId" />
+                        <input type="hidden" value="${user.id}" id="ownerId" name="ownerId" />
                     </div>
                     <div>
                         <input type="hidden" value="true" id="active" name="active" />

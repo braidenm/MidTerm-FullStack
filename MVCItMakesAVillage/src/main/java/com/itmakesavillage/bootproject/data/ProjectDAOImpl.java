@@ -187,6 +187,11 @@ public class ProjectDAOImpl implements ProjectDAO {
 		em.persist(itemsNeeded);
 		return itemsNeeded;
 	}
+	@Override
+	public ItemsNeeded removeItemsNeeded(ItemsNeeded itemsNeeded) {
+		em.remove(itemsNeeded);
+		return itemsNeeded;
+	}
 	
 
 }

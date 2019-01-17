@@ -33,6 +33,7 @@ public interface ProjectDAO {
 	ItemsNeeded getItemsNeeded(int itemId);
 	Item createItem(Item item);
 	ItemsNeeded createItemsNeeded(ItemsNeeded itemsNeeded);
+	ItemsNeeded removeItemsNeeded(ItemsNeeded itemsNeeded);
 
 
 }

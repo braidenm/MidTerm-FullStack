@@ -133,6 +133,8 @@
 						<input type="hidden" value="${sessions.user.id}" id="ownerId"
 							name="ownerId" />
 					</div> --%>
+					
+					
 					<div>
 						<input type="hidden" value="true" id="active" name="active" />
 					</div>
@@ -144,6 +146,36 @@
 				<br>
 				<br>
 				<br>
+			</div>
+			<div class="col-sm-4">
+			
+				<c:if test="${not empty currentItemsNeeded }">
+					<h4>Edit Items needed for the Project</h4>
+					<form action="editItemsNeeded.do" method="post">
+						<select name="itemId">
+							<c:forEach items="${currentItemsNeeded}" var="needed">
+							<option value="${needed.id }">${needed.item}-${needed.quantity }</option>
+							</c:forEach>
+						</select>		
+						<input type="hidden"  value="${project.id }" name="projectId">		
+						<input type="number" min="0" required name="quantity">		
+						<input type="submit" value="Submit" class="btn btn-primary">		
+					</form>
+				</c:if>
+				<br>
+				<h4>Add Item needed for the Project</h4>
+				<form action="addItemsNeeded.do" method="post">
+					<select name="itemId">
+						<c:forEach items="${remainingItems}" var="needed">
+						<option value="${needed.id }">${needed}</option>
+						</c:forEach>
+					</select>	
+					<input type="hidden"  value="${project.id }" name="projectId">		
+					<input type="number" min="1" required name="quantity">		
+					<input type="submit" value="Submit" class="btn btn-primary">		
+				</form>
+			
+			
 			</div>
 		</div>
 	</div>

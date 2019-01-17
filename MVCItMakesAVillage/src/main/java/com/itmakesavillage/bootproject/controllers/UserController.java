@@ -44,8 +44,13 @@ public class UserController {
 		Project project = projectDAO.findProject(projectId);
 		ProjectVolunteer pv = pvDAO.findPV(projectId, userId);
 		pv.setCompany(null);
-		pv.setItemsCommitted(null);
 		user.getVolunteer().removeProject(project);
+		List<ItemsCommitted> committedList = pv.getItemsCommitted();
+		pv.setItemsCommitted(null);
+		
+		for (ItemsCommitted committed : committedList) {
+			pvDAO.deleteItemsCommitted(committed);
+		}
 		user = userDAO.updateUser(user.getId(), user);
 		redir.addAttribute("projectId", project.getId());
 		return "redirect:viewProject.do";

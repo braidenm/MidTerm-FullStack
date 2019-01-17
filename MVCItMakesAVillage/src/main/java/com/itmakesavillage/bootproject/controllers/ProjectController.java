@@ -145,29 +145,24 @@ public class ProjectController {
     @RequestMapping(path = "createProject.do", method = RequestMethod.POST)
     public String createProject(HttpSession session, Project project, RedirectAttributes redir,
             @RequestParam("sTime") String[] sTime, @RequestParam("sDate") String[] sDate,
-            @RequestParam("eDate") String[] eDate, @RequestParam(required=false, name = "cat") Integer[] cat, @RequestParam(required=false, name = "itemid") Integer[] itemId,
-            @RequestParam(required=false, name = "itemQuantity") Integer[] itemQuantity,  @RequestParam(name="ownerId") Integer ownerId,
+            @RequestParam("eDate") String[] eDate, @RequestParam(required=false, name = "cat") Integer[] cat, @RequestParam(required=false, name = "itemid") Integer itemId,
+            @RequestParam(required=false, name = "itemQuantity") Integer itemQuantity,  @RequestParam(name="ownerId") Integer ownerId,
             Address address, @RequestParam(name="stateId") Integer stateId) {
         
-    	List<ItemsNeeded> itemsNeeded = new ArrayList<>();
     	if(itemId != null) {
-    		int i =0;
-	    	for (int id: itemId) {
 	    		
 	    		ItemsNeeded needed = new ItemsNeeded();
-	    		Item item = projectDAO.getItem(id);
+	    		Item item = projectDAO.getItem(itemId);
 	    		needed.setItem(item);
 	    		needed.setProject(project);
-	    		needed.setQuantity(itemQuantity[i]);
+	    		needed.setQuantity(itemQuantity);
 	    		needed = projectDAO.createItemsNeeded(needed);
-				itemsNeeded.add(needed);
-				i++;
-			}
+	    		project.addItemsNeeded(needed);
+			
     	}
     	
         address.setState(projectDAO.getStateById(stateId));
         address = projectDAO.createAddress(address);
-        project.setItemsNeeded(itemsNeeded);
         project.setAddress(address);
         project.setTime(sTime[0]);
         project.setStartDate(sDate[0]);
@@ -246,7 +241,6 @@ public class ProjectController {
 							needed.setQuantity(0);
 							remainingList.add(needed);
 						}
-						break;
 					}
 				}
 					
@@ -303,34 +297,12 @@ public class ProjectController {
     public String editProject(HttpSession session, RedirectAttributes redir, Project project,
             @RequestParam("sTime") String[] sTime, @RequestParam("sDate") String[] sDate,
             @RequestParam("eDate") String[] eDate, @RequestParam(required=false, name="cat") Integer[] cat,
-            Address address, @RequestParam(name="stateId") Integer stateId,  @RequestParam(required=false, name = "itemid") Integer[] itemId,
-            @RequestParam(required=false, name = "itemQuantity") Integer[] itemQuantity) {
+            Address address, @RequestParam(name="stateId") Integer stateId) {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             return "login";
         }
         
-        List<ItemsNeeded> itemsNeeded = new ArrayList<>();
-    	if(itemId != null) {
-    		int i = 0;
-    		for (int id : itemId) {
-				
-	    		ItemsNeeded needed = new ItemsNeeded();
-	    		Item item = projectDAO.getItem(id);
-	    		needed.setItem(item);
-	    		needed.setProject(project);
-	    		needed.setQuantity(itemQuantity[i]);
-	    		needed = projectDAO.createItemsNeeded(needed);
-				itemsNeeded.add(needed);
-				i++;
-			}
-	    	for (ItemsNeeded item : itemsNeeded) {
-				project.addItemsNeeded(item);
-			}
-    	}
-    	if(itemId == null) {
-    		project.setItemsNeeded(null);
-    	}
         address.setState(projectDAO.getStateById(stateId));
         address = projectDAO.updateAddress(address);
         
@@ -408,6 +380,66 @@ public class ProjectController {
         return "redirect:viewProject.do";
     }
     
+    @RequestMapping(path = "editItemsNeeded.do", method = RequestMethod.POST)
+    public String editItemsNeeded(@RequestParam("projectId") Integer projectId, Integer itemId, Integer quantity, HttpSession session, Model model, RedirectAttributes redir) {
+    	
+    	Project project = projectDAO.findProject(projectId);
+    	if(itemId != null) {
+    		
+    		ItemsNeeded needed = projectDAO.getItemsNeeded(itemId);
+    		
+    		needed.setQuantity(quantity);
+    		project.removeItemsNeeded(needed);
+    		project.addItemsNeeded(needed);
+    		
+    		if(quantity ==0) {
+    			project.removeItemsNeeded(needed);
+    			projectDAO.removeItemsNeeded(needed);
+    		}
+    		
+    		project=projectDAO.updateProject(projectId, project);
+    	}
+    	
+    	redir.addAttribute("projectId", projectId);
+    	return "redirect:viewProject.do";
+    }
+    @RequestMapping(path = "addItemsNeeded.do", method = RequestMethod.POST)
+    public String addItemsNeeded(@RequestParam("projectId") Integer projectId, Integer itemId, Integer quantity, HttpSession session, Model model, RedirectAttributes redir) {
+    	
+    	Project project = projectDAO.findProject(projectId);
+    	if(itemId != null) {
+    		
+    		ItemsNeeded needed = new ItemsNeeded();
+    		Item item = projectDAO.getItem(itemId);
+    		needed.setItem(item);
+    		needed.setQuantity(quantity);
+    		needed.setProject(project);
+    		needed = projectDAO.createItemsNeeded(needed);
+    		project.addItemsNeeded(needed);
+    		
+    		project=projectDAO.updateProject(projectId, project);
+    		
+    	}
+    	
+    	redir.addAttribute("projectId", projectId);
+    	return "redirect:viewProject.do";
+    }
+    
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     
     
 }
