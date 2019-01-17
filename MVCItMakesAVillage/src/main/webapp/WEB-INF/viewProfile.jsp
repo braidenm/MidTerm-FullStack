@@ -116,10 +116,14 @@
 			</div>
 		</div>
 	</div>
-
-<div class="footer">
+<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="footer id="footer">
 		<a href="about.do"> About</a>
-		</ul>
+		
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

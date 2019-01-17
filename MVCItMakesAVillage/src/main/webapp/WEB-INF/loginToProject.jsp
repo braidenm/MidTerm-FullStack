@@ -72,9 +72,14 @@
 			</div>
 		</div>
 	</div>
-<div class="footer">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="footer id="footer">
 		<a href="about.do"> About</a>
-		</ul>
+		
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
