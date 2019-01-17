@@ -163,8 +163,8 @@ input[type=text], input[type=password] {
 	color: white;
 }
 
-.footer {
-	
+#footer {
+	position: absolute;
 	left: 0;
 	bottom: 0;
 	width: 100%;
@@ -172,4 +172,9 @@ input[type=text], input[type=password] {
 	color: white;
 	text-align: center;
 	padding: 20px;
+	margin-top: -40px
 }
+
+
+
+

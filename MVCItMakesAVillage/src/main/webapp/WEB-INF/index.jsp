@@ -23,6 +23,7 @@
 <title>Home</title>
 </head>
 <body>
+	<div class="page-container">
 	<div>
 		<%@include file="navBar.jsp"%>
 	</div>
@@ -157,7 +158,7 @@
 							<strong>Volunteer:</strong>
                             Volunteer Goal Met
 						<br>
-                        </c:if>
+						</c:if>
 						<c:if
 							test="${(project.volunteersNeeded - fn:length(project.volunteers)) > 0}">
 							<strong>Volunteers still needed: </strong>
@@ -174,14 +175,14 @@
 						<br>
 					</c:forEach>
 				</c:if>
-				<br>
 
 			</div>
 		</div>
 	</div>
+		<br> <br> <br> <br> <br> <br>
 	<div class="footer" id="footer">
 		<a href="about.do"> About Nuclear Panda</a>
-		</ul>
+	</div>
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

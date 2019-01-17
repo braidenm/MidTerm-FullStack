@@ -208,6 +208,11 @@
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="footer id="footer">
 		<a href="about.do"> About</a>
 		

@@ -166,9 +166,14 @@
 		</div>
 	</div>
 	</div>
+	<br>
+<br>
+<br>
+<br>
+<br>
 	<div class="footer">
 		<a href="about.do"> About</a>
-		</ul>
+		
 	</div>
 
 	<!-- Optional JavaScript -->
