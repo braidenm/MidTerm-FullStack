@@ -179,7 +179,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="footer">
+	<div class="footer" id="footer">
 		<a href="about.do"> About Nuclear Panda</a>
 		</ul>
 	</div>
