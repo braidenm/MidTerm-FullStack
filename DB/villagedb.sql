@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `items_pv` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `items_id` INT NOT NULL,
   `pv_id` INT NOT NULL,
-  `quantity` INT NULL DEFAULT 1,
+  `quatity` INT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_to_items_idx` (`items_id` ASC),
   INDEX `fk_to_pv_from_items_pv_idx` (`pv_id` ASC),
@@ -559,7 +559,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `villagedb`;
-INSERT INTO `Items` (`id`, `name`) VALUES (1, 'Construction Skills');
+INSERT INTO `Items` (`id`, `name`) VALUES (1, 'Construction');
 INSERT INTO `Items` (`id`, `name`) VALUES (2, 'Shovel');
 INSERT INTO `Items` (`id`, `name`) VALUES (3, 'Hoe');
 INSERT INTO `Items` (`id`, `name`) VALUES (4, 'Drill');
@@ -579,34 +579,7 @@ INSERT INTO `Items` (`id`, `name`) VALUES (17, 'Garden Shears');
 INSERT INTO `Items` (`id`, `name`) VALUES (18, 'Beer');
 INSERT INTO `Items` (`id`, `name`) VALUES (19, 'Weed Killer');
 INSERT INTO `Items` (`id`, `name`) VALUES (20, 'Toilet Paper');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `items_pv`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `villagedb`;
-INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quantity`) VALUES (1, 20, 1, 5);
-INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quantity`) VALUES (2, 20, 2, 3);
-INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quantity`) VALUES (3, 18, 3, 5);
-INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quantity`) VALUES (4, 18, 1, 1);
-INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quantity`) VALUES (5, 14, 5, 1);
-INSERT INTO `items_pv` (`id`, `items_id`, `pv_id`, `quantity`) VALUES (6, 11, 4, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `items_project`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `villagedb`;
-INSERT INTO `items_project` (`id`, `project_id`, `item_id`, `quantity_needed`) VALUES (1, 1, 20, 15);
-INSERT INTO `items_project` (`id`, `project_id`, `item_id`, `quantity_needed`) VALUES (2, 1, 18, 24);
-INSERT INTO `items_project` (`id`, `project_id`, `item_id`, `quantity_needed`) VALUES (3, 1, 14, 10);
-INSERT INTO `items_project` (`id`, `project_id`, `item_id`, `quantity_needed`) VALUES (4, 1, 11, 1);
+INSERT INTO `Items` (`id`, `name`) VALUES (20, 'Toilet Paper');
 
 COMMIT;
 
