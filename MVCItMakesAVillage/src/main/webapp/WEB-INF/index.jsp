@@ -23,10 +23,10 @@
 <title>Home</title>
 </head>
 <body>
-	<div class="page-container">
-	<div>
-		<%@include file="navBar.jsp"%>
-	</div>
+	<%@include file="navBar.jsp"%>
+		<br>
+		<br>
+		<br>
 	<div class="bg-img">
 		<br> <br>
 		<div class="ticker">
@@ -179,11 +179,16 @@
 			</div>
 		</div>
 	</div>
-		<br> <br> <br> <br> <br> <br>
-	<div class="footer" id="footer">
-		<a href="about.do"> About Nuclear Panda</a>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="footer id="footer">
+		<a href="about.do"> About</a>
+		
 	</div>
-	</div>
+	
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
