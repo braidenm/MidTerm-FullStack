@@ -24,9 +24,6 @@
 </head>
 <body>
 	<%@include file="navBar.jsp"%>
-		<br>
-		<br>
-		<br>
 	<div class="bg-img">
 		<br> <br>
 		<div class="ticker">
