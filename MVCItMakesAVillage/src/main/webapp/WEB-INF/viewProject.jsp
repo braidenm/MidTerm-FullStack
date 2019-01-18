@@ -73,19 +73,20 @@
 					<strong>Volunteer:</strong>
 			  					Volunteer Goal Met
 			  	</c:if>
-				<br> 
+				<br>
 				<c:if test="${not empty project.itemsNeeded }">
 					<strong>Items/Skills Needed: </strong>
 					<br>
 					<c:forEach items="${project.itemsNeeded}" var="needed">
-					
+
 						<strong>Item/Skill: </strong>${needed.item }
+						<br>
 						<strong>Quantity: </strong>${needed.quantity}
 						<br>
 					</c:forEach>
 					<br>
 				</c:if>
-				
+
 				<strong>Companies Involved:</strong>
 
 				<c:forEach items="${project.projectVolunteer }"
@@ -96,9 +97,10 @@
 				<c:if test="${!inList && project.active}">
 
 					<form action="joinProject.do" method="post">
-						<label for="hours">Join Project: </label> 
-						<input type="hidden" name="userId" id="userId" value="${user.id}"> 
-						<input type="hidden" name="projectId" id="projectId" value="${project.id}"> 
+						<label for="hours">Join Project: </label> <input type="hidden"
+							name="userId" id="userId" value="${user.id}"> <input
+							type="hidden" name="projectId" id="projectId"
+							value="${project.id}">
 						<%-- <c:if test="${not empty project.itemsNeeded }">
 							<label for="companyId"><strong>Want to bring Something? (if wanted add more Later)</strong></label> 
 							<br>
@@ -110,16 +112,15 @@
 							<input type="number" value="0" min="0" name="itemQuantity">
 						</c:if>
 						<br> --%>
-						<label for="companyId">Select A Company</label> 
-						<select class="form-control" required id="companyId" name="companyId">
+						<label for="companyId">Select A Company</label> <select
+							class="form-control" required id="companyId" name="companyId">
 							<option value="0">None</option>
 							<c:forEach items="${companyList}" var="company">
-									<option value="${company.id}">${company.name }</option>
+								<option value="${company.id}">${company.name }</option>
 							</c:forEach>
-						</select> 
-						<br> 
-						<input type="number" name="hours" id="hours" placeholder="pledged hours" required> 
-						<input type="submit" class="btn btn-primary" value="Join Project">
+						</select> <br> <input type="number" name="hours" id="hours"
+							placeholder="pledged hours" required> <input
+							type="submit" class="btn btn-primary" value="Join Project">
 
 					</form>
 				</c:if>
@@ -181,7 +182,7 @@
 
 
 		</div>
-		<div  class="col-sm-3">
+		<div class="col-sm-3">
 			<h3>Volunteers:</h3>
 			<div id="volunteerList">
 				<ul>
@@ -197,7 +198,7 @@
 									<strong>Contact Email: </strong>${volunteer.user.email}
 								 
 								</c:if>
-								
+
 
 								<c:forEach items="${pvList}" var="pv">
 									<c:if test="${volunteer.userid == pv.volunteer.userid}">
@@ -210,47 +211,48 @@
 											<strong>Company: </strong>
 						  					${pv.company.name}
 					  					</c:if>
-					  					<br>
-					  					<strong>Items/Skills Committed: </strong>
-					  					<br>
-							  			<c:forEach items="${pv.itemsCommitted}" var="committed">
-							  				<c:if test="${committed.quantity > 0 }">
+										<br>
+										<strong>Items/Skills Committed: </strong>
+										<br>
+										<c:forEach items="${pv.itemsCommitted}" var="committed">
+											<c:if test="${committed.quantity > 0 }">
 								  				${committed.item }
 								  				${committed.quantity }
 							  				</c:if>
-							  				<br>
-							  			</c:forEach>
-										<c:if test="${volunteer.userid == user.id or project.owner.userid == user.id or user.role == 'admin' }">
-							  				<c:if test="${not empty pv.itemsCommitted }">
-								  				<em>Change Quantity (set to 0 to remove): </em>
-								  				<form action="updateItemsCommitted.do" method="post">
-										  			<input type="hidden" value="${project.id }" name="projectId">
-								  					<select name="committedId">
-									  					<c:forEach items="${pv.itemsCommitted}" var="committed">
-										  						<option value="${committed.id}">${committed.item}</option>
-									  					</c:forEach>
-								  					</select>
-										  			<input type="number" min="0" name=itemQuantity required>
-										  			<input type="submit" value="Change" class="btn btn-primary">
-								  				
-								  				</form>
-							  				</c:if>
-							  				<em>Add New Items to Bring</em>
-							  				<form action="addItemsCommitted.do" method="post">
-									  			<input type="hidden" value="${pv.id }" name="pvId">
-									  			<input type="hidden" value="${project.id }" name="projectId">
-							  					<select name="itemId">
-								  					<c:forEach items="${project.itemsNeeded}" var="needed">
-								  							<c:if test="${needed.quantity > 0 }">
-									  						<option value="${needed.item.id}">${needed.item}</option>
-								  							</c:if>
-								  					</c:forEach>
-							  					</select>
-									  			<input type="number" required min="0" name=itemQuantity>
-									  			<input type="submit" value="Add" class="btn btn-primary">
-							  				
-							  				</form>
-										<!-- <br> -->
+											<br>
+										</c:forEach>
+										<c:if
+											test="${volunteer.userid == user.id or project.owner.userid == user.id or user.role == 'admin' }">
+											<c:if test="${not empty pv.itemsCommitted }">
+												<em>Change Quantity (set to 0 to remove): </em>
+												<form action="updateItemsCommitted.do" method="post">
+													<input type="hidden" value="${project.id }"
+														name="projectId"> <select name="committedId">
+														<c:forEach items="${pv.itemsCommitted}" var="committed">
+															<option value="${committed.id}">${committed.item}</option>
+														</c:forEach>
+													</select> <input type="number" min="0" name=itemQuantity required>
+													<input type="submit" value="Change" class="btn btn-primary">
+
+												</form>
+											</c:if>
+											<c:if test="${not empty project.itemsNeeded }">
+												<em>Add New Items to Bring</em>
+												<form action="addItemsCommitted.do" method="post">
+													<input type="hidden" value="${pv.id }" name="pvId">
+													<input type="hidden" value="${project.id }"
+														name="projectId"> <select name="itemId">
+														<c:forEach items="${project.itemsNeeded}" var="needed">
+															<c:if test="${needed.quantity > 0 }">
+																<option value="${needed.item.id}">${needed.item}</option>
+															</c:if>
+														</c:forEach>
+													</select> <input type="number" required min="0" name=itemQuantity>
+													<input type="submit" value="Add" class="btn btn-primary">
+
+												</form>
+											</c:if>
+											<!-- <br> -->
 											<form action="submitHours.do" method="post">
 												<label for="hoursActual">Edit Hours: </label> <input
 													type="hidden" name="userId" id="userId"
