@@ -28,11 +28,11 @@
 	<br>
 	<br>
 	<header>
-		<h2>Edit Project</h2>
 	</header>
 	<div class=container>
 		<div class=row>
 			<div class="col-sm-4">
+				<h2>Edit Project</h2>
 				<form action="editProject.do" method="post">
 					<div class="form-group">
 						<label id="title">Title</label> <input type="text" id="title"
