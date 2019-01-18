@@ -181,9 +181,9 @@
 
 
 		</div>
-		<div class="col-sm-3">
+		<div  class="col-sm-3">
 			<h3>Volunteers:</h3>
-			<div>
+			<div id="volunteerList">
 				<ul>
 					<c:forEach items="${project.volunteers}" var="volunteer">
 						<li>
