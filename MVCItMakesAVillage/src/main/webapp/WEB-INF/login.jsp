@@ -28,7 +28,6 @@
 	<br>
 	<br>
 	<br>
-	<header> </header>
 	<br>
 	<br>
 	<br>
