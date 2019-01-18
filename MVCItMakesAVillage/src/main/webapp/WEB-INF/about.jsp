@@ -35,6 +35,8 @@
 			<div class="col-sm-3">
 			</div>
 			<div class="col-sm-6">
+			<h3 id="about">About</h3>
+			<br>
 			<p>Welcome to VolunteerUp! We believe that change starts locally, in our neighborhoods and communities, and that we can do more together than we can do on our own. We wanted to find a way to get together with other people in our community who want to make a positive impact, and empower us to get shit done. Please browse the projects other users have planned and executed, and if you haven't yet, join our site, create an account, and plan or join your first project!</p>
 			<br>
 			</div>
@@ -51,7 +53,7 @@
 			<div class="col-sm-4">
 				<br>
 				<br>
-				<h4>Created By:</h4>
+				<h3 id="about">Created By:</h3>
 				<br>
 				<br>
 				<br>
