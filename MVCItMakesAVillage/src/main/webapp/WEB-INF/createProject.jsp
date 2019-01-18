@@ -29,11 +29,11 @@
 <br>
 <br>
     <header>
-        <h2>Create Project</h2>
     </header>
     <div class=container id="loginbox">
         <div class=row>
             <div class="col-sm-4">
+      			<h2>Create Project</h2>
                 <form action="createProject.do" method="post">
                     <div class="form-group">
                         <label id="title">Title</label> <input class="form-control" type="text" required
