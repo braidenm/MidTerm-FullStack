@@ -79,3 +79,21 @@ ul, li {
 	text-align: center;
 	padding: 20px;
 }
+
+ div #volunteerList{
+	max-height:600px;
+	overflow:hidden; 
+	overflow-y:scroll;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
