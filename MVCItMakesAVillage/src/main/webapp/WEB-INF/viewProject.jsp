@@ -99,7 +99,7 @@
 						<label for="hours">Join Project: </label> 
 						<input type="hidden" name="userId" id="userId" value="${user.id}"> 
 						<input type="hidden" name="projectId" id="projectId" value="${project.id}"> 
-						<c:if test="${not empty project.itemsNeeded }">
+						<%-- <c:if test="${not empty project.itemsNeeded }">
 							<label for="companyId"><strong>Want to bring Something? (if wanted add more Later)</strong></label> 
 							<br>
 							<select name="itemId">
@@ -109,7 +109,7 @@
 							</select>
 							<input type="number" value="0" min="0" name="itemQuantity">
 						</c:if>
-						<br>
+						<br> --%>
 						<label for="companyId">Select A Company</label> 
 						<select class="form-control" required id="companyId" name="companyId">
 							<option value="0">None</option>
@@ -221,18 +221,20 @@
 							  				<br>
 							  			</c:forEach>
 										<c:if test="${volunteer.userid == user.id or project.owner.userid == user.id or user.role == 'admin' }">
-							  				<em>Change Quantity (set to 0 to remove): </em>
-							  				<form action="updateItemsCommitted.do" method="post">
-									  			<input type="hidden" value="${project.id }" name="projectId">
-							  					<select name="committedId">
-								  					<c:forEach items="${pv.itemsCommitted}" var="committed">
-									  						<option value="${committed.id}">${committed.item}</option>
-								  					</c:forEach>
-							  					</select>
-									  			<input type="number" min="0" name=itemQuantity required>
-									  			<input type="submit" value="Change" class="btn btn-primary">
-							  				
-							  				</form>
+							  				<c:if test="${not empty pv.itemsCommitted }">
+								  				<em>Change Quantity (set to 0 to remove): </em>
+								  				<form action="updateItemsCommitted.do" method="post">
+										  			<input type="hidden" value="${project.id }" name="projectId">
+								  					<select name="committedId">
+									  					<c:forEach items="${pv.itemsCommitted}" var="committed">
+										  						<option value="${committed.id}">${committed.item}</option>
+									  					</c:forEach>
+								  					</select>
+										  			<input type="number" min="0" name=itemQuantity required>
+										  			<input type="submit" value="Change" class="btn btn-primary">
+								  				
+								  				</form>
+							  				</c:if>
 							  				<em>Add New Items to Bring</em>
 							  				<form action="addItemsCommitted.do" method="post">
 									  			<input type="hidden" value="${pv.id }" name="pvId">

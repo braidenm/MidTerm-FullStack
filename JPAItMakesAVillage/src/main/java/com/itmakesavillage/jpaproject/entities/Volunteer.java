@@ -36,11 +36,13 @@ public class Volunteer {
 	@JoinColumn(name="user_id")
 	private User user;
 	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="volunteer_id"), inverseJoinColumns=@JoinColumn(name="project_id"))
+	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="volunteer_id"),
+	                              inverseJoinColumns=@JoinColumn(name="project_id"))
 	private List<Project> projects;
 	
 	@OneToMany(mappedBy="volunteer")
 	private List<ProjectVolunteer> projectVolunteers;
+	
 	@OneToMany(mappedBy="owner")
 	private List<Project> ownedProjects;
 	
@@ -187,6 +189,22 @@ public class Volunteer {
 
 	public void setAbout(String about) {
 		this.about = about;
+	}
+	
+	public void addProjectVolunteer(ProjectVolunteer pv) {
+		if(projectVolunteers == null) {
+			projectVolunteers = new ArrayList<ProjectVolunteer>();
+		}
+		if(!projectVolunteers.contains(pv)) {
+			projectVolunteers.add(pv);
+			pv.setVolunteer(this);
+		}
+	}
+	public void removeProjectVolunteer(ProjectVolunteer pv) {
+		if(projectVolunteers != null && projectVolunteers.contains(pv)) {
+			projectVolunteers.remove(pv);
+//			pv.setVolunteer(null);
+		}
 	}
 	
 	public void addProject(Project project) {

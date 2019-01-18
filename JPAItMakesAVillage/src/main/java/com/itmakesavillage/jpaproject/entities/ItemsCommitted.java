@@ -18,9 +18,10 @@ public class ItemsCommitted {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="items_id")
 	private Item item;
+	
 	private int quantity;
 	@ManyToOne
 	@JoinColumn(name="pv_id")

@@ -44,17 +44,20 @@ public class UserController {
 		User user = userDAO.findUser(userId);
 		Project project = projectDAO.findProject(projectId);
 		ProjectVolunteer pv = pvDAO.findPV(projectId, userId);
-		pv.setCompany(null);
-		user.getVolunteer().removeProject(project);
-		List<ItemsCommitted> committedList = pv.getItemsCommitted();
-		pv.setItemsCommitted(null);
-		
-		for (ItemsCommitted committed : committedList) {
-			pvDAO.deleteItemsCommitted(committed);
-		}
-		pv = pvDAO.updatePV(pv);
-		user = userDAO.updateUser(user.getId(), user);
+		pvDAO.deleteProject(pv, project);
+//		List<ItemsCommitted> committedList = pv.getItemsCommitted();
+//		pv.setCompany(null);
+//		System.out.println(committedList);
+//		pv = pvDAO.deleteallItemsforPV(pv);
+//		pv.setItemsCommitted(new ArrayList<>());
+//		System.out.println(pv.getItemsCommitted());
+//		user.getVolunteer().removeProject(project);
+//		System.out.println(userId);
+//		System.out.println(projectId);
+//		
+//		volunteerDAO.updateVolunteer(user.getId(), user.getVolunteer());
 		redir.addAttribute("projectId", project.getId());
+		
 		return "redirect:viewProject.do";
 	}
 

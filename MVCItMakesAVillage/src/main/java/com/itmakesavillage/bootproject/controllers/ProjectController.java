@@ -241,6 +241,7 @@ public class ProjectController {
 							needed.setQuantity(0);
 							remainingList.add(needed);
 						}
+						break;
 					}
 				}
 					

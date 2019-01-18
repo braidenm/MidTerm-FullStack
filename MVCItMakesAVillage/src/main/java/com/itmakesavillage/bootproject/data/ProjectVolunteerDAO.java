@@ -3,6 +3,7 @@ package com.itmakesavillage.bootproject.data;
 import java.util.List;
 
 import com.itmakesavillage.jpaproject.entities.ItemsCommitted;
+import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.ProjectVolunteer;
 
 public interface ProjectVolunteerDAO {
@@ -18,5 +19,8 @@ public interface ProjectVolunteerDAO {
 	ItemsCommitted findItemsCommittedById(int id);
 	ItemsCommitted createItemsCommitted(ItemsCommitted itemsCommitted);
 	ItemsCommitted deleteItemsCommitted(ItemsCommitted itemsCommitted);
+	ProjectVolunteer deletePV(ProjectVolunteer pv);
+	ProjectVolunteer deleteallItemsforPV(ProjectVolunteer pv);
+	ProjectVolunteer deleteProject(ProjectVolunteer pv, Project project);
 
 }

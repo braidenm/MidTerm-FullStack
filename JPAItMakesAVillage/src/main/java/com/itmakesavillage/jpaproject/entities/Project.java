@@ -55,20 +55,21 @@ public class Project {
 	private int volunteersNeeded;
 
 	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="volunteer_id"))
+	@JoinTable(name="project_volunteer", joinColumns=@JoinColumn(name="project_id"),
+	                              inverseJoinColumns=@JoinColumn(name="volunteer_id"))
 	private List<Volunteer> volunteers;
 	
 	@ManyToMany
 	@JoinTable(name="category_project", joinColumns=@JoinColumn(name="project_id"), inverseJoinColumns=@JoinColumn(name="category_id"))
 	private List<Category> categories;
 
-	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy="project"/*, cascade = {CascadeType.ALL}*/)
 	private List<ProjectVolunteer> projectVolunteer;
 
 	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
 	private List<Comments> comments;
 	
-	@OneToMany(mappedBy="project", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy="project"/*, cascade = {CascadeType.ALL}*/)
 	private List<ItemsNeeded> itemsNeeded;
 	
 	
@@ -262,22 +263,43 @@ public class Project {
 		}
 		
 	}
+
 	public void addVolunteer(Volunteer volunteer) {
-		if(volunteers == null) {
+		if (volunteers == null) {
 			volunteers = new ArrayList<Volunteer>();
 		}
-		if(!volunteers.contains(volunteer)) {
+		if (!volunteers.contains(volunteer)) {
 			volunteers.add(volunteer);
 			volunteer.addProject(this);
 		}
-			
+
 	}
+
 	public void removeVolunteer(Volunteer volunteer) {
-		if(volunteers !=null && volunteers.contains(volunteer)) {
+		if (volunteers != null && volunteers.contains(volunteer)) {
 			volunteers.remove(volunteer);
 			volunteer.removeProject(this);
 		}
 	}
+
+	public void addProjectVolunteer(ProjectVolunteer pv) {
+		if (projectVolunteer == null) {
+			volunteers = new ArrayList<Volunteer>();
+		}
+		if (!projectVolunteer.contains(pv)) {
+			projectVolunteer.add(pv);
+			pv.setProject(this);
+		}
+		
+	}
+	
+	public void removeProjectVolunteer(ProjectVolunteer pv) {
+		if (projectVolunteer != null && projectVolunteer.contains(pv)) {
+			projectVolunteer.remove(pv);
+//			pv.setProject(null);
+		}
+	}
+	
 	public void addItemsNeeded(ItemsNeeded itemNeeded) {
 		if(itemsNeeded == null) {
 			itemsNeeded = new ArrayList<>();

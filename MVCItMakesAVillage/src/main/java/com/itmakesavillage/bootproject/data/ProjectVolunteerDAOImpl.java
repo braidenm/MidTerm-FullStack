@@ -10,7 +10,9 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.itmakesavillage.jpaproject.entities.ItemsCommitted;
+import com.itmakesavillage.jpaproject.entities.Project;
 import com.itmakesavillage.jpaproject.entities.ProjectVolunteer;
+import com.itmakesavillage.jpaproject.entities.Volunteer;
 
 @Transactional
 @Service
@@ -102,6 +104,41 @@ public class ProjectVolunteerDAOImpl implements ProjectVolunteerDAO {
 	public ItemsCommitted deleteItemsCommitted(ItemsCommitted itemsCommitted) {
 		em.remove(itemsCommitted);
 		return itemsCommitted;
+	}
+	
+	@Override
+	public ProjectVolunteer deletePV(ProjectVolunteer pv) {
+		em.remove(pv);
+		return pv;
+	}
+	@Override
+	public ProjectVolunteer deleteallItemsforPV(ProjectVolunteer pv) {
+		String query = "delete from ItemsCommitted i where  i.projectVolunteer.id = :id";
+			em.createQuery(query).setParameter("id", pv.getId()).executeUpdate();
+		
+		return pv;
+	}
+	@Override
+	public ProjectVolunteer deleteProject(ProjectVolunteer pv, Project project) {
+		pv = em.find(ProjectVolunteer.class, pv.getId());
+		
+		this.deleteallItemsforPV(pv);
+		em.flush();
+		Volunteer vol = pv.getVolunteer();
+//		vol.removeProjectVolunteer(pv);
+//		vol.removeProject(project);
+		Project p = new Project();
+		p.setId(p.getId());
+		vol.removeProject(p);
+		vol.removeProjectVolunteer(pv);
+		project.removeProjectVolunteer(pv);
+//		pv.getVolunteer().removeProject(project);
+//		project.removeVolunteer(vol);
+		
+		String query = "delete from ProjectVolunteer pv where  pv.id = :id";
+		em.createQuery(query).setParameter("id", pv.getId()).executeUpdate();
+	
+		return pv;
 	}
 	
 	

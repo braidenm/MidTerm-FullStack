@@ -117,7 +117,7 @@
                         </c:forEach>
                 
                     </div>
-                    <h3>Choose Items/Skills Needed:</h3>
+                    <%-- <h3>Choose Items/Skills Needed:</h3>
                     <div class="form-group">
                     	<select name="itemId">
                     		<option>None</option>
@@ -129,7 +129,7 @@
                         <input type="number" id="itemQuantity" name="itemQuantity" min="1" value="1" required />
                     	
                 
-                    </div>
+                    </div> --%>
                     
                     
                     <div>
