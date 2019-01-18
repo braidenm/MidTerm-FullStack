@@ -67,7 +67,7 @@
 					<input type="submit" class="btn btn2 btn-primary" value="Edit Profile">
 				</form>
 				<form action="createProject.do" method="get">
-					<input type="submit" class="btn btn2 btn-primary" value="CreateProject">
+					<input type="submit" class="btn btn2 btn-primary" value="Create Project">
 				</form>
 				<br>
 				<h3>Projects You Are In</h3>
