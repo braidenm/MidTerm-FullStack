@@ -22,6 +22,12 @@ contributed to the project, and also tools and skills needed by the project and
 provided by volunteers.
 
 ## How to use
+Basic User
+UserName: supervolunteer
+Password: password
+ADMIN
+UserName: admin
+Password: password
 
 From the home page you have a couple of options to interact with the website.
 You have the choice to search the existing projects in the database by keyword.
