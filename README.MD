@@ -5,7 +5,7 @@ Jimmy Fruchterman - Scrum Master
 Mike Murrell - Git Repo Owner
 Braiden Miller - DBA
 
-Link to project on AWS: link
+Link to project on AWS: http://54.219.123.219:8080/MVCItMakesAVillage/
 
 ## Description
 
